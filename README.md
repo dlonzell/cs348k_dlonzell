@@ -1,4 +1,4 @@
-Github Token: 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
+
 
 # From Scenario to Scene: Generating Interactive Language-Learning Practice Scenes for Vision Pro
 
@@ -46,7 +46,7 @@ The typed primitive set, aligned with native visionOS input:
 
 ### Scenario benchmark
 
-9 scenarios across 3 settings, drawn from learner-generated scenarios collected in the prior GELLI study (N=43 Japanese learners). Drawing from real learner data — rather than authoring scenarios — addresses a methodological concern: researcher-authored scenarios would bias toward what the system can already handle.
+9 scenarios across 3 settings, drawn from learner-generated scenarios collected in the prior GELLI study (N=43 Japanese learners).
 
 ### Evaluation
 
