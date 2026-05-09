@@ -1,0 +1,782 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5A3B7CE8EBA3F9CDEAF82760 /* Baseball_Bat_new.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5A3B7CE8EBA3F9CDEAF8276B /* Baseball_Bat_new.usdz */; };
+		51FBE16838A2C0D8BA76B7C0 /* Worn_Baseball_Ball.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 51FBE16838A2C0D8BA76B7CE /* Worn_Baseball_Ball.usdz */; };
+		8156E7122F1885590028D284 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8156E70B2F1885590028D284 /* README.md */; };
+		8156E7202F1885590028D284 /* VLMPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E70F2F1885590028D284 /* VLMPipeline.swift */; };
+		8156E7212F1885590028D284 /* SceneCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E70C2F1885590028D284 /* SceneCapture.swift */; };
+		8156E7222F1885590028D284 /* VLMSceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7102F1885590028D284 /* VLMSceneCoordinator.swift */; };
+		8156E7232F1885590028D284 /* USDZLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E70E2F1885590028D284 /* USDZLoader.swift */; };
+		8156E7242F1885590028D284 /* ReactionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E70A2F1885590028D284 /* ReactionSystem.swift */; };
+		8156E7252F1885590028D284 /* MockAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7072F1885590028D284 /* MockAnalyzer.swift */; };
+		8156E7262F1885590028D284 /* HandMeshGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7052F1885590028D284 /* HandMeshGenerator.swift */; };
+		8156E7272F1885590028D284 /* NPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7082F1885590028D284 /* NPCController.swift */; };
+		8156E7282F1885590028D284 /* ActionClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7032F1885590028D284 /* ActionClassification.swift */; };
+		8156E7292F1885590028D284 /* FastVLMAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7042F1885590028D284 /* FastVLMAnalyzer.swift */; };
+		8156E72A2F1885590028D284 /* OffscreenRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7092F1885590028D284 /* OffscreenRenderer.swift */; };
+		8156E72B2F1885590028D284 /* TextureConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E70D2F1885590028D284 /* TextureConverter.swift */; };
+		8156E72C2F1885590028D284 /* HandTrackingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7062F1885590028D284 /* HandTrackingSystem.swift */; };
+		8156E72D2F1885590028D284 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8156E70B2F1885590028D284 /* README.md */; };
+		8156E72F2F1886000028D284 /* VLMTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E72E2F1886000028D284 /* VLMTestView.swift */; };
+		8156E7312F1890000028D284 /* ActionClassificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7322F1890000028D284 /* ActionClassificationTests.swift */; };
+		8156E7332F1890000028D284 /* MockAnalyzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7342F1890000028D284 /* MockAnalyzerTests.swift */; };
+		8156E7352F1890000028D284 /* ReactionSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7362F1890000028D284 /* ReactionSystemTests.swift */; };
+		8156E7372F1890000028D284 /* NPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7382F1890000028D284 /* NPCControllerTests.swift */; };
+		8156E7392F1890000028D284 /* VLMSceneCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E73A2F1890000028D284 /* VLMSceneCoordinatorTests.swift */; };
+		8156E73B2F1890000028D284 /* USDZLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E73C2F1890000028D284 /* USDZLoaderTests.swift */; };
+		8156E73D2F1890000028D284 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E73E2F1890000028D284 /* TestHelpers.swift */; };
+		8156E7402F1899000028D284 /* SimulatorVLMTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7412F1899000028D284 /* SimulatorVLMTestView.swift */; };
+		8156E7432F18A0000028D284 /* GPT4VisionAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7442F18A0000028D284 /* GPT4VisionAnalyzer.swift */; };
+		8156E7702F18D0000028D284 /* DebugLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8156E7712F18D0000028D284 /* DebugLogger.swift */; };
+		DB1CDBC72C0FED9B009F403A /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CDBC62C0FED9B009F403A /* SceneView.swift */; };
+		DB871FE02C066E370040A190 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB871FDF2C066E370040A190 /* PlayView.swift */; };
+		DBA43EC42BE176D000E40DA5 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = DBA43EC32BE176D000E40DA5 /* RealityKitContent */; };
+		DBA43EC62BE176D000E40DA5 /* RoleplARApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA43EC52BE176D000E40DA5 /* RoleplARApp.swift */; };
+		DBA43ECE2BE176D100E40DA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA43ECD2BE176D100E40DA5 /* Assets.xcassets */; };
+		DBA43ED12BE176D100E40DA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA43ED02BE176D100E40DA5 /* Preview Assets.xcassets */; };
+		DBA43EDC2BE176D100E40DA5 /* RoleplARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA43EDB2BE176D100E40DA5 /* RoleplARTests.swift */; };
+		DBD0D12E2BE2E29A00536B3E /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD0D12D2BE2E29900536B3E /* MainMenuView.swift */; };
+		DBD0D1332BE42AC000536B3E /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = DBD0D1322BE42AC000536B3E /* OpenAI */; };
+		DBE1F2452BEDAACC00122771 /* NarrativeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE1F2442BEDAACC00122771 /* NarrativeModel.swift */; };
+		DBF359C42C10E28F00DE9BCE /* SceneToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF359C32C10E28F00DE9BCE /* SceneToggle.swift */; };
+		EA05A4C42C376A8A005CF2AC /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05A4C32C376A8A005CF2AC /* Models.swift */; };
+		EA05A4C62C38C096005CF2AC /* DialogueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05A4C52C38C096005CF2AC /* DialogueView.swift */; };
+		EA05A4C82C3B4B43005CF2AC /* DialogueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05A4C72C3B4B43005CF2AC /* DialogueViewModel.swift */; };
+		EA05A4CA2C3B4E89005CF2AC /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05A4C92C3B4E89005CF2AC /* OpenAIService.swift */; };
+		EA05A4D12C3B5022005CF2AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05A4D02C3B5022005CF2AC /* Constants.swift */; };
+		EA31A05B2C3B707E0089FDDF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EA31A05A2C3B707E0089FDDF /* Alamofire */; };
+		EA7BE7AE2C361ABB00B7B0EF /* XCAOpenAIClient in Frameworks */ = {isa = PBXBuildFile; productRef = EA7BE7AD2C361ABB00B7B0EF /* XCAOpenAIClient */; };
+		A10000112F20000100000011 /* InteractionWorldModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000012F20000100000001 /* InteractionWorldModels.swift */; };
+		A10000122F20000100000012 /* InteractionWorldRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000022F20000100000002 /* InteractionWorldRuntime.swift */; };
+		A10000132F20000100000013 /* CafeCounterDemoPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000032F20000100000003 /* CafeCounterDemoPlan.swift */; };
+		A10000142F20000100000014 /* InteractionWorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000042F20000100000004 /* InteractionWorldView.swift */; };
+		A10000152F20000100000015 /* InteractionWorldRuntimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000062F20000100000006 /* InteractionWorldRuntimeTests.swift */; };
+		A10000162F21000100000016 /* InteractionWorldGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000082F21000100000008 /* InteractionWorldGeneration.swift */; };
+		A10000172F21000100000017 /* GenerationEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000092F21000100000009 /* GenerationEvaluation.swift */; };
+		A10000182F21000100000018 /* InteractionWorldGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000A2F2100010000000A /* InteractionWorldGenerationTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DBA43ED82BE176D100E40DA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBA43EB62BE176D000E40DA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBA43EBD2BE176D000E40DA5;
+			remoteInfo = RoleplAR;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EA31A0582C3B6FED0089FDDF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5A3B7CE8EBA3F9CDEAF8276B /* Baseball_Bat_new.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Baseball_Bat_new.usdz; sourceTree = "<group>"; };
+		51FBE16838A2C0D8BA76B7CE /* Worn_Baseball_Ball.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Worn_Baseball_Ball.usdz; sourceTree = "<group>"; };
+		8156E7032F1885590028D284 /* ActionClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionClassification.swift; sourceTree = "<group>"; };
+		8156E7042F1885590028D284 /* FastVLMAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastVLMAnalyzer.swift; sourceTree = "<group>"; };
+		8156E7052F1885590028D284 /* HandMeshGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandMeshGenerator.swift; sourceTree = "<group>"; };
+		8156E7062F1885590028D284 /* HandTrackingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTrackingSystem.swift; sourceTree = "<group>"; };
+		8156E7072F1885590028D284 /* MockAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyzer.swift; sourceTree = "<group>"; };
+		8156E7082F1885590028D284 /* NPCController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPCController.swift; sourceTree = "<group>"; };
+		8156E7092F1885590028D284 /* OffscreenRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffscreenRenderer.swift; sourceTree = "<group>"; };
+		8156E70A2F1885590028D284 /* ReactionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSystem.swift; sourceTree = "<group>"; };
+		8156E70B2F1885590028D284 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8156E70C2F1885590028D284 /* SceneCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCapture.swift; sourceTree = "<group>"; };
+		8156E70D2F1885590028D284 /* TextureConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureConverter.swift; sourceTree = "<group>"; };
+		8156E70E2F1885590028D284 /* USDZLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDZLoader.swift; sourceTree = "<group>"; };
+		8156E70F2F1885590028D284 /* VLMPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLMPipeline.swift; sourceTree = "<group>"; };
+		8156E7102F1885590028D284 /* VLMSceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLMSceneCoordinator.swift; sourceTree = "<group>"; };
+		8156E72E2F1886000028D284 /* VLMTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLMTestView.swift; sourceTree = "<group>"; };
+		8156E7322F1890000028D284 /* ActionClassificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionClassificationTests.swift; sourceTree = "<group>"; };
+		8156E7342F1890000028D284 /* MockAnalyzerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyzerTests.swift; sourceTree = "<group>"; };
+		8156E7362F1890000028D284 /* ReactionSystemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSystemTests.swift; sourceTree = "<group>"; };
+		8156E7382F1890000028D284 /* NPCControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPCControllerTests.swift; sourceTree = "<group>"; };
+		8156E73A2F1890000028D284 /* VLMSceneCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLMSceneCoordinatorTests.swift; sourceTree = "<group>"; };
+		8156E73C2F1890000028D284 /* USDZLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USDZLoaderTests.swift; sourceTree = "<group>"; };
+		8156E73E2F1890000028D284 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		8156E7412F1899000028D284 /* SimulatorVLMTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorVLMTestView.swift; sourceTree = "<group>"; };
+		8156E7442F18A0000028D284 /* GPT4VisionAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT4VisionAnalyzer.swift; sourceTree = "<group>"; };
+		8156E7712F18D0000028D284 /* DebugLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLogger.swift; sourceTree = "<group>"; };
+		DB1CDBC62C0FED9B009F403A /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		DB871FDF2C066E370040A190 /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
+		DBA43EBE2BE176D000E40DA5 /* RoleplAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoleplAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBA43EC22BE176D000E40DA5 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		DBA43EC52BE176D000E40DA5 /* RoleplARApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleplARApp.swift; sourceTree = "<group>"; };
+		DBA43ECD2BE176D100E40DA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DBA43ED02BE176D100E40DA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DBA43ED22BE176D100E40DA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBA43ED72BE176D100E40DA5 /* RoleplARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoleplARTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBA43EDB2BE176D100E40DA5 /* RoleplARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleplARTests.swift; sourceTree = "<group>"; };
+		DBD0D12D2BE2E29900536B3E /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		DBE1F2442BEDAACC00122771 /* NarrativeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarrativeModel.swift; sourceTree = "<group>"; };
+		DBF359C32C10E28F00DE9BCE /* SceneToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneToggle.swift; sourceTree = "<group>"; };
+		EA05A4C32C376A8A005CF2AC /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		EA05A4C52C38C096005CF2AC /* DialogueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogueView.swift; sourceTree = "<group>"; };
+		EA05A4C72C3B4B43005CF2AC /* DialogueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogueViewModel.swift; sourceTree = "<group>"; };
+		EA05A4C92C3B4E89005CF2AC /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		EA05A4D02C3B5022005CF2AC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A10000012F20000100000001 /* InteractionWorldModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionWorldModels.swift; sourceTree = "<group>"; };
+		A10000022F20000100000002 /* InteractionWorldRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionWorldRuntime.swift; sourceTree = "<group>"; };
+		A10000032F20000100000003 /* CafeCounterDemoPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeCounterDemoPlan.swift; sourceTree = "<group>"; };
+		A10000042F20000100000004 /* InteractionWorldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionWorldView.swift; sourceTree = "<group>"; };
+		A10000062F20000100000006 /* InteractionWorldRuntimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionWorldRuntimeTests.swift; sourceTree = "<group>"; };
+		A10000082F21000100000008 /* InteractionWorldGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionWorldGeneration.swift; sourceTree = "<group>"; };
+		A10000092F21000100000009 /* GenerationEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationEvaluation.swift; sourceTree = "<group>"; };
+		A100000A2F2100010000000A /* InteractionWorldGenerationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionWorldGenerationTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DBA43EBB2BE176D000E40DA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA7BE7AE2C361ABB00B7B0EF /* XCAOpenAIClient in Frameworks */,
+				EA31A05B2C3B707E0089FDDF /* Alamofire in Frameworks */,
+				DBD0D1332BE42AC000536B3E /* OpenAI in Frameworks */,
+				DBA43EC42BE176D000E40DA5 /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBA43ED42BE176D100E40DA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8156E7112F1885590028D284 /* VLMSceneUnderstanding */ = {
+			isa = PBXGroup;
+			children = (
+				8156E7682F18C0040028D284 /* FastVLM */,
+				8156E7032F1885590028D284 /* ActionClassification.swift */,
+				8156E7042F1885590028D284 /* FastVLMAnalyzer.swift */,
+				8156E7052F1885590028D284 /* HandMeshGenerator.swift */,
+				8156E7062F1885590028D284 /* HandTrackingSystem.swift */,
+				8156E7072F1885590028D284 /* MockAnalyzer.swift */,
+				8156E7082F1885590028D284 /* NPCController.swift */,
+				8156E7092F1885590028D284 /* OffscreenRenderer.swift */,
+				8156E70A2F1885590028D284 /* ReactionSystem.swift */,
+				8156E70B2F1885590028D284 /* README.md */,
+				8156E70C2F1885590028D284 /* SceneCapture.swift */,
+				8156E70D2F1885590028D284 /* TextureConverter.swift */,
+				8156E70E2F1885590028D284 /* USDZLoader.swift */,
+				8156E70F2F1885590028D284 /* VLMPipeline.swift */,
+				8156E7102F1885590028D284 /* VLMSceneCoordinator.swift */,
+				8156E72E2F1886000028D284 /* VLMTestView.swift */,
+				8156E7412F1899000028D284 /* SimulatorVLMTestView.swift */,
+				8156E7442F18A0000028D284 /* GPT4VisionAnalyzer.swift */,
+				8156E7712F18D0000028D284 /* DebugLogger.swift */,
+			);
+			path = VLMSceneUnderstanding;
+			sourceTree = "<group>";
+		};
+		8156E73F2F1890000028D284 /* VLMSceneUnderstanding */ = {
+			isa = PBXGroup;
+			children = (
+				8156E7322F1890000028D284 /* ActionClassificationTests.swift */,
+				8156E7342F1890000028D284 /* MockAnalyzerTests.swift */,
+				8156E7362F1890000028D284 /* ReactionSystemTests.swift */,
+				8156E7382F1890000028D284 /* NPCControllerTests.swift */,
+				8156E73A2F1890000028D284 /* VLMSceneCoordinatorTests.swift */,
+				8156E73C2F1890000028D284 /* USDZLoaderTests.swift */,
+				8156E73E2F1890000028D284 /* TestHelpers.swift */,
+			);
+			path = VLMSceneUnderstanding;
+			sourceTree = "<group>";
+		};
+		8156E7682F18C0040028D284 /* FastVLM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FastVLM;
+			sourceTree = "<group>";
+		};
+		A10000052F20000100000005 /* InteractionWorld */ = {
+			isa = PBXGroup;
+			children = (
+				A10000012F20000100000001 /* InteractionWorldModels.swift */,
+				A10000022F20000100000002 /* InteractionWorldRuntime.swift */,
+				A10000032F20000100000003 /* CafeCounterDemoPlan.swift */,
+				A10000042F20000100000004 /* InteractionWorldView.swift */,
+				A10000082F21000100000008 /* InteractionWorldGeneration.swift */,
+				A10000092F21000100000009 /* GenerationEvaluation.swift */,
+			);
+			path = InteractionWorld;
+			sourceTree = "<group>";
+		};
+		A10000072F20000100000007 /* InteractionWorld */ = {
+			isa = PBXGroup;
+			children = (
+				A10000062F20000100000006 /* InteractionWorldRuntimeTests.swift */,
+				A100000A2F2100010000000A /* InteractionWorldGenerationTests.swift */,
+			);
+			path = InteractionWorld;
+			sourceTree = "<group>";
+		};
+		DBA43EB52BE176D000E40DA5 = {
+			isa = PBXGroup;
+			children = (
+				DBA43EC02BE176D000E40DA5 /* RoleplAR */,
+				DBA43EC12BE176D000E40DA5 /* Packages */,
+				DBA43EDA2BE176D100E40DA5 /* RoleplARTests */,
+				DBA43EBF2BE176D000E40DA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBA43EBF2BE176D000E40DA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBA43EBE2BE176D000E40DA5 /* RoleplAR.app */,
+				DBA43ED72BE176D100E40DA5 /* RoleplARTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DBA43EC02BE176D000E40DA5 /* RoleplAR */ = {
+			isa = PBXGroup;
+			children = (
+				A10000052F20000100000005 /* InteractionWorld */,
+				8156E7112F1885590028D284 /* VLMSceneUnderstanding */,
+				5A3B7CE8EBA3F9CDEAF8276B /* Baseball_bat.usdz */,
+				51FBE16838A2C0D8BA76B7CE /* Worn_Baseball_Ball.usdz */,
+				DBA43EC52BE176D000E40DA5 /* RoleplARApp.swift */,
+				DBD0D12D2BE2E29900536B3E /* MainMenuView.swift */,
+				DBE1F2442BEDAACC00122771 /* NarrativeModel.swift */,
+				DBA43ECD2BE176D100E40DA5 /* Assets.xcassets */,
+				DBA43ED22BE176D100E40DA5 /* Info.plist */,
+				DBA43ECF2BE176D100E40DA5 /* Preview Content */,
+				DB871FDF2C066E370040A190 /* PlayView.swift */,
+				DB1CDBC62C0FED9B009F403A /* SceneView.swift */,
+				DBF359C32C10E28F00DE9BCE /* SceneToggle.swift */,
+				EA05A4C32C376A8A005CF2AC /* Models.swift */,
+				EA05A4C52C38C096005CF2AC /* DialogueView.swift */,
+				EA05A4C72C3B4B43005CF2AC /* DialogueViewModel.swift */,
+				EA05A4C92C3B4E89005CF2AC /* OpenAIService.swift */,
+				EA05A4D02C3B5022005CF2AC /* Constants.swift */,
+			);
+			path = RoleplAR;
+			sourceTree = "<group>";
+		};
+		DBA43EC12BE176D000E40DA5 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				DBA43EC22BE176D000E40DA5 /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		DBA43ECF2BE176D100E40DA5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DBA43ED02BE176D100E40DA5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DBA43EDA2BE176D100E40DA5 /* RoleplARTests */ = {
+			isa = PBXGroup;
+			children = (
+				A10000072F20000100000007 /* InteractionWorld */,
+				8156E73F2F1890000028D284 /* VLMSceneUnderstanding */,
+				DBA43EDB2BE176D100E40DA5 /* RoleplARTests.swift */,
+			);
+			path = RoleplARTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DBA43EBD2BE176D000E40DA5 /* RoleplAR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBA43EDF2BE176D100E40DA5 /* Build configuration list for PBXNativeTarget "RoleplAR" */;
+			buildPhases = (
+				DBA43EBA2BE176D000E40DA5 /* Sources */,
+				DBA43EBB2BE176D000E40DA5 /* Frameworks */,
+				DBA43EBC2BE176D000E40DA5 /* Resources */,
+				EA31A0582C3B6FED0089FDDF /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoleplAR;
+			packageProductDependencies = (
+				DBA43EC32BE176D000E40DA5 /* RealityKitContent */,
+				DBD0D1322BE42AC000536B3E /* OpenAI */,
+				EA7BE7AD2C361ABB00B7B0EF /* XCAOpenAIClient */,
+				EA31A05A2C3B707E0089FDDF /* Alamofire */,
+			);
+			productName = RoleplAR;
+			productReference = DBA43EBE2BE176D000E40DA5 /* RoleplAR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DBA43ED62BE176D100E40DA5 /* RoleplARTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBA43EE22BE176D100E40DA5 /* Build configuration list for PBXNativeTarget "RoleplARTests" */;
+			buildPhases = (
+				DBA43ED32BE176D100E40DA5 /* Sources */,
+				DBA43ED42BE176D100E40DA5 /* Frameworks */,
+				DBA43ED52BE176D100E40DA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBA43ED92BE176D100E40DA5 /* PBXTargetDependency */,
+			);
+			name = RoleplARTests;
+			productName = RoleplARTests;
+			productReference = DBA43ED72BE176D100E40DA5 /* RoleplARTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DBA43EB62BE176D000E40DA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					DBA43EBD2BE176D000E40DA5 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					DBA43ED62BE176D100E40DA5 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = DBA43EBD2BE176D000E40DA5;
+					};
+				};
+			};
+			buildConfigurationList = DBA43EB92BE176D000E40DA5 /* Build configuration list for PBXProject "RoleplAR" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DBA43EB52BE176D000E40DA5;
+			packageReferences = (
+				DBD0D1312BE4206C00536B3E /* XCRemoteSwiftPackageReference "OpenAI" */,
+				EA7BE7AC2C360CDB00B7B0EF /* XCRemoteSwiftPackageReference "XCAOpenAIClient" */,
+				EA31A0592C3B707E0089FDDF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
+			productRefGroup = DBA43EBF2BE176D000E40DA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DBA43EBD2BE176D000E40DA5 /* RoleplAR */,
+				DBA43ED62BE176D100E40DA5 /* RoleplARTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DBA43EBC2BE176D000E40DA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A3B7CE8EBA3F9CDEAF82760 /* Baseball_bat.usdz in Resources */,
+				51FBE16838A2C0D8BA76B7C0 /* Worn_Baseball_Ball.usdz in Resources */,
+				8156E72D2F1885590028D284 /* README.md in Resources */,
+				DBA43ECE2BE176D100E40DA5 /* Assets.xcassets in Resources */,
+				DBA43ED12BE176D100E40DA5 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBA43ED52BE176D100E40DA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8156E7122F1885590028D284 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DBA43EBA2BE176D000E40DA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBF359C42C10E28F00DE9BCE /* SceneToggle.swift in Sources */,
+				EA05A4D12C3B5022005CF2AC /* Constants.swift in Sources */,
+				DBE1F2452BEDAACC00122771 /* NarrativeModel.swift in Sources */,
+				EA05A4C82C3B4B43005CF2AC /* DialogueViewModel.swift in Sources */,
+				EA05A4C62C38C096005CF2AC /* DialogueView.swift in Sources */,
+				DB1CDBC72C0FED9B009F403A /* SceneView.swift in Sources */,
+				DBA43EC62BE176D000E40DA5 /* RoleplARApp.swift in Sources */,
+				DB871FE02C066E370040A190 /* PlayView.swift in Sources */,
+				EA05A4CA2C3B4E89005CF2AC /* OpenAIService.swift in Sources */,
+				DBD0D12E2BE2E29A00536B3E /* MainMenuView.swift in Sources */,
+				8156E7202F1885590028D284 /* VLMPipeline.swift in Sources */,
+				8156E7212F1885590028D284 /* SceneCapture.swift in Sources */,
+				8156E7222F1885590028D284 /* VLMSceneCoordinator.swift in Sources */,
+				8156E7232F1885590028D284 /* USDZLoader.swift in Sources */,
+				8156E7242F1885590028D284 /* ReactionSystem.swift in Sources */,
+				8156E7252F1885590028D284 /* MockAnalyzer.swift in Sources */,
+				8156E7262F1885590028D284 /* HandMeshGenerator.swift in Sources */,
+				8156E7272F1885590028D284 /* NPCController.swift in Sources */,
+				8156E7282F1885590028D284 /* ActionClassification.swift in Sources */,
+				8156E7292F1885590028D284 /* FastVLMAnalyzer.swift in Sources */,
+				8156E72A2F1885590028D284 /* OffscreenRenderer.swift in Sources */,
+				8156E72B2F1885590028D284 /* TextureConverter.swift in Sources */,
+				8156E72C2F1885590028D284 /* HandTrackingSystem.swift in Sources */,
+				8156E72F2F1886000028D284 /* VLMTestView.swift in Sources */,
+				8156E7402F1899000028D284 /* SimulatorVLMTestView.swift in Sources */,
+				8156E7432F18A0000028D284 /* GPT4VisionAnalyzer.swift in Sources */,
+				8156E7702F18D0000028D284 /* DebugLogger.swift in Sources */,
+				EA05A4C42C376A8A005CF2AC /* Models.swift in Sources */,
+				A10000112F20000100000011 /* InteractionWorldModels.swift in Sources */,
+				A10000122F20000100000012 /* InteractionWorldRuntime.swift in Sources */,
+				A10000132F20000100000013 /* CafeCounterDemoPlan.swift in Sources */,
+				A10000142F20000100000014 /* InteractionWorldView.swift in Sources */,
+				A10000162F21000100000016 /* InteractionWorldGeneration.swift in Sources */,
+				A10000172F21000100000017 /* GenerationEvaluation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBA43ED32BE176D100E40DA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBA43EDC2BE176D100E40DA5 /* RoleplARTests.swift in Sources */,
+				8156E7312F1890000028D284 /* ActionClassificationTests.swift in Sources */,
+				8156E7332F1890000028D284 /* MockAnalyzerTests.swift in Sources */,
+				8156E7352F1890000028D284 /* ReactionSystemTests.swift in Sources */,
+				8156E7372F1890000028D284 /* NPCControllerTests.swift in Sources */,
+				8156E7392F1890000028D284 /* VLMSceneCoordinatorTests.swift in Sources */,
+				8156E73B2F1890000028D284 /* USDZLoaderTests.swift in Sources */,
+				8156E73D2F1890000028D284 /* TestHelpers.swift in Sources */,
+				A10000152F20000100000015 /* InteractionWorldRuntimeTests.swift in Sources */,
+				A10000182F21000100000018 /* InteractionWorldGenerationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DBA43ED92BE176D100E40DA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBA43EBD2BE176D000E40DA5 /* RoleplAR */;
+			targetProxy = DBA43ED82BE176D100E40DA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DBA43EDD2BE176D100E40DA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.1;
+			};
+			name = Debug;
+		};
+		DBA43EDE2BE176D100E40DA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.1;
+			};
+			name = Release;
+		};
+		DBA43EE02BE176D100E40DA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RoleplAR/Preview Content\"";
+				DEVELOPMENT_TEAM = 7T49T8VGSB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryantperkins.RoleplAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		DBA43EE12BE176D100E40DA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RoleplAR/Preview Content\"";
+				DEVELOPMENT_TEAM = 7T49T8VGSB;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryantperkins.RoleplAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+		DBA43EE32BE176D100E40DA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7T49T8VGSB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryantperkins.RoleplARTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoleplAR.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RoleplAR";
+				XROS_DEPLOYMENT_TARGET = 1.1;
+			};
+			name = Debug;
+		};
+		DBA43EE42BE176D100E40DA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7T49T8VGSB;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryantperkins.RoleplARTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoleplAR.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RoleplAR";
+				XROS_DEPLOYMENT_TARGET = 1.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DBA43EB92BE176D000E40DA5 /* Build configuration list for PBXProject "RoleplAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBA43EDD2BE176D100E40DA5 /* Debug */,
+				DBA43EDE2BE176D100E40DA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBA43EDF2BE176D100E40DA5 /* Build configuration list for PBXNativeTarget "RoleplAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBA43EE02BE176D100E40DA5 /* Debug */,
+				DBA43EE12BE176D100E40DA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBA43EE22BE176D100E40DA5 /* Build configuration list for PBXNativeTarget "RoleplARTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBA43EE32BE176D100E40DA5 /* Debug */,
+				DBA43EE42BE176D100E40DA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DBD0D1312BE4206C00536B3E /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.8;
+			};
+		};
+		EA31A0592C3B707E0089FDDF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		EA7BE7AC2C360CDB00B7B0EF /* XCRemoteSwiftPackageReference "XCAOpenAIClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alfianlosari/XCAOpenAIClient.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DBA43EC32BE176D000E40DA5 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+		DBD0D1322BE42AC000536B3E /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBD0D1312BE4206C00536B3E /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+		EA31A05A2C3B707E0089FDDF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA31A0592C3B707E0089FDDF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		EA7BE7AD2C361ABB00B7B0EF /* XCAOpenAIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA7BE7AC2C360CDB00B7B0EF /* XCRemoteSwiftPackageReference "XCAOpenAIClient" */;
+			productName = XCAOpenAIClient;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DBA43EB62BE176D000E40DA5 /* Project object */;
+}

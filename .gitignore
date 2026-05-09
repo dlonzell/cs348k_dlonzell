@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Xcode user data
+xcuserdata/
+*.xcuserdatad/
+
+# Large model files
+RoleplAR/VLMSceneUnderstanding/FastVLM/
+
+# Build artifacts
+DerivedData/
+build/
+*.xcarchive

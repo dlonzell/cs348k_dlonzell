@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app requires access to microphone for interacting with characters via speech</string>
+    <key>NSHandsTrackingUsageDescription</key>
+    <string>RoleplAR uses hand tracking to detect your interactions with virtual objects for immersive language learning.</string>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationPreferredDefaultSceneSessionRole</key>
+        <string>UIWindowSceneSessionRoleApplication</string>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+        <key>UISceneConfigurations</key>
+        <dict/>
+    </dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
+</dict>
+</plist>
