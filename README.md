@@ -110,7 +110,45 @@ This version uses a hand-authored cafe scenario plays through end-to-end in the 
 
 ### Code
 
-Generation pipeline files and additional scenario cards will be added to the existing `RoleplAR/InteractionWorld/` directory. 
+
+Open RoleplAR.xcodeproj
+
+Run the RoleplAR scheme on an Apple Vision Pro simulator.
+
+In the main menu, click Interaction World: MainMenuView.swift (line 34)
+
+Click Open Micro-world, then complete the cafe task queue with:
+
+Mock Wave, tap/select menu, Mock Point, drag cup to tray, tap/select card reader.
+
+
+
+Evaluation UI
+
+
+The visible evaluation panel is in InteractionWorldView.swift (line 254).
+
+It reports automated counts: object coverage, handler coverage, completed tasks.
+
+The manual rubric is in InteractionWorldView.swift (line 270): object ratings, spatial layout, scenario fidelity, primitive faithfulness, and per-task yes/partial/no checks.
+
+Metric definitions live in InteractionWorldModels.swift (line 344).
+
+
+
+Automated tests / evaluation code
+
+
+Runtime evaluation: InteractionWorldRuntime.swift (line 99)
+
+Generation-stage evaluation/failure modes: GenerationEvaluation.swift (line 3)
+
+Tests:
+
+InteractionWorldRuntimeTests.swift (line 6)
+
+InteractionWorldGenerationTests.swift (line 6)
+
 ---
 
 ## References
