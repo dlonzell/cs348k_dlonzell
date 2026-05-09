@@ -13,8 +13,8 @@ enum Constants{
      OPEN AI
      */
     
-    static let openAIAPIKey = "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"
-    static let openAIModel = "gpt-4o-2024-05-13"
+    static let openAIAPIKey = ""
+    static let openAIModel = ""
     
     /*
      NARRATIVE
