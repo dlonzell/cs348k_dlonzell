@@ -6,7 +6,7 @@ CS348K Project · Danilo Lonzell
 
 ---
 
-## Part 1: Project
+## Project
 
 ### Aspiration
 
