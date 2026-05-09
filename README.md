@@ -20,9 +20,9 @@ Given a scenario card describing a language-learning practice situation, can a s
 
 LLMR (De La Torre et al., 2023) demonstrated that LLMs can generate arbitrary interactive 3D worlds in real time by writing C# code that compiles and executes inside Unity. Their Planner-Builder-Inspector architecture is the conceptual ancestor of this project. We have three main differences:
 
-- **Structured plan output instead of code.** Most platforms restrict runtime code execution. The LLM produces JSON conforming to a typed plan schema; the runtime parses, validates, and renders.
-- **Typed interaction vocabulary instead of open Unity APIs.** Interactions are drawn from a closed set aligned with native visionOS input, trading expressiveness for reliability and detectability.
-- **Domain-specific application.** Language-learning practice rather than arbitrary scene synthesis.
+- **Structured plan output instead of code.** Most platforms restrict runtime code execution. Instead, we'll produce JSON conforming to a typed plan schema; the runtime generates objects, parses, validates, and renders.
+- **Typed interaction instead of open Unity APIs.** Interactions are drawn from a closed set aligned with native visionOS input.
+- **Domain-specific application.** Language-learning practice rather than the general scene and intearction scope of LLMR.
 
 ### Pipeline
 
@@ -43,8 +43,6 @@ The typed primitive set, aligned with native visionOS input:
 - `drag(objectId)` — pinch-and-move
 - `place(objectId, targetId)` — drag with proximity check at release
 - `gesture(GestureKind, targetId?)` — recognized hand gestures (wave, point, thumbsUp, openPalm)
-
-Notable absences: spatial movement (walk to / approach), speech, sequencing flexibility, system-initiated effects. Their absence is itself a finding the project will surface.
 
 ### Scenario benchmark
 
@@ -68,7 +66,6 @@ Step 5 — runtime: did the validated plan execute correctly when loaded in the 
 #### Coverage analysis. 
 
 Aggregating across all scenarios and tasks: what fraction of target interactions mapped faithfully, required compromise, or just didn't work entirely. This characterizes the boundaries of the native-input-aligned interaction vocabulary for language-learning practice.
-
 
 ---
 
