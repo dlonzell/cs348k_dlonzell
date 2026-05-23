@@ -20,6 +20,16 @@ ScenarioCard
 
 The current renderer still uses primitive proxies. That is intentional for this stage: it lets the evaluation focus on whether generated scene structure and interactions are valid before realistic object assets are integrated.
 
+## Scenario Authoring and Evaluation UI
+
+The Interaction World now exposes the scenario-card generation path directly in the simulator. A user can choose the editable scenario runner, revise the setting, learner role, goal, local context, target interactions, and expected object categories, then generate a runnable primitive scene from that card.
+
+![Scenario card generation menu](results/checkpoint2/ui_screenshots/scenario_card_menu.png)
+
+After a generated scene is loaded, the manual evaluation panel lets the evaluator score both the full scenario and each generated object/task. The rubric separates scenario fidelity, spatial layout, object realization, primitive faithfulness, context sufficiency, affordance behavior, and task completion, which makes it possible to diagnose whether a failure came from planning, primitive coverage, visual realization, spatial placement, or runtime interaction handling.
+
+![Manual evaluation interface](results/checkpoint2/ui_screenshots/evaluation_interface.png)
+
 ## Refined Evaluation
 
 The first checkpoint established evaluation infrastructure. Since then, the evaluation has been sharpened to separate three sources of failure:
@@ -87,6 +97,8 @@ Interpretation:
 
 Checkpoint artifacts are in [results/checkpoint2](results/checkpoint2):
 
+- [results/checkpoint2/ui_screenshots/scenario_card_menu.png](results/checkpoint2/ui_screenshots/scenario_card_menu.png)
+- [results/checkpoint2/ui_screenshots/evaluation_interface.png](results/checkpoint2/ui_screenshots/evaluation_interface.png)
 - [results/checkpoint2/sam3d_layout_signal/layout_signal_debug.png](results/checkpoint2/sam3d_layout_signal/layout_signal_debug.png)
 - [results/checkpoint2/sam3d_layout_signal/roleplar_loaded_layout.png](results/checkpoint2/sam3d_layout_signal/roleplar_loaded_layout.png)
 - [results/checkpoint2/sam3d_layout_signal/layout_signal_summary.csv](results/checkpoint2/sam3d_layout_signal/layout_signal_summary.csv)
