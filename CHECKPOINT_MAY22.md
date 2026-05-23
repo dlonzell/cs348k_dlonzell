@@ -50,8 +50,8 @@ This matters because a failed interaction is not automatically an LLM failure. I
 | Cafe upper-bound baseline | Hand-authored cafe plan with 7 objects and 5 tasks | Runs in simulator; task ordering and interaction handlers work. |
 | Generated primitive-plan pipeline | Step 1 + Step 3 generator, validation, generation tests | Implemented; ready to run across the 9-scenario benchmark. |
 | Manual evaluation UI | Simulator panel | Running; supports yes/partial/no ratings and metric descriptions. |
-| SAM3D single-object smoke test | `tools/sam3d_service/CHECKPOINT_2_SAM3D_BRIDGE.md` | Real GCP L4 SAM3D inference produced a `9.3 MB` Gaussian splat after setup. |
-| SAM3D layout signal test | `results/checkpoint2/sam3d_layout_signal` | Four object masks produced four `.ply` splats plus pose/scale metadata. RoleplAR can load the derived layout plan as primitive proxies. |
+| SAM3D object generation | `tools/sam3d_service/CHECKPOINT_2_SAM3D_BRIDGE.md` | Real GCP L4 SAM3D inference produced a `9.3 MB` Gaussian splat after setup. |
+| SAM3D layout generation | `results/checkpoint2/sam3d_layout_signal` | Four object masks produced four `.ply` splats plus pose/scale metadata. RoleplAR can load the derived layout plan as primitive proxies. |
 
 ## SAM3D Layout Signal Result
 
