@@ -17,5 +17,3 @@ This folder contains intermediate results for the May 22 checkpoint.
 ## Interpretation
 
 This result shows that object-level SAM3D outputs can be converted into RoleplAR's plan representation and loaded in the simulator. It does not yet show accurate scene reconstruction. The RoleplAR screenshot uses primitive proxies at SAM3D-derived positions while retaining `.ply` metadata for future visual rendering work.
-
-The useful finding is the gap: the bridge works technically, but layout calibration remains a failure mode to evaluate and improve.
