@@ -16,14 +16,6 @@ An LLMR-equivalent for language learning on Apple Vision Pro: a system that take
 
 Given a scenario card describing a language-learning practice situation, can a structured-output LLM pipeline generate a runnable interactive scene against a typed primitive vocabulary suited to native visionOS input — and where does it succeed, where does it fail, and what failure modes are most common?
 
-### Relationship to LLMR
-
-LLMR (De La Torre et al., 2023) demonstrated that LLMs can generate arbitrary interactive 3D worlds in real time by writing C# code that compiles and executes inside Unity. Their Planner-Builder-Inspector architecture is the conceptual ancestor of this project. We have three main differences:
-
-- **Structured plan output instead of code.** Most platforms restrict runtime code execution. Instead, we'll produce JSON conforming to a typed plan schema; the runtime generates objects, parses, validates, and renders.
-- **Typed interaction instead of open Unity APIs.** Interactions are drawn from a closed set aligned with native visionOS input.
-- **Domain-specific application.** Language-learning practice rather than the general scene and intearction scope of LLMR.
-
 ### Pipeline
 
 ```
