@@ -45,6 +45,7 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
     let size: SIMD3<Float>
     let color: WorldObjectColor
     let isInteractive: Bool
+    let visualAsset: WorldObjectVisualAsset?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -55,6 +56,7 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
         case size
         case color
         case isInteractive
+        case visualAsset
     }
 
     init(
@@ -65,7 +67,8 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
         position: SIMD3<Float>,
         size: SIMD3<Float>,
         color: WorldObjectColor,
-        isInteractive: Bool
+        isInteractive: Bool,
+        visualAsset: WorldObjectVisualAsset? = nil
     ) {
         self.id = id
         self.displayName = displayName
@@ -75,6 +78,7 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
         self.size = size
         self.color = color
         self.isInteractive = isInteractive
+        self.visualAsset = visualAsset
     }
 
     init(from decoder: Decoder) throws {
@@ -87,7 +91,51 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
         size = try container.decode(SIMD3<Float>.self, forKey: .size)
         color = try container.decode(WorldObjectColor.self, forKey: .color)
         isInteractive = try container.decode(Bool.self, forKey: .isInteractive)
+        visualAsset = try container.decodeIfPresent(WorldObjectVisualAsset.self, forKey: .visualAsset)
     }
+
+    func withVisualAsset(_ visualAsset: WorldObjectVisualAsset?) -> WorldObjectSpec {
+        WorldObjectSpec(
+            id: id,
+            displayName: displayName,
+            description: description,
+            kind: kind,
+            position: position,
+            size: size,
+            color: color,
+            isInteractive: isInteractive,
+            visualAsset: visualAsset
+        )
+    }
+}
+
+struct WorldObjectVisualAsset: Codable, Equatable {
+    let format: WorldObjectVisualFormat
+    let source: WorldObjectVisualSource
+    let status: WorldObjectRealizationStatus
+    let remoteURL: URL?
+    let localURL: URL?
+    let notes: String?
+}
+
+enum WorldObjectVisualFormat: String, Codable, Equatable {
+    case gaussianSplatPLY
+    case usdz
+    case primitiveProxy
+}
+
+enum WorldObjectVisualSource: String, Codable, Equatable {
+    case sam3D
+    case usdzService
+    case handAuthored
+    case fallback
+}
+
+enum WorldObjectRealizationStatus: String, Codable, Equatable {
+    case planned
+    case realized
+    case fallbackPrimitive
+    case failed
 }
 
 enum WorldObjectKind: Codable, Equatable, Hashable {
@@ -319,7 +367,7 @@ struct InteractionLogEntry: Identifiable, Equatable {
     let matched: Bool
 }
 
-struct InteractionEvaluationResult: Equatable {
+struct InteractionEvaluationResult: Codable, Equatable {
     let objectCoveragePassed: Int
     let objectCoverageTotal: Int
     let handlerCoveragePassed: Int
@@ -341,7 +389,7 @@ struct InteractionEvaluationResult: Equatable {
     }
 }
 
-enum ManualEvaluationMetric: String, CaseIterable, Identifiable, Hashable {
+enum ManualEvaluationMetric: String, Codable, CaseIterable, Identifiable, Hashable {
     case objectRealization
     case spatialPlausibility
     case contextSufficiency
@@ -381,7 +429,7 @@ enum ManualEvaluationMetric: String, CaseIterable, Identifiable, Hashable {
     }
 }
 
-enum ManualEvaluationRating: String, CaseIterable, Identifiable {
+enum ManualEvaluationRating: String, Codable, CaseIterable, Identifiable {
     case unscored
     case yes
     case partial
@@ -492,6 +540,40 @@ enum ScenarioFidelityRating: String, CaseIterable, Identifiable, Codable {
             return "Not faithful"
         }
     }
+}
+
+struct ManualEvaluationSnapshot: Codable, Equatable {
+    let scenarioLayoutRating: ScenarioLayoutRating
+    let scenarioFidelityRating: ScenarioFidelityRating
+    let generatedObjectRatings: [GeneratedObjectRatingSnapshot]
+    let generatedTaskRatings: [GeneratedTaskFidelitySnapshot]
+    let taskMetricRatings: [TaskMetricRatingSnapshot]
+    let answeredCount: Int
+    let totalCount: Int
+    let yesCount: Int
+}
+
+struct GeneratedObjectRatingSnapshot: Codable, Equatable {
+    let objectId: String
+    let rating: GeneratedObjectRating
+}
+
+struct GeneratedTaskFidelitySnapshot: Codable, Equatable {
+    let taskId: String
+    let rating: GeneratedTaskFidelityRating
+}
+
+struct TaskMetricRatingSnapshot: Codable, Equatable {
+    let taskId: String
+    let metric: ManualEvaluationMetric
+    let rating: ManualEvaluationRating
+}
+
+struct InteractionEventLogSnapshot: Codable, Equatable {
+    let timestamp: Date
+    let taskId: String
+    let eventDescription: String
+    let matched: Bool
 }
 
 enum InteractionWorldValidationError: Error, Equatable, LocalizedError, Codable {

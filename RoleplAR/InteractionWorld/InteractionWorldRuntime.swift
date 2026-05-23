@@ -114,6 +114,50 @@ final class InteractionWorldRuntime: ObservableObject {
         )
     }
 
+    func manualEvaluationSnapshot() -> ManualEvaluationSnapshot {
+        let objectRatings = generatedObjectRatings
+            .map { GeneratedObjectRatingSnapshot(objectId: $0.key, rating: $0.value) }
+            .sorted { $0.objectId < $1.objectId }
+
+        let taskFidelityRatings = generatedTaskRatings
+            .map { GeneratedTaskFidelitySnapshot(taskId: $0.key, rating: $0.value) }
+            .sorted { $0.taskId < $1.taskId }
+
+        let taskMetricRatings = manualRatings.flatMap { taskId, ratings in
+            ratings.map { metric, rating in
+                TaskMetricRatingSnapshot(taskId: taskId, metric: metric, rating: rating)
+            }
+        }
+        .sorted { left, right in
+            if left.taskId == right.taskId {
+                return left.metric.rawValue < right.metric.rawValue
+            }
+            return left.taskId < right.taskId
+        }
+
+        return ManualEvaluationSnapshot(
+            scenarioLayoutRating: scenarioLayoutRating,
+            scenarioFidelityRating: scenarioFidelityRating,
+            generatedObjectRatings: objectRatings,
+            generatedTaskRatings: taskFidelityRatings,
+            taskMetricRatings: taskMetricRatings,
+            answeredCount: manualEvaluationAnswered,
+            totalCount: manualEvaluationTotal,
+            yesCount: manualEvaluationYesCount
+        )
+    }
+
+    func eventLogSnapshot() -> [InteractionEventLogSnapshot] {
+        eventLog.map {
+            InteractionEventLogSnapshot(
+                timestamp: $0.timestamp,
+                taskId: $0.taskId,
+                eventDescription: $0.eventDescription,
+                matched: $0.matched
+            )
+        }
+    }
+
     func manualRating(
         taskId: String,
         metric: ManualEvaluationMetric

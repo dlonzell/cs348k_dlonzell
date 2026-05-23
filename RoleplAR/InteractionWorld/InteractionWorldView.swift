@@ -2,6 +2,28 @@ import SwiftUI
 import RealityKit
 import UIKit
 
+private enum ScenarioRunnerMode: String, CaseIterable, Identifiable {
+    case cafeBaseline
+    case editable
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .cafeBaseline:
+            return "Cafe baseline"
+        case .editable:
+            return "Editable scenario"
+        }
+    }
+}
+
+private enum GenerationPipelineDisplayStage {
+    case objects
+    case tasks
+    case validation
+}
+
 struct InteractionWorldTestView: View {
     @EnvironmentObject private var runtime: InteractionWorldRuntime
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
@@ -15,6 +37,30 @@ struct InteractionWorldTestView: View {
     @State private var generationResult: GenerationResult?
     @State private var generationError: String?
     @State private var generationLogURL: URL?
+    @State private var sam3DBaseURL = "http://127.0.0.1:8010"
+    @State private var isRealizingSAM3D = false
+    @State private var sam3DStatus: String?
+    @State private var sam3DResult: SAM3DSceneRealizationResult?
+    @State private var scenarioRunnerMode: ScenarioRunnerMode = .cafeBaseline
+    @State private var editableSetting = "Japanese convenience store"
+    @State private var editableLearnerRole = "customer"
+    @State private var editableSceneGoal = "Buy a snack and pay at the register"
+    @State private var editableLocalContext = "The learner is standing near a counter with snacks, a basket, a wallet, and a payment terminal in reach."
+    @State private var editableTargetInteractions = """
+    pick up a snack
+    place the snack in the basket
+    indicate the payment terminal
+    tap the payment terminal
+    wave goodbye to the cashier
+    """
+    @State private var editableExpectedObjectCategories = """
+    counter
+    snack
+    basket
+    wallet
+    card_reader
+    npc_marker
+    """
 
     var body: some View {
         HStack(spacing: 0) {
@@ -26,6 +72,8 @@ struct InteractionWorldTestView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
+                    scenarioRunnerCard
+                    sam3DBridgeCard
                     controls
                     evaluationCard
                     manualEvaluationPanel
@@ -103,6 +151,239 @@ struct InteractionWorldTestView: View {
         }
     }
 
+    private var scenarioRunnerCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Scenario Runner")
+                        .font(.headline)
+                    Text("Generate a primitive interactive world from a ScenarioCard.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Picker("Scenario", selection: $scenarioRunnerMode) {
+                    ForEach(ScenarioRunnerMode.allCases) { mode in
+                        Text(mode.title).tag(mode)
+                    }
+                }
+                .pickerStyle(.menu)
+                .frame(width: 190)
+            }
+
+            if scenarioRunnerMode == .editable {
+                editableScenarioFields
+            } else {
+                cafeScenarioSummary
+            }
+
+            HStack(spacing: 10) {
+                Button {
+                    Task { await generateSelectedPlan() }
+                } label: {
+                    Label(
+                        isGenerating ? "Generating..." : "Generate Plan",
+                        systemImage: "sparkles"
+                    )
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(isGenerating)
+
+                Button {
+                    runtime.load(CafeCounterDemoPlan.plan)
+                    generationResult = nil
+                    generationError = nil
+                    generationLogURL = nil
+                    sam3DResult = nil
+                    sam3DStatus = nil
+                } label: {
+                    Label("Load Baseline", systemImage: "arrow.clockwise")
+                }
+                .buttonStyle(.bordered)
+                .disabled(isGenerating)
+            }
+
+            generationStatus
+        }
+        .padding()
+        .background(cardBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+
+    private var sam3DBridgeCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("SAM 3D Bridge")
+                        .font(.headline)
+                    Text("Send the current plan to a remote SAM 3D service, then reload it with visual-asset metadata and RealityKit proxy objects.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+            }
+
+            HStack(spacing: 8) {
+                Text(sam3DBaseURL)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .background(Color.white.opacity(0.08))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                Button {
+                    sam3DBaseURL = "http://127.0.0.1:8010"
+                } label: {
+                    Label("Local", systemImage: "link")
+                        .labelStyle(.iconOnly)
+                }
+                .buttonStyle(.bordered)
+            }
+
+            HStack(spacing: 10) {
+                Button {
+                    Task { await realizeCurrentPlanWithSAM3D() }
+                } label: {
+                    Label(
+                        isRealizingSAM3D ? "Realizing..." : "Realize Current Plan",
+                        systemImage: "sparkles.rectangle.stack"
+                    )
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(isRealizingSAM3D)
+
+                Button {
+                    sam3DResult = nil
+                    sam3DStatus = nil
+                } label: {
+                    Label("Clear", systemImage: "xmark.circle")
+                }
+                .buttonStyle(.bordered)
+                .disabled(isRealizingSAM3D)
+            }
+
+            Button {
+                Task { await loadSAM3DLayoutPlan() }
+            } label: {
+                Label("Load SAM3D Layout Plan", systemImage: "point.3.connected.trianglepath.dotted")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+            .disabled(isRealizingSAM3D)
+
+            if let sam3DStatus {
+                Text(sam3DStatus)
+                    .font(.caption)
+                    .foregroundStyle(sam3DStatus.hasPrefix("SAM 3D failed") ? .red : .secondary)
+            }
+
+            if let sam3DResult {
+                VStack(alignment: .leading, spacing: 6) {
+                    metricRow("Realized objects", "\(sam3DResult.realizedCount)/\(runtime.plan.objects.count)")
+                    metricRow("Failed/missing", "\(sam3DResult.failedCount)")
+                    metricRow("Cached splats", "\(sam3DResult.cachedAssets.count)")
+
+                    if let imageURL = sam3DResult.response.generatedImageURL {
+                        Text("Generated image: \(imageURL.absoluteString)")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(2)
+                    }
+
+                    ForEach(sam3DResult.response.objects.prefix(6)) { object in
+                        HStack {
+                            Text(object.objectId)
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            Text(object.status.rawValue)
+                                .font(.caption2)
+                                .foregroundStyle(object.status == .realized ? .green : .yellow)
+                        }
+                    }
+                }
+                .padding(12)
+                .background(Color.white.opacity(0.055))
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
+        }
+        .padding()
+        .background(cardBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+
+    private var cafeScenarioSummary: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(CafeCounterDemoPlan.scenario.setting)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+            Text(CafeCounterDemoPlan.scenario.sceneGoal)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Text(CafeCounterDemoPlan.scenario.targetInteractions.joined(separator: " • "))
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.white.opacity(0.055))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+    }
+
+    private var editableScenarioFields: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            TextField("Setting", text: $editableSetting)
+                .textFieldStyle(.roundedBorder)
+            TextField("Learner role", text: $editableLearnerRole)
+                .textFieldStyle(.roundedBorder)
+            TextField("Scene goal", text: $editableSceneGoal)
+                .textFieldStyle(.roundedBorder)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Local context")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                TextEditor(text: $editableLocalContext)
+                    .frame(minHeight: 72)
+                    .scrollContentBackground(.hidden)
+                    .padding(8)
+                    .background(Color.white.opacity(0.08))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+
+            HStack(alignment: .top, spacing: 10) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Target interactions")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    TextEditor(text: $editableTargetInteractions)
+                        .frame(minHeight: 96)
+                        .scrollContentBackground(.hidden)
+                        .padding(8)
+                        .background(Color.white.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Expected object categories")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    TextEditor(text: $editableExpectedObjectCategories)
+                        .frame(minHeight: 96)
+                        .scrollContentBackground(.hidden)
+                        .padding(8)
+                        .background(Color.white.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+            }
+        }
+    }
+
     private var controls: some View {
         VStack(alignment: .leading, spacing: 10) {
             Button {
@@ -118,14 +399,14 @@ struct InteractionWorldTestView: View {
 
             HStack {
                 Button {
-                    runtime.process(.gesture(.wave, targetId: "barista_marker"))
+                    runtime.process(.gesture(.wave, targetId: currentGestureTarget(for: .wave)))
                 } label: {
                     Label("Mock Wave", systemImage: "hand.wave")
                 }
                 .buttonStyle(.bordered)
 
                 Button {
-                    runtime.process(.gesture(.point, targetId: "pastry_case"))
+                    runtime.process(.gesture(.point, targetId: currentGestureTarget(for: .point)))
                 } label: {
                     Label("Mock Point", systemImage: "hand.point.up.left")
                 }
@@ -156,8 +437,6 @@ struct InteractionWorldTestView: View {
                     .font(.caption)
                     .foregroundStyle(.red)
             }
-
-            generationStatus
         }
     }
 
@@ -170,24 +449,106 @@ struct InteractionWorldTestView: View {
         }
 
         if let generationResult {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(generationResult.succeeded ? "Generated plan loaded." : "Generation failed.")
-                    .font(.caption)
-                    .foregroundStyle(generationResult.succeeded ? .green : .yellow)
-                Text("Attempts: \(generationResult.attempts.count)")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                if let lastAttempt = generationResult.attempts.last {
-                    Text("Last outcome: \(lastAttempt.outcome.shortDescription)")
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text(generationResult.succeeded ? "Generated plan loaded." : "Generation failed.")
+                        .font(.caption)
+                        .foregroundStyle(generationResult.succeeded ? .green : .yellow)
+                    Spacer()
+                    Text(String(format: "%.1fs", generationResult.totalGenerationTimeSeconds))
+                        .font(.caption)
+                        .monospacedDigit()
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    generationStageRow("Step 1 objects", generationStageStatus(generationResult, stage: .objects))
+                    generationStageRow("Step 3 tasks", generationStageStatus(generationResult, stage: .tasks))
+                    generationStageRow("Step 4 validation", generationStageStatus(generationResult, stage: .validation))
+                    metricRow("Attempts", "\(generationResult.attempts.count)")
+                }
+                .font(.caption2)
+
+                VStack(alignment: .leading, spacing: 6) {
+                    ForEach(generationResult.attempts, id: \.attemptNumber) { attempt in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Attempt \(attempt.attemptNumber) • \(attempt.stage.title) • \(String(format: "%.1fs", attempt.durationSeconds))")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                            Text(attempt.outcome.shortDescription)
+                                .font(.caption2)
+                        }
+                        .padding(8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.white.opacity(0.055))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                }
+
                 if let generationLogURL {
-                    Text("Log: \(generationLogURL.lastPathComponent)")
+                    Text("Exported log: \(generationLogURL.lastPathComponent)")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
+
+                Button {
+                    exportCurrentGenerationLog()
+                } label: {
+                    Label("Export Evaluation Log", systemImage: "square.and.arrow.down")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .disabled(isGenerating)
             }
+            .padding(12)
+            .background(Color.white.opacity(0.055))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+        }
+    }
+
+    private func generationStageRow(_ label: String, _ value: String) -> some View {
+        HStack {
+            Text(label)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Text(value)
+                .fontWeight(.semibold)
+                .foregroundStyle(stageStatusColor(value))
+        }
+    }
+
+    private func generationStageStatus(
+        _ result: GenerationResult,
+        stage: GenerationPipelineDisplayStage
+    ) -> String {
+        switch stage {
+        case .objects:
+            if result.succeeded || result.attempts.contains(where: { $0.stage == .taskGeneration || $0.stage == .validation || $0.stage == .fullPipeline }) {
+                return "passed"
+            }
+            return result.attempts.last?.stage == .objectGeneration ? "failed" : "not reached"
+        case .tasks:
+            if result.succeeded || result.attempts.contains(where: { $0.stage == .validation || $0.stage == .fullPipeline }) {
+                return "passed"
+            }
+            return result.attempts.last?.stage == .taskGeneration ? "failed" : "not reached"
+        case .validation:
+            if result.succeeded {
+                return "passed"
+            }
+            return result.attempts.last?.stage == .validation ? "failed" : "not reached"
+        }
+    }
+
+    private func stageStatusColor(_ value: String) -> Color {
+        switch value {
+        case "passed":
+            return .green
+        case "failed":
+            return .yellow
+        default:
+            return .secondary
         }
     }
 
@@ -351,6 +712,15 @@ struct InteractionWorldTestView: View {
                         Text(object.id)
                             .font(.caption2)
                             .foregroundStyle(.secondary)
+                        if let visualAsset = object.visualAsset {
+                            Label(
+                                "\(visualAsset.source.rawValue) \(visualAsset.format.rawValue)",
+                                systemImage: visualAsset.status == .realized ? "sparkles" : "cube.transparent"
+                            )
+                            .font(.caption2)
+                            .foregroundStyle(visualAsset.status == .realized ? .cyan : .secondary)
+                            .lineLimit(1)
+                        }
                     }
                     Spacer()
                     Picker(
@@ -565,6 +935,56 @@ struct InteractionWorldTestView: View {
         return .secondary
     }
 
+    private func currentGestureTarget(for gesture: GestureKind) -> String? {
+        guard case .gesture(let expectedGesture, let targetId) = runtime.currentTask?.expectedInteraction,
+              expectedGesture == gesture else {
+            return nil
+        }
+
+        return targetId
+    }
+
+    private func selectedScenario() -> ScenarioCard? {
+        switch scenarioRunnerMode {
+        case .cafeBaseline:
+            return CafeCounterDemoPlan.scenario
+        case .editable:
+            let targetInteractions = parsedList(from: editableTargetInteractions)
+            guard !targetInteractions.isEmpty else { return nil }
+
+            let categories = parsedList(from: editableExpectedObjectCategories)
+            let setting = editableSetting.trimmedNonEmpty ?? "Editable scenario"
+
+            return ScenarioCard(
+                id: "editable_\(slug(setting))",
+                setting: setting,
+                learnerRole: editableLearnerRole.trimmedNonEmpty ?? "learner",
+                sceneGoal: editableSceneGoal.trimmedNonEmpty ?? "Complete the practice interaction",
+                localContext: editableLocalContext.trimmedNonEmpty ?? "The learner is standing near the relevant objects.",
+                targetInteractions: targetInteractions,
+                expectedObjectCategories: categories.isEmpty ? nil : categories
+            )
+        }
+    }
+
+    private func parsedList(from text: String) -> [String] {
+        text.components(separatedBy: CharacterSet.newlines.union(CharacterSet(charactersIn: ",")))
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+    }
+
+    private func slug(_ text: String) -> String {
+        let tokens = text
+            .lowercased()
+            .split { character in
+                !character.isLetter && !character.isNumber
+            }
+            .prefix(6)
+
+        let value = tokens.joined(separator: "_")
+        return value.isEmpty ? "scenario" : value
+    }
+
     private func toggleImmersive() async {
         if isImmersiveOpen {
             await dismissImmersiveSpace()
@@ -587,18 +1007,40 @@ struct InteractionWorldTestView: View {
     }
 
     private func generateCafePlan() async {
+        await generatePlan(for: CafeCounterDemoPlan.scenario)
+    }
+
+    private func generateSelectedPlan() async {
+        guard let scenario = selectedScenario() else {
+            generationResult = nil
+            generationLogURL = nil
+            generationError = "Add at least one target interaction before generating."
+            return
+        }
+
+        await generatePlan(for: scenario)
+    }
+
+    private func generatePlan(for scenario: ScenarioCard) async {
         isGenerating = true
         generationError = nil
         generationResult = nil
         generationLogURL = nil
+        sam3DResult = nil
+        sam3DStatus = nil
 
         do {
-            let result = try await generator.generatePlan(for: CafeCounterDemoPlan.scenario)
+            let result = try await generator.generatePlan(for: scenario)
             generationResult = result
-            generationLogURL = try? writeGenerationLog(result)
 
             if let plan = result.plan {
                 runtime.load(plan)
+            }
+
+            do {
+                generationLogURL = try writeGenerationRunLog(result)
+            } catch {
+                generationError = "Generated, but export failed: \(error.localizedDescription)"
             }
         } catch {
             generationError = error.localizedDescription
@@ -607,14 +1049,93 @@ struct InteractionWorldTestView: View {
         isGenerating = false
     }
 
-    private func writeGenerationLog(_ result: GenerationResult) throws -> URL {
+    private func realizeCurrentPlanWithSAM3D() async {
+        guard let baseURL = URL(string: sam3DBaseURL.trimmedNonEmpty ?? "") else {
+            sam3DStatus = SAM3DSceneRealizationError
+                .invalidBaseURL(sam3DBaseURL)
+                .localizedDescription
+            return
+        }
+
+        isRealizingSAM3D = true
+        sam3DResult = nil
+        sam3DStatus = "Sending \(runtime.plan.objects.count) planned objects to SAM 3D service..."
+
+        do {
+            let client = SAM3DSceneRealizationClient(baseURL: baseURL)
+            let result = try await client.realize(plan: runtime.plan)
+            sam3DResult = result
+            runtime.load(result.reconciledPlan)
+            sam3DStatus = "SAM 3D realization loaded with primitive interaction proxies."
+        } catch {
+            sam3DStatus = "SAM 3D failed: \(error.localizedDescription)"
+        }
+
+        isRealizingSAM3D = false
+    }
+
+    private func loadSAM3DLayoutPlan() async {
+        guard let baseURL = URL(string: sam3DBaseURL.trimmedNonEmpty ?? "") else {
+            sam3DStatus = SAM3DSceneRealizationError
+                .invalidBaseURL(sam3DBaseURL)
+                .localizedDescription
+            return
+        }
+
+        isRealizingSAM3D = true
+        sam3DStatus = "Loading SAM 3D-derived layout plan..."
+        sam3DResult = nil
+
+        do {
+            let url = baseURL.appendingPathComponent("layout-plan")
+            let (data, response) = try await URLSession.shared.data(from: url)
+            if let httpResponse = response as? HTTPURLResponse,
+               !(200..<300).contains(httpResponse.statusCode) {
+                let body = String(data: data, encoding: .utf8) ?? ""
+                throw SAM3DSceneRealizationError.requestFailed(
+                    statusCode: httpResponse.statusCode,
+                    body: body
+                )
+            }
+
+            let plan = try JSONDecoder().decode(InteractionWorldPlan.self, from: data)
+            try InteractionWorldRuntime.validate(plan)
+            runtime.load(plan)
+            sam3DStatus = "Loaded SAM 3D-derived layout plan with \(plan.objects.count) proxy objects."
+        } catch {
+            sam3DStatus = "SAM 3D failed: \(error.localizedDescription)"
+        }
+
+        isRealizingSAM3D = false
+    }
+
+    private func exportCurrentGenerationLog() {
+        guard let generationResult else {
+            generationError = "Generate a plan before exporting."
+            return
+        }
+
+        do {
+            generationLogURL = try writeGenerationRunLog(generationResult)
+            generationError = nil
+        } catch {
+            generationError = "Export failed: \(error.localizedDescription)"
+        }
+    }
+
+    private func writeGenerationRunLog(_ result: GenerationResult) throws -> URL {
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileName = "interaction_world_generation_\(result.scenario.id)_\(Int(Date().timeIntervalSince1970)).json"
         let url = directory.appendingPathComponent(fileName)
+        let runtimeForLog = runtime.plan.scenario.id == result.scenario.id ? runtime : nil
+        let log = InteractionWorldRunLogFactory.make(
+            result: result,
+            runtime: runtimeForLog
+        )
 
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        let data = try encoder.encode(result)
+        let data = try encoder.encode(log)
         try data.write(to: url, options: [.atomic])
 
         return url
@@ -676,6 +1197,9 @@ final class InteractionWorldSceneManager: ObservableObject {
             rootEntity.addChild(entity)
             entitiesById[object.id] = entity
             addLabel(object.displayName, to: entity, yOffset: object.size.y + 0.035)
+            if let visualAsset = object.visualAsset {
+                addVisualAssetBadge(visualAsset, to: entity, objectSize: object.size)
+            }
         }
 
         hasConfigured = true
@@ -826,6 +1350,39 @@ final class InteractionWorldSceneManager: ObservableObject {
         entity.addChild(label)
     }
 
+    private func addVisualAssetBadge(
+        _ visualAsset: WorldObjectVisualAsset,
+        to entity: ModelEntity,
+        objectSize: SIMD3<Float>
+    ) {
+        guard visualAsset.status == .realized else { return }
+
+        let maxDimension = max(objectSize.x, max(objectSize.y, objectSize.z))
+        let radius = max(0.035, min(0.06, maxDimension * 0.16))
+        let badgeMaterial = SimpleMaterial(color: UIColor.systemCyan.withAlphaComponent(0.88), isMetallic: false)
+        let badge = ModelEntity(mesh: .generateSphere(radius: radius), materials: [badgeMaterial])
+        badge.name = "\(entity.name)_sam3d_asset_badge"
+        badge.position = [
+            objectSize.x / 2 + radius * 0.9,
+            objectSize.y + radius * 1.8,
+            0
+        ]
+        entity.addChild(badge)
+
+        let labelMesh = MeshResource.generateText(
+            "SAM3D",
+            extrusionDepth: 0.001,
+            font: .boldSystemFont(ofSize: 0.024),
+            containerFrame: .zero,
+            alignment: .center,
+            lineBreakMode: .byClipping
+        )
+        let label = ModelEntity(mesh: labelMesh, materials: [SimpleMaterial(color: .cyan, isMetallic: false)])
+        label.name = "\(entity.name)_sam3d_asset_label"
+        label.position = [-0.06, radius * 1.35, 0]
+        badge.addChild(label)
+    }
+
     private func normalizedObjectId(for entity: Entity) -> String? {
         if entitiesById[entity.name] != nil {
             return entity.name
@@ -877,6 +1434,28 @@ extension GenerationOutcome {
         case .llmCallError(let message):
             return "LLM error: \(message)"
         }
+    }
+}
+
+extension GenerationStage {
+    var title: String {
+        switch self {
+        case .objectGeneration:
+            return "object generation"
+        case .taskGeneration:
+            return "task generation"
+        case .validation:
+            return "validation"
+        case .fullPipeline:
+            return "full pipeline"
+        }
+    }
+}
+
+private extension String {
+    var trimmedNonEmpty: String? {
+        let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty ? nil : trimmed
     }
 }
 

@@ -1,0 +1,684 @@
+{
+  "sampleDir": "/home/ixdstanford/sam-3d-objects/notebook/images/137444513_Livingroom-graphic81",
+  "imagePath": "/home/ixdstanford/sam-3d-objects/notebook/images/137444513_Livingroom-graphic81/image.png",
+  "maskIndices": [
+    1,
+    4,
+    10,
+    14
+  ],
+  "modelLoadSeconds": 870.2302534580231,
+  "objectCount": 4,
+  "normalization": {
+    "source": "sam3DTranslationScale",
+    "depthAxis": "z",
+    "translationRanges": {
+      "x": [
+        -0.1289196014404297,
+        0.7175323367118835
+      ],
+      "y": [
+        -0.2918303608894348,
+        0.2741492986679077
+      ],
+      "z": [
+        1.2702900171279907,
+        2.2444329261779785
+      ]
+    },
+    "scaleMagnitudeRange": [
+      0.12897989153862,
+      0.4406096339225769
+    ]
+  },
+  "objects": [
+    {
+      "objectId": "mask_1",
+      "maskIndex": 1,
+      "maskPath": "/home/ixdstanford/sam-3d-objects/notebook/images/137444513_Livingroom-graphic81/1.png",
+      "cleanMaskPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/clean_masks/1.png",
+      "maskBBox": {
+        "imageWidth": 6000,
+        "imageHeight": 4500,
+        "isEmpty": false,
+        "xMin": 2032,
+        "xMax": 2822,
+        "yMin": 2294,
+        "yMax": 2876,
+        "width": 791,
+        "height": 583,
+        "centerX": 2427.0,
+        "centerY": 2585.0,
+        "areaPixels": 32251,
+        "areaFraction": 0.0011944814814814815,
+        "foregroundMethod": "rgb_any_not_white",
+        "foregroundAreaFraction": 0.0011944814814814815,
+        "foregroundBBoxAreaFraction": 0.01707974074074074
+      },
+      "imagePlaneRoleplARCandidate": {
+        "position": [
+          -0.15279999999999996,
+          0.7783,
+          -1.0382777777777779
+        ],
+        "size": [
+          0.14501666666666668,
+          0.11660000000000001,
+          0.06
+        ],
+        "notes": "Image-plane proxy candidate for RoleplAR coordinate initialization; not metric 3D."
+      },
+      "sam3D": {
+        "translation": [
+          0.20645934343338013,
+          -0.12416309863328934,
+          1.8837186098098755
+        ],
+        "scale": [
+          0.2931162118911743,
+          0.2931162118911743,
+          0.2931162118911743
+        ],
+        "rotation": [
+          [
+            0.07480443269014359,
+            0.05714542418718338,
+            0.5425161719322205,
+            0.8347543478012085
+          ]
+        ],
+        "translationScale": [
+          [
+            [
+              0.07340753078460693
+            ]
+          ]
+        ],
+        "pointmapBounds": {
+          "count": 1687500,
+          "min": [
+            -0.91499924659729,
+            -0.5083279609680176,
+            1.0889559984207153
+          ],
+          "max": [
+            0.9764313697814941,
+            0.6583226323127747,
+            2.58681321144104
+          ],
+          "extent": [
+            1.8914306163787842,
+            1.1666505932807922,
+            1.4978572130203247
+          ]
+        },
+        "coordsBounds": {
+          "count": 2501,
+          "min": [
+            0.0,
+            0.0,
+            29.0
+          ],
+          "max": [
+            0.0,
+            63.0,
+            34.0
+          ],
+          "extent": [
+            0.0,
+            63.0,
+            5.0
+          ]
+        },
+        "coordsOriginalBounds": {
+          "count": 2503,
+          "min": [
+            0.0,
+            0.0,
+            29.0
+          ],
+          "max": [
+            0.0,
+            63.0,
+            34.0
+          ],
+          "extent": [
+            0.0,
+            63.0,
+            5.0
+          ]
+        }
+      },
+      "inferenceSeconds": 23.596970796585083,
+      "outputKeys": [
+        "6drotation_normalized",
+        "coords",
+        "coords_original",
+        "downsample_factor",
+        "gaussian",
+        "glb",
+        "gs",
+        "mesh",
+        "pointmap",
+        "pointmap_colors",
+        "rotation",
+        "scale",
+        "shape",
+        "translation",
+        "translation_scale"
+      ],
+      "plyPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_1.ply",
+      "plySizeBytes": 5442591,
+      "sam3DRoleplARCandidate": {
+        "position": [
+          -0.1556739731627964,
+          0.8490054500720552,
+          -1.0852544261581705
+        ],
+        "size": [
+          0.19587466010568105,
+          0.2580109001441105,
+          0.19587466010568105
+        ],
+        "rawTranslation": [
+          0.20645934343338013,
+          -0.12416309863328934,
+          1.8837186098098755
+        ],
+        "rawScale": [
+          0.2931162118911743,
+          0.2931162118911743,
+          0.2931162118911743
+        ],
+        "depthAxis": "z",
+        "notes": "Normalized from SAM3D translation/scale; intended for relative layout testing, not metric placement."
+      }
+    },
+    {
+      "objectId": "mask_4",
+      "maskIndex": 4,
+      "maskPath": "/home/ixdstanford/sam-3d-objects/notebook/images/137444513_Livingroom-graphic81/4.png",
+      "cleanMaskPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/clean_masks/4.png",
+      "maskBBox": {
+        "imageWidth": 6000,
+        "imageHeight": 4500,
+        "isEmpty": false,
+        "xMin": 398,
+        "xMax": 1296,
+        "yMin": 774,
+        "yMax": 2020,
+        "width": 899,
+        "height": 1247,
+        "centerX": 847.0,
+        "centerY": 1397.0,
+        "areaPixels": 123507,
+        "areaFraction": 0.004574333333333333,
+        "foregroundMethod": "rgb_any_not_white",
+        "foregroundAreaFraction": 0.004574333333333333,
+        "foregroundBBoxAreaFraction": 0.041520481481481485
+      },
+      "imagePlaneRoleplARCandidate": {
+        "position": [
+          -0.5741333333333334,
+          0.8447,
+          -0.8138777777777778
+        ],
+        "size": [
+          0.1648166666666667,
+          0.24939999999999998,
+          0.06
+        ],
+        "notes": "Image-plane proxy candidate for RoleplAR coordinate initialization; not metric 3D."
+      },
+      "sam3D": {
+        "translation": [
+          0.7175323367118835,
+          0.2741492986679077,
+          1.7541108131408691
+        ],
+        "scale": [
+          0.4406096339225769,
+          0.4406096339225769,
+          0.4406096339225769
+        ],
+        "rotation": [
+          [
+            0.6441378593444824,
+            0.689736008644104,
+            -0.2357681840658188,
+            -0.2318706214427948
+          ]
+        ],
+        "translationScale": [
+          [
+            [
+              0.06347405910491943
+            ]
+          ]
+        ],
+        "pointmapBounds": {
+          "count": 1687500,
+          "min": [
+            -0.91499924659729,
+            -0.5083279609680176,
+            1.0889559984207153
+          ],
+          "max": [
+            0.9764313697814941,
+            0.6583226323127747,
+            2.58681321144104
+          ],
+          "extent": [
+            1.8914306163787842,
+            1.1666505932807922,
+            1.4978572130203247
+          ]
+        },
+        "coordsBounds": {
+          "count": 3214,
+          "min": [
+            0.0,
+            8.0,
+            28.0
+          ],
+          "max": [
+            0.0,
+            55.0,
+            35.0
+          ],
+          "extent": [
+            0.0,
+            47.0,
+            7.0
+          ]
+        },
+        "coordsOriginalBounds": {
+          "count": 3215,
+          "min": [
+            0.0,
+            8.0,
+            28.0
+          ],
+          "max": [
+            0.0,
+            55.0,
+            35.0
+          ],
+          "extent": [
+            0.0,
+            47.0,
+            7.0
+          ]
+        }
+      },
+      "inferenceSeconds": 19.52793025970459,
+      "outputKeys": [
+        "6drotation_normalized",
+        "coords",
+        "coords_original",
+        "downsample_factor",
+        "gaussian",
+        "glb",
+        "gs",
+        "mesh",
+        "pointmap",
+        "pointmap_colors",
+        "rotation",
+        "scale",
+        "shape",
+        "translation",
+        "translation_scale"
+      ],
+      "plyPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_4.ply",
+      "plySizeBytes": 6994080,
+      "sam3DRoleplARCandidate": {
+        "position": [
+          0.75,
+          0.9199999999999999,
+          -0.9721635991910133
+        ],
+        "size": [
+          0.3,
+          0.4,
+          0.3
+        ],
+        "rawTranslation": [
+          0.7175323367118835,
+          0.2741492986679077,
+          1.7541108131408691
+        ],
+        "rawScale": [
+          0.4406096339225769,
+          0.4406096339225769,
+          0.4406096339225769
+        ],
+        "depthAxis": "z",
+        "notes": "Normalized from SAM3D translation/scale; intended for relative layout testing, not metric placement."
+      }
+    },
+    {
+      "objectId": "mask_10",
+      "maskIndex": 10,
+      "maskPath": "/home/ixdstanford/sam-3d-objects/notebook/images/137444513_Livingroom-graphic81/10.png",
+      "cleanMaskPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/clean_masks/10.png",
+      "maskBBox": {
+        "imageWidth": 6000,
+        "imageHeight": 4500,
+        "isEmpty": false,
+        "xMin": 2989,
+        "xMax": 3514,
+        "yMin": 1902,
+        "yMax": 2521,
+        "width": 526,
+        "height": 620,
+        "centerX": 3251.5,
+        "centerY": 2211.5,
+        "areaPixels": 27172,
+        "areaFraction": 0.0010063703703703704,
+        "foregroundMethod": "rgb_any_not_white",
+        "foregroundAreaFraction": 0.0010063703703703704,
+        "foregroundBBoxAreaFraction": 0.012078518518518518
+      },
+      "imagePlaneRoleplARCandidate": {
+        "position": [
+          0.06706666666666675,
+          0.782,
+          -0.9677277777777779
+        ],
+        "size": [
+          0.09643333333333334,
+          0.124,
+          0.06
+        ],
+        "notes": "Image-plane proxy candidate for RoleplAR coordinate initialization; not metric 3D."
+      },
+      "sam3D": {
+        "translation": [
+          -0.12075968086719513,
+          0.0017802119255065918,
+          2.2444329261779785
+        ],
+        "scale": [
+          0.29682761430740356,
+          0.29682761430740356,
+          0.29682761430740356
+        ],
+        "rotation": [
+          [
+            0.6605604290962219,
+            0.655360221862793,
+            -0.24479089677333832,
+            -0.2724708914756775
+          ]
+        ],
+        "translationScale": [
+          [
+            [
+              0.06417596340179443
+            ]
+          ]
+        ],
+        "pointmapBounds": {
+          "count": 1687500,
+          "min": [
+            -0.91499924659729,
+            -0.5083279609680176,
+            1.0889559984207153
+          ],
+          "max": [
+            0.9764313697814941,
+            0.6583226323127747,
+            2.58681321144104
+          ],
+          "extent": [
+            1.8914306163787842,
+            1.1666505932807922,
+            1.4978572130203247
+          ]
+        },
+        "coordsBounds": {
+          "count": 11163,
+          "min": [
+            0.0,
+            9.0,
+            11.0
+          ],
+          "max": [
+            0.0,
+            54.0,
+            52.0
+          ],
+          "extent": [
+            0.0,
+            45.0,
+            41.0
+          ]
+        },
+        "coordsOriginalBounds": {
+          "count": 11163,
+          "min": [
+            0.0,
+            9.0,
+            11.0
+          ],
+          "max": [
+            0.0,
+            54.0,
+            52.0
+          ],
+          "extent": [
+            0.0,
+            45.0,
+            41.0
+          ]
+        }
+      },
+      "inferenceSeconds": 22.835691690444946,
+      "outputKeys": [
+        "6drotation_normalized",
+        "coords",
+        "coords_original",
+        "downsample_factor",
+        "gaussian",
+        "glb",
+        "gs",
+        "mesh",
+        "pointmap",
+        "pointmap_colors",
+        "rotation",
+        "scale",
+        "shape",
+        "translation",
+        "translation_scale"
+      ],
+      "plyPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_10.ply",
+      "plySizeBytes": 24291104,
+      "sam3DRoleplARCandidate": {
+        "position": [
+          -0.7355397804551433,
+          0.8507918981760634,
+          -1.4
+        ],
+        "size": [
+          0.19849478399155973,
+          0.2615837963521269,
+          0.19849478399155973
+        ],
+        "rawTranslation": [
+          -0.12075968086719513,
+          0.0017802119255065918,
+          2.2444329261779785
+        ],
+        "rawScale": [
+          0.29682761430740356,
+          0.29682761430740356,
+          0.29682761430740356
+        ],
+        "depthAxis": "z",
+        "notes": "Normalized from SAM3D translation/scale; intended for relative layout testing, not metric placement."
+      }
+    },
+    {
+      "objectId": "mask_14",
+      "maskIndex": 14,
+      "maskPath": "/home/ixdstanford/sam-3d-objects/notebook/images/137444513_Livingroom-graphic81/14.png",
+      "cleanMaskPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/clean_masks/14.png",
+      "maskBBox": {
+        "imageWidth": 6000,
+        "imageHeight": 4500,
+        "isEmpty": false,
+        "xMin": 3248,
+        "xMax": 3685,
+        "yMin": 3172,
+        "yMax": 3615,
+        "width": 438,
+        "height": 444,
+        "centerX": 3466.5,
+        "centerY": 3393.5,
+        "areaPixels": 27403,
+        "areaFraction": 0.0010149259259259258,
+        "foregroundMethod": "rgb_any_not_white",
+        "foregroundAreaFraction": 0.0010149259259259258,
+        "foregroundBBoxAreaFraction": 0.007202666666666666
+      },
+      "imagePlaneRoleplARCandidate": {
+        "position": [
+          0.12439999999999998,
+          0.7644,
+          -1.1909944444444445
+        ],
+        "size": [
+          0.0803,
+          0.0888,
+          0.06
+        ],
+        "notes": "Image-plane proxy candidate for RoleplAR coordinate initialization; not metric 3D."
+      },
+      "sam3D": {
+        "translation": [
+          -0.1289196014404297,
+          -0.2918303608894348,
+          1.2702900171279907
+        ],
+        "scale": [
+          0.12897989153862,
+          0.12897989153862,
+          0.12897989153862
+        ],
+        "rotation": [
+          [
+            0.684833824634552,
+            0.7015010714530945,
+            -0.1386595070362091,
+            -0.14025823771953583
+          ]
+        ],
+        "translationScale": [
+          [
+            [
+              0.06712090969085693
+            ]
+          ]
+        ],
+        "pointmapBounds": {
+          "count": 1687500,
+          "min": [
+            -0.91499924659729,
+            -0.5083279609680176,
+            1.0889559984207153
+          ],
+          "max": [
+            0.9764313697814941,
+            0.6583226323127747,
+            2.58681321144104
+          ],
+          "extent": [
+            1.8914306163787842,
+            1.1666505932807922,
+            1.4978572130203247
+          ]
+        },
+        "coordsBounds": {
+          "count": 3192,
+          "min": [
+            0.0,
+            0.0,
+            31.0
+          ],
+          "max": [
+            0.0,
+            63.0,
+            32.0
+          ],
+          "extent": [
+            0.0,
+            63.0,
+            1.0
+          ]
+        },
+        "coordsOriginalBounds": {
+          "count": 3192,
+          "min": [
+            0.0,
+            0.0,
+            31.0
+          ],
+          "max": [
+            0.0,
+            63.0,
+            32.0
+          ],
+          "extent": [
+            0.0,
+            63.0,
+            1.0
+          ]
+        }
+      },
+      "inferenceSeconds": 19.746782302856445,
+      "outputKeys": [
+        "6drotation_normalized",
+        "coords",
+        "coords_original",
+        "downsample_factor",
+        "gaussian",
+        "glb",
+        "gs",
+        "mesh",
+        "pointmap",
+        "pointmap_colors",
+        "rotation",
+        "scale",
+        "shape",
+        "translation",
+        "translation_scale"
+      ],
+      "plyPath": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_14.ply",
+      "plySizeBytes": 6946208,
+      "sam3DRoleplARCandidate": {
+        "position": [
+          -0.75,
+          0.77,
+          -0.55
+        ],
+        "size": [
+          0.08,
+          0.1,
+          0.08
+        ],
+        "rawTranslation": [
+          -0.1289196014404297,
+          -0.2918303608894348,
+          1.2702900171279907
+        ],
+        "rawScale": [
+          0.12897989153862,
+          0.12897989153862,
+          0.12897989153862
+        ],
+        "depthAxis": "z",
+        "notes": "Normalized from SAM3D translation/scale; intended for relative layout testing, not metric placement."
+      }
+    }
+  ]
+}

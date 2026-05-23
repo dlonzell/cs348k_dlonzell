@@ -1,0 +1,133 @@
+{
+  "id": "sam3d_layout_signal_test",
+  "scenario": {
+    "id": "sam3d_layout_signal_test",
+    "setting": "SAM3D example scene",
+    "learnerRole": "tester",
+    "sceneGoal": "Inspect whether SAM3D pose and scale outputs transfer into a plausible RoleplAR object layout.",
+    "localContext": "Objects are reconstructed from masks in /home/ixdstanford/sam-3d-objects/notebook/images/137444513_Livingroom-graphic81/image.png. Positions and sizes are normalized from SAM3D translation and scale outputs.",
+    "targetInteractions": [],
+    "expectedObjectCategories": [
+      "sam3d_masked_object"
+    ]
+  },
+  "objects": [
+    {
+      "id": "mask_1",
+      "displayName": "Mask 1",
+      "description": "SAM3D layout-test object from mask 1 in image.png.",
+      "kind": {
+        "type": "generic",
+        "category": "smallObject"
+      },
+      "position": [
+        -0.1556739731627964,
+        0.8490054500720552,
+        -1.0852544261581705
+      ],
+      "size": [
+        0.19587466010568105,
+        0.2580109001441105,
+        0.19587466010568105
+      ],
+      "color": "cyan",
+      "isInteractive": true,
+      "visualAsset": {
+        "format": "gaussianSplatPLY",
+        "source": "sam3D",
+        "status": "realized",
+        "remoteURL": null,
+        "localURL": null,
+        "notes": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_1.ply"
+      }
+    },
+    {
+      "id": "mask_4",
+      "displayName": "Mask 4",
+      "description": "SAM3D layout-test object from mask 4 in image.png.",
+      "kind": {
+        "type": "generic",
+        "category": "smallObject"
+      },
+      "position": [
+        0.75,
+        0.9199999999999999,
+        -0.9721635991910133
+      ],
+      "size": [
+        0.3,
+        0.4,
+        0.3
+      ],
+      "color": "yellow",
+      "isInteractive": true,
+      "visualAsset": {
+        "format": "gaussianSplatPLY",
+        "source": "sam3D",
+        "status": "realized",
+        "remoteURL": null,
+        "localURL": null,
+        "notes": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_4.ply"
+      }
+    },
+    {
+      "id": "mask_10",
+      "displayName": "Mask 10",
+      "description": "SAM3D layout-test object from mask 10 in image.png.",
+      "kind": {
+        "type": "generic",
+        "category": "smallObject"
+      },
+      "position": [
+        -0.7355397804551433,
+        0.8507918981760634,
+        -1.4
+      ],
+      "size": [
+        0.19849478399155973,
+        0.2615837963521269,
+        0.19849478399155973
+      ],
+      "color": "red",
+      "isInteractive": true,
+      "visualAsset": {
+        "format": "gaussianSplatPLY",
+        "source": "sam3D",
+        "status": "realized",
+        "remoteURL": null,
+        "localURL": null,
+        "notes": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_10.ply"
+      }
+    },
+    {
+      "id": "mask_14",
+      "displayName": "Mask 14",
+      "description": "SAM3D layout-test object from mask 14 in image.png.",
+      "kind": {
+        "type": "generic",
+        "category": "smallObject"
+      },
+      "position": [
+        -0.75,
+        0.77,
+        -0.55
+      ],
+      "size": [
+        0.08,
+        0.1,
+        0.08
+      ],
+      "color": "green",
+      "isInteractive": true,
+      "visualAsset": {
+        "format": "gaussianSplatPLY",
+        "source": "sam3D",
+        "status": "realized",
+        "remoteURL": null,
+        "localURL": null,
+        "notes": "/home/ixdstanford/sam-3d-objects/outputs/layout_signal_livingroom_clean/mask_14.ply"
+      }
+    }
+  ],
+  "tasks": []
+}

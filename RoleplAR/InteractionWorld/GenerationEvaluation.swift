@@ -29,6 +29,17 @@ struct RuntimeEvaluation: Codable, Equatable {
     let manualNotes: String?
 }
 
+struct InteractionWorldRunLog: Codable, Equatable {
+    let exportedAt: Date
+    let scenario: ScenarioCard
+    let generationResult: GenerationResult
+    let loadedPlan: InteractionWorldPlan?
+    let generationEvaluation: GenerationEvaluation
+    let runtimeEvaluation: InteractionEvaluationResult?
+    let manualEvaluation: ManualEvaluationSnapshot?
+    let eventLog: [InteractionEventLogSnapshot]
+}
+
 enum FailureMode: String, Codable, CaseIterable {
     case structuralInvalidJSON
     case structuralDuplicateID
@@ -113,5 +124,37 @@ enum GenerationEvaluator {
         case .unsupportedInteraction:
             return .structuralUnsupportedPrimitive
         }
+    }
+}
+
+@MainActor
+enum InteractionWorldRunLogFactory {
+    static func make(
+        result: GenerationResult,
+        runtime: InteractionWorldRuntime?,
+        exportedAt: Date = Date()
+    ) -> InteractionWorldRunLog {
+        let runtimeEvaluation = runtime?.evaluate()
+        let runtimeSummary = runtimeEvaluation.map {
+            RuntimeEvaluation(
+                completedTasks: $0.completedTasks,
+                totalTasks: $0.totalTasks,
+                manualNotes: nil
+            )
+        }
+
+        return InteractionWorldRunLog(
+            exportedAt: exportedAt,
+            scenario: result.scenario,
+            generationResult: result,
+            loadedPlan: runtime?.plan,
+            generationEvaluation: GenerationEvaluator.evaluate(
+                result,
+                runtimeEvaluation: runtimeSummary
+            ),
+            runtimeEvaluation: runtimeEvaluation,
+            manualEvaluation: runtime?.manualEvaluationSnapshot(),
+            eventLog: runtime?.eventLogSnapshot() ?? []
+        )
     }
 }

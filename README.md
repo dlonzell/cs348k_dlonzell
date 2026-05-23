@@ -151,6 +151,80 @@ InteractionWorldGenerationTests.swift (line 6)
 
 ---
 
+## Checkpoint (May 22)
+
+Detailed checkpoint writeup: [CHECKPOINT_MAY22.md](CHECKPOINT_MAY22.md)  
+Current result artifacts: [results/checkpoint2](results/checkpoint2)
+
+### What is running now
+
+Since the first checkpoint, the missing generation stages have been implemented:
+
+- **Step 1 object/layout generation:** a `ScenarioCard` can be sent to an LLM to produce `WorldObjectSpec` objects with ids, display names, natural-language descriptions, primitive/generic kinds, positions, sizes, colors, and interactivity flags.
+- **Step 3 task generation:** the generated object list is used to produce typed `InteractionTask` instances over the fixed primitive vocabulary: `indicate`, `tap`, `drag`, `place`, and `gesture`.
+- **Validation and retry path:** generated plans are decoded, retried on malformed output or validation failure, and loaded only if `InteractionWorldRuntime.validate(_:)` passes.
+- **Generic primitive rendering:** generated open-description objects can render as primitive RealityKit proxies, so scenes are runnable before realistic assets exist.
+- **Manual and automatic evaluation UI:** the simulator exposes automatic runtime counts plus manual ratings for object realization, spatial layout, scenario fidelity, primitive faithfulness, affordance instrumentation, and task completion.
+
+### Refined evaluation question
+
+The evaluation now separates three questions:
+
+1. **Primitive coverage:** is the intended language-learning interaction expressible with the current native-input-aligned primitive vocabulary?
+2. **LLM planning quality:** if it is expressible, did the LLM choose the right objects, layout, primitive, target object ids, and task order?
+3. **Runtime/realization quality:** once a plan validates, does the app render and execute it, and is the scene visually/spatially sufficient for the practice context?
+
+This lets failures be classified as planning gaps, primitive-vocabulary gaps, visual-realization gaps, spatial-layout gaps, affordance gaps, perception/detection gaps, or runtime gaps.
+
+### Intermediate results
+
+| Result | Evidence | Finding |
+| --- | --- | --- |
+| Hand-authored cafe baseline | Simulator baseline, 7 objects, 5 tasks | Runtime, task queue, interaction handlers, ordering constraints, and evaluation UI work as an upper-bound baseline. |
+| LLM-generated primitive plan path | `InteractionWorldGeneration.swift`, generation UI, generation tests | Steps 1 and 3 are implemented; the system can move from scenario card to validated primitive interaction plan. |
+| SAM3D visual-realization spike | [SAM3D layout artifacts](results/checkpoint2/sam3d_layout_signal) | Four segmented objects produced four `.ply` splats plus pose/scale metadata that can be converted into a RoleplAR layout plan. Placement is not yet reliable enough to claim accurate scene reconstruction. |
+
+The SAM3D spike is not the main method yet. It is evidence for the next visual-realization layer: replacing primitive proxies with generated visual assets while keeping typed proxy colliders for interaction.
+
+### How to run
+
+1. Open `RoleplAR.xcodeproj`.
+2. Run the `RoleplAR` scheme on the Apple Vision Pro simulator.
+3. Set `OPENAI_API_KEY` in the Xcode scheme environment to enable live LLM generation.
+4. Open `Interaction World`.
+5. Use `Generate Plan` / `Generate Cafe Plan` for the generated primitive-plan path, or `Load Baseline` for the hand-authored cafe upper bound.
+6. Open the micro-world and use the evaluation panel to inspect automatic counts and manual ratings.
+
+To inspect the SAM3D layout artifact:
+
+```bash
+cd tools/sam3d_service
+python3 mock_service.py --host 127.0.0.1 --port 8010 --layout-plan layout_signal_outputs/roleplar_layout_plan.json
+```
+
+Then in the app:
+
+```text
+Interaction World -> Load SAM3D Layout Plan -> Open Micro-world
+```
+
+### Verification command
+
+Use full Xcode rather than Command Line Tools:
+
+```bash
+DEVELOPER_DIR=/Applications/Xcode.app xcodebuild \
+  -project /Users/dlonzell/Documents/New\ project/cs348k_dlonzell/RoleplAR.xcodeproj \
+  -scheme RoleplAR \
+  -destination 'generic/platform=visionOS Simulator' \
+  -derivedDataPath /private/tmp/cs348k-checkpoint2-build \
+  build
+```
+
+The same scheme contains the unit tests for `InteractionWorldRuntimeTests` and `InteractionWorldGenerationTests`.
+
+---
+
 ## References
 
 De La Torre, F., Fang, C. M., Huang, H., Banburski-Fahey, A., Amores Fernandez, J., & Lanier, J. (2023). LLMR: Real-time Prompting of Interactive Worlds using Large Language Models.
