@@ -174,9 +174,14 @@ This lets failures be classified as planning gaps, primitive-vocabulary gaps, vi
 | --- | --- | --- |
 | Hand-authored cafe baseline | Simulator baseline, 7 objects, 5 tasks | Runtime, task queue, interaction handlers, ordering constraints, and evaluation UI work as an upper-bound baseline. |
 | LLM-generated primitive plan path | `InteractionWorldGeneration.swift`, generation UI, generation tests | Steps 1 and 3 are implemented; the system can move from scenario card to validated primitive interaction plan. |
-| SAM3D visual-realization spike | [SAM3D layout artifacts](results/checkpoint2/sam3d_layout_signal) | Four segmented objects produced four `.ply` splats plus pose/scale metadata that can be converted into a RoleplAR layout plan. Placement is not yet reliable enough to claim accurate scene reconstruction. |
+| SAM3D visual-realization | [SAM3D layout artifacts](results/checkpoint2/sam3d_layout_signal) | Four segmented objects produced four `.ply` splats plus pose/scale metadata that can be converted into a layout plan in the user's space for the generated objects. Placement is not yet reliable enough, and I'm working on rendering the splats. |
 
-The SAM3D spike is not the main method yet. It is evidence for the next visual-realization layer: replacing primitive proxies with generated visual assets while keeping typed proxy colliders for interaction.
+Once SAM3D is working for getting the splats for objects in a scene along with a reasonable layout, I'll replacie the primitive proxies with generated visual assets while keeping typed proxy colliders for the actual interactions. Then I'll see how well this method can create usable interactive scenes in the final evaluation. Right now, the next steps are 
+
+1) finish converting the splat to render in the vision pro as realitykit entitites that have the primitive interactions supported
+2) visually assess how well the items are rendered and layed out, and do some tuning of the layout method. 
+3) sample 9 scenarios from the study data and use them to generate scenes
+4) do manual evaluation of each scene to investigate where this method falls short and what the gaps are. 
 
 ### How to run
 
