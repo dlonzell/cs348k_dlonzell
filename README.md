@@ -13,9 +13,7 @@ Checkpoint writeups: [May 8](CHECKPOINT_MAY8.md), [May 22](CHECKPOINT_MAY22.md)
 
 ## Summary
 
-This project builds an LLMR-inspired pipeline that takes a written language-learning scenario card and generates a runnable spatial roleplay scene for Apple Vision Pro. The system translates the written card into a typed object-and-task plan, realizes selected objects with SAM3D on a remote GPU service, lays the assets out in a reach-scale scene, and evaluates where the generated roleplay succeeds or breaks.
-
-The final result is not a production-ready scene generator. It is an end-to-end visual computing systems prototype plus an evaluation that localizes the gap between a generated plan and a playable spatial roleplay scene.
+This project builds an LLMR-inspired pipeline that takes a written language-learning scenario card and generates a runnable spatial roleplay scene for Apple Vision Pro. The system translates the written card into a typed object-and-task plan, realizes selected objects with SAM3D on a remote GPU service, lays the assets out in a scene, and evaluates where the generated roleplay succeeds or breaks.
 
 ![Final scene examples](docs/final/assets/figures/final_scene_examples.png)
 
@@ -43,7 +41,7 @@ Language-learning roleplay systems often describe physical actions in text: aski
 - named objects with stable ids
 - typed primitive interaction tasks over those object ids
 - reconstructed or proxy visual assets
-- reach-scale layout metadata
+- layout metadata
 - RealityKit entities with colliders and interaction handlers
 - evaluation logs for plan quality, scene quality, task completion, and timing
 
@@ -59,9 +57,9 @@ The target system was constrained by three design goals:
 
 Given a written language-learning scenario, can a structured-output LLM plus object reconstruction pipeline generate a runnable spatial roleplay scene, and where does it fail: in the plan, the visual realization/layout, or the runtime affordances?
 
-### Technical Crux
+### Technical Challenges
 
-The hardest part was not simply calling an LLM or rendering primitive objects. The crux was turning a symbolic plan and independently generated SAM3D assets into a coherent, reachable, interactable scene. Raw generated coordinates frequently placed objects on the floor, floating, overlapping, or scattered in ways that broke the roleplay. The project therefore needed a deterministic reach-scale layout pass that assigned object roles, inferred relations from the task queue, snapped objects to support surfaces, repaired overlaps, and kept the typed interaction affordances attached to the rendered scene.
+Turning a symbolic plan and independently generated assets into a coherent, reachable, interactable scene was not straightforward. Existing approaches did not meet our constraints (code gneration can't run at runtime on a headset for example). Raw generated coordinates frequently placed objects on the floor, floating, overlapping, or scattered in ways that broke the roleplay. The project therefore needed a deterministic layout pass that assigned object roles, inferred relations from the task queue, snapped objects to support surfaces, repaired overlaps, and kept the typed interaction affordances attached to the rendered scene (inspired by the approach in Holodeck paper) 
 
 ---
 
@@ -111,9 +109,9 @@ SAM3D supplies object assets, not a complete semantic scene graph. For each sele
 
 It also produced canonical pose hints such as "up" and "front" for assets. Those hints help orient objects, but they do not decide where the objects belong in the roleplay. Scene placement is handled by the layout solver.
 
-### 3. Reach-Scale Layout Solver
+### 3. Layout Solver
 
-The layout solver is the project's simplified, reach-scale analogue of a Holodeck-style layout plan. Instead of trusting raw LLM coordinates, it uses the semantic structure of the generated plan.
+The layout solver is the project's simplified,  analogue of a Holodeck-style layout plan. Instead of trusting raw LLM coordinates, it uses the semantic structure of the generated plan.
 
 The solver:
 
@@ -154,7 +152,7 @@ The final scenario set:
 
 ### Definition of Success
 
-Success is not measured by photorealism alone. The system succeeds to the extent that it can:
+The system succeeds to the extent that it can:
 
 1. translate written roleplay demands into a valid typed plan;
 2. realize and lay out recognizable objects in a plausible spatial scene;
@@ -212,7 +210,7 @@ written scenario card
   -> typed object/task plan
   -> validated runnable primitive plan
   -> SAM3D/proxy object realization
-  -> reach-scale layout
+  -> layout
   -> interactable scene with evaluation logs
 ```
 
