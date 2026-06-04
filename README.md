@@ -247,6 +247,8 @@ Rendered slide gallery:
 
 Selected scene screenshots:
 
+![Farmers market stand final scene](docs/final/assets/screenshots/market_stand_final.png)
+![Convenience store final scene](docs/final/assets/screenshots/convenience_store_final.png)
 ![Shrine purification](docs/final/assets/screenshots/shrine_purification.png)
 ![Station ticketing](docs/final/assets/screenshots/station_ticketing.png)
 ![Clothing compare](docs/final/assets/screenshots/clothing_compare.png)
