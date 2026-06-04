@@ -46,17 +46,25 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
     let color: WorldObjectColor
     let isInteractive: Bool
     let visualAsset: WorldObjectVisualAsset?
+    let assetCard: WorldObjectAssetCard?
 
     private enum CodingKeys: String, CodingKey {
         case id
         case displayName
+        case displayNameSnake = "display_name"
         case description
         case kind
+        case category
         case position
         case size
         case color
         case isInteractive
+        case isInteractiveSnake = "is_interactive"
+        case interactive
         case visualAsset
+        case visualAssetSnake = "visual_asset"
+        case assetCard
+        case assetCardSnake = "asset_card"
     }
 
     init(
@@ -68,7 +76,8 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
         size: SIMD3<Float>,
         color: WorldObjectColor,
         isInteractive: Bool,
-        visualAsset: WorldObjectVisualAsset? = nil
+        visualAsset: WorldObjectVisualAsset? = nil,
+        assetCard: WorldObjectAssetCard? = nil
     ) {
         self.id = id
         self.displayName = displayName
@@ -79,19 +88,43 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
         self.color = color
         self.isInteractive = isInteractive
         self.visualAsset = visualAsset
+        self.assetCard = assetCard
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        displayName = try container.decode(String.self, forKey: .displayName)
+        displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
+            ?? container.decodeIfPresent(String.self, forKey: .displayNameSnake)
+            ?? id
         description = try container.decodeIfPresent(String.self, forKey: .description) ?? displayName
-        kind = try container.decode(WorldObjectKind.self, forKey: .kind)
+        kind = try container.decodeIfPresent(WorldObjectKind.self, forKey: .kind)
+            ?? WorldObjectKind.generic(category: container.decodeIfPresent(String.self, forKey: .category) ?? "smallObject")
         position = try container.decode(SIMD3<Float>.self, forKey: .position)
         size = try container.decode(SIMD3<Float>.self, forKey: .size)
-        color = try container.decode(WorldObjectColor.self, forKey: .color)
-        isInteractive = try container.decode(Bool.self, forKey: .isInteractive)
+        color = try container.decodeIfPresent(WorldObjectColor.self, forKey: .color) ?? .gray
+        isInteractive = try container.decodeIfPresent(Bool.self, forKey: .isInteractive)
+            ?? container.decodeIfPresent(Bool.self, forKey: .isInteractiveSnake)
+            ?? container.decodeIfPresent(Bool.self, forKey: .interactive)
+            ?? true
         visualAsset = try container.decodeIfPresent(WorldObjectVisualAsset.self, forKey: .visualAsset)
+            ?? container.decodeIfPresent(WorldObjectVisualAsset.self, forKey: .visualAssetSnake)
+        assetCard = try container.decodeIfPresent(WorldObjectAssetCard.self, forKey: .assetCard)
+            ?? container.decodeIfPresent(WorldObjectAssetCard.self, forKey: .assetCardSnake)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(displayName, forKey: .displayName)
+        try container.encode(description, forKey: .description)
+        try container.encode(kind, forKey: .kind)
+        try container.encode(position, forKey: .position)
+        try container.encode(size, forKey: .size)
+        try container.encode(color, forKey: .color)
+        try container.encode(isInteractive, forKey: .isInteractive)
+        try container.encodeIfPresent(visualAsset, forKey: .visualAsset)
+        try container.encodeIfPresent(assetCard, forKey: .assetCard)
     }
 
     func withVisualAsset(_ visualAsset: WorldObjectVisualAsset?) -> WorldObjectSpec {
@@ -104,9 +137,76 @@ struct WorldObjectSpec: Identifiable, Codable, Equatable {
             size: size,
             color: color,
             isInteractive: isInteractive,
-            visualAsset: visualAsset
+            visualAsset: visualAsset,
+            assetCard: assetCard
         )
     }
+
+    func withAssetCard(_ assetCard: WorldObjectAssetCard?) -> WorldObjectSpec {
+        WorldObjectSpec(
+            id: id,
+            displayName: displayName,
+            description: description,
+            kind: kind,
+            position: position,
+            size: size,
+            color: color,
+            isInteractive: isInteractive,
+            visualAsset: visualAsset,
+            assetCard: assetCard
+        )
+    }
+}
+
+struct WorldObjectAssetCard: Codable, Equatable {
+    let layoutRole: WorldObjectLayoutRole
+    let assetKind: WorldObjectAssetKind
+    let supportSurfaceId: String?
+    let orientationHint: WorldObjectOrientationHint
+    let frontHint: WorldObjectFrontHint
+    let targetSize: SIMD3<Float>
+    let restingPolicy: WorldObjectRestingPolicy
+}
+
+enum WorldObjectLayoutRole: String, Codable, Equatable {
+    case surface
+    case sourceObject
+    case targetContainer
+    case payment
+    case uprightContext
+    case personMarker
+    case contextObject
+}
+
+enum WorldObjectAssetKind: String, Codable, Equatable {
+    case surface
+    case smallObject
+    case container
+    case paymentDevice
+    case menu
+    case displayFixture
+    case personMarker
+    case cup
+    case tray
+}
+
+enum WorldObjectOrientationHint: String, Codable, Equatable {
+    case horizontalSurface
+    case compact
+    case tabletopFlat
+    case uprightFacingLearner
+    case openTopUpright
+    case shallowTray
+}
+
+enum WorldObjectFrontHint: String, Codable, Equatable {
+    case facesLearner
+    case unconstrained
+}
+
+enum WorldObjectRestingPolicy: String, Codable, Equatable {
+    case bottomOnSupport
+    case centerAtPosition
 }
 
 struct WorldObjectVisualAsset: Codable, Equatable {
@@ -115,11 +215,54 @@ struct WorldObjectVisualAsset: Codable, Equatable {
     let status: WorldObjectRealizationStatus
     let remoteURL: URL?
     let localURL: URL?
+    let previewRemoteURL: URL?
+    let previewLocalURL: URL?
+    let realizedPosition: SIMD3<Float>?
+    let realizedSize: SIMD3<Float>?
+    let canonicalPose: WorldObjectCanonicalPose?
     let notes: String?
+
+    init(
+        format: WorldObjectVisualFormat,
+        source: WorldObjectVisualSource,
+        status: WorldObjectRealizationStatus,
+        remoteURL: URL?,
+        localURL: URL?,
+        previewRemoteURL: URL? = nil,
+        previewLocalURL: URL? = nil,
+        realizedPosition: SIMD3<Float>? = nil,
+        realizedSize: SIMD3<Float>? = nil,
+        canonicalPose: WorldObjectCanonicalPose? = nil,
+        notes: String?
+    ) {
+        self.format = format
+        self.source = source
+        self.status = status
+        self.remoteURL = remoteURL
+        self.localURL = localURL
+        self.previewRemoteURL = previewRemoteURL
+        self.previewLocalURL = previewLocalURL
+        self.realizedPosition = realizedPosition
+        self.realizedSize = realizedSize
+        self.canonicalPose = canonicalPose
+        self.notes = notes
+    }
+}
+
+struct WorldObjectCanonicalPose: Codable, Equatable {
+    let selectedCandidate: String?
+    let upAxis: String?
+    let bottomAxis: String?
+    let frontAxis: String?
+    let restingPose: String?
+    let confidence: Float?
+    let reason: String?
+    let candidateGridURL: URL?
 }
 
 enum WorldObjectVisualFormat: String, Codable, Equatable {
     case gaussianSplatPLY
+    case usd
     case usdz
     case primitiveProxy
 }
@@ -213,12 +356,7 @@ enum WorldObjectKind: Codable, Equatable, Hashable {
         case "generic":
             return .generic(category: category ?? "smallObject")
         default:
-            throw DecodingError.dataCorrupted(
-                DecodingError.Context(
-                    codingPath: [],
-                    debugDescription: "Unknown WorldObjectKind type: \(type)"
-                )
-            )
+            return .generic(category: category ?? type)
         }
     }
 
@@ -253,6 +391,37 @@ enum WorldObjectColor: String, Codable, CaseIterable {
     case green
     case gray
     case purple
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = (try? container.decode(String.self))?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+
+        switch rawValue {
+        case "brown", "wood", "tan", "beige":
+            self = .brown
+        case "red", "pink":
+            self = .red
+        case "blue", "navy":
+            self = .blue
+        case "cyan", "teal":
+            self = .cyan
+        case "yellow", "gold", "orange":
+            self = .yellow
+        case "green":
+            self = .green
+        case "purple", "violet":
+            self = .purple
+        default:
+            self = .gray
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(rawValue)
+    }
 }
 
 struct InteractionTask: Identifiable, Codable, Equatable {

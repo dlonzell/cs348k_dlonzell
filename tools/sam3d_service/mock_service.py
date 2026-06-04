@@ -90,7 +90,12 @@ def proxy_shape_type(world_object: dict) -> str:
     return "box"
 
 
-def realize(payload: dict, host_url: str, real_asset_path: Optional[Path] = None) -> dict:
+def realize(
+    payload: dict,
+    host_url: str,
+    real_asset_path: Optional[Path] = None,
+    real_asset_object_id: Optional[str] = None,
+) -> dict:
     plan = payload.get("plan", {})
     objects = plan.get("objects", [])
     job_id = str(uuid.uuid4())
@@ -106,7 +111,12 @@ def realize(payload: dict, host_url: str, real_asset_path: Optional[Path] = None
 
         file_name = f"{job_id}_{object_id}.ply"
         file_path = ASSET_DIR / file_name
-        using_real_asset = real_asset_path is not None and real_asset_path.exists()
+        target_object_id = slug(real_asset_object_id) if real_asset_object_id else None
+        using_real_asset = (
+            real_asset_path is not None
+            and real_asset_path.exists()
+            and (target_object_id is None or object_id == target_object_id)
+        )
         if using_real_asset:
             shutil.copyfile(real_asset_path, file_path)
         else:
@@ -172,7 +182,14 @@ class Handler(BaseHTTPRequestHandler):
             body = self.rfile.read(length)
             payload = json.loads(body.decode("utf-8"))
             host_url = f"http://{self.headers.get('Host')}"
-            self.write_json(realize(payload, host_url, self.server.real_asset_path))
+            self.write_json(
+                realize(
+                    payload,
+                    host_url,
+                    self.server.real_asset_path,
+                    self.server.real_asset_object_id,
+                )
+            )
         except Exception as exc:  # Keep this mock debuggable from the app UI.
             self.write_json({"error": str(exc)}, status=500)
 
@@ -226,6 +243,11 @@ def main() -> None:
         help="Optional path to a real SAM 3D Gaussian splat .ply to serve for each realized object.",
     )
     parser.add_argument(
+        "--real-asset-object-id",
+        default=None,
+        help="Optional object id that should receive --real-asset; other objects receive placeholder PLYs.",
+    )
+    parser.add_argument(
         "--layout-plan",
         type=Path,
         default=None,
@@ -235,11 +257,14 @@ def main() -> None:
 
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     server.real_asset_path = args.real_asset
+    server.real_asset_object_id = args.real_asset_object_id
     server.layout_plan_path = args.layout_plan
     print(f"Mock SAM 3D service running at http://{args.host}:{args.port}")
     if args.real_asset:
         mode = "real artifact" if args.real_asset.exists() else "missing real artifact"
         print(f"SAM 3D bridge mode: {mode} ({args.real_asset})")
+        if args.real_asset_object_id:
+            print(f"SAM 3D real artifact target object: {args.real_asset_object_id}")
     if args.layout_plan:
         mode = "layout plan" if args.layout_plan.exists() else "missing layout plan"
         print(f"SAM 3D layout-plan mode: {mode} ({args.layout_plan})")

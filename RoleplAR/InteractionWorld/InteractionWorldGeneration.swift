@@ -96,12 +96,14 @@ final class InteractionWorldGenerator: ObservableObject {
                 continue
             }
 
-            let plan = InteractionWorldPlan(
+            let generatedPlan = InteractionWorldPlan(
                 id: "\(scenario.id)_generated_attempt_\(attemptNumber)",
                 scenario: scenario,
                 objects: objects,
                 tasks: tasks
             )
+            let layoutResult = InteractionWorldLayoutSolver.solve(generatedPlan)
+            let plan = layoutResult.plan
 
             do {
                 try InteractionWorldRuntime.validate(plan)
@@ -136,7 +138,8 @@ final class InteractionWorldGenerator: ObservableObject {
                 scenario: scenario,
                 plan: plan,
                 attempts: attempts,
-                totalGenerationTimeSeconds: Date().timeIntervalSince(pipelineStart)
+                totalGenerationTimeSeconds: Date().timeIntervalSince(pipelineStart),
+                layoutSummary: layoutResult.summary
             )
         }
 
@@ -277,10 +280,104 @@ struct GenerationResult: Codable, Equatable {
     let plan: InteractionWorldPlan?
     let attempts: [GenerationAttempt]
     let totalGenerationTimeSeconds: TimeInterval
+    let layoutSummary: InteractionWorldLayoutSummary?
 
     var succeeded: Bool {
         plan != nil
     }
+
+    init(
+        scenario: ScenarioCard,
+        plan: InteractionWorldPlan?,
+        attempts: [GenerationAttempt],
+        totalGenerationTimeSeconds: TimeInterval,
+        layoutSummary: InteractionWorldLayoutSummary? = nil
+    ) {
+        self.scenario = scenario
+        self.plan = plan
+        self.attempts = attempts
+        self.totalGenerationTimeSeconds = totalGenerationTimeSeconds
+        self.layoutSummary = layoutSummary
+    }
+}
+
+struct InteractionWorldLayoutResult: Codable, Equatable {
+    let plan: InteractionWorldPlan
+    let summary: InteractionWorldLayoutSummary
+}
+
+struct InteractionWorldLayoutSummary: Codable, Equatable {
+    let strategy: String
+    let insertedSurfaceId: String?
+    let relations: [InteractionWorldSpatialRelation]
+    let objectSummaries: [InteractionWorldLayoutObjectSummary]
+
+    var objectCount: Int {
+        objectSummaries.count
+    }
+
+    var relationCount: Int {
+        relations.count
+    }
+}
+
+struct InteractionWorldLayoutObjectSummary: Codable, Equatable {
+    let objectId: String
+    let displayName: String
+    let role: String
+    let rawPosition: SIMD3<Float>
+    let finalPosition: SIMD3<Float>
+    let rawSize: SIMD3<Float>
+    let finalSize: SIMD3<Float>
+}
+
+enum InteractionWorldSpatialRelationKind: String, Codable, Equatable, CaseIterable {
+    case on
+    case inside
+    case near
+    case far
+    case leftOf
+    case rightOf
+    case inFrontOf
+    case behind
+    case centerAligned
+    case facing
+
+    var displayName: String {
+        switch self {
+        case .on:
+            return "on"
+        case .inside:
+            return "inside"
+        case .near:
+            return "near"
+        case .far:
+            return "far from"
+        case .leftOf:
+            return "left of"
+        case .rightOf:
+            return "right of"
+        case .inFrontOf:
+            return "in front of"
+        case .behind:
+            return "behind"
+        case .centerAligned:
+            return "center aligned with"
+        case .facing:
+            return "facing"
+        }
+    }
+}
+
+struct InteractionWorldSpatialRelation: Codable, Equatable, Identifiable {
+    var id: String {
+        "\(subjectId)_\(kind.rawValue)_\(objectId)"
+    }
+
+    let subjectId: String
+    let kind: InteractionWorldSpatialRelationKind
+    let objectId: String
+    let source: String
 }
 
 struct GenerationAttempt: Codable, Equatable {
@@ -354,6 +451,14 @@ func buildObjectGenerationPrompt(scenario: ScenarioCard) -> String {
     }
 
     If expectedObjectCategories is non-empty, try to cover each category with one visible object. This is a researcher hint, not a separate output field.
+
+    Model object identity, not spatial relationships. If an interaction involves a movable item and a container/surface, create them as separate objects:
+    - good: "apple" and "fruit_basket"
+    - bad: "apple_basket"
+    - good: "bag_of_chips" and "shopping_basket"
+    - bad: "chips_in_basket"
+
+    The first item the learner picks up, drags, places, taps, or indicates should usually be a standalone smallObject with its own ID. Containers, counters, trays, baskets, menus, payment terminals, and NPC markers should be separate context/target objects. Do not merge a source object with its destination or support surface.
 
     Return strict JSON with this schema:
     {
@@ -450,6 +555,7 @@ func buildTaskGenerationPrompt(
     - Use indicate or tap for gaze-pinch selection of a visible object.
     - Use drag for moving an object without a target.
     - Use place when an object must end near/on another object.
+    - For place, objectId must be the movable source item and targetId must be the destination/surface/container. Do not use a combined source/target object ID.
     - Use gesture only for social or hand-shape actions such as wave, point, thumbsUp, or openPalm.
     - If a target interaction cannot be represented perfectly, choose the closest primitive and make the instruction honest.
 
@@ -485,6 +591,811 @@ func buildTaskGenerationPrompt(
 
     Cover the targetInteractions in order. The task count should usually match the targetInteractions count. Reference only object IDs from Available objects. The top-level JSON object must contain exactly one "tasks" array. Return JSON only.
     """
+}
+
+enum InteractionWorldLayoutSolver {
+    static func applyStageLayout(to plan: InteractionWorldPlan) -> InteractionWorldPlan {
+        solve(plan).plan
+    }
+
+    static func solve(_ plan: InteractionWorldPlan) -> InteractionWorldLayoutResult {
+        var objects = plan.objects
+        let originalObjectIds = Set(objects.map(\.id))
+        var insertedSurfaceId: String?
+        if objects.first(where: isSurface(_:)) == nil {
+            let fallbackSurface = makeFallbackSurface(existingIds: Set(objects.map(\.id)))
+            insertedSurfaceId = fallbackSurface.id
+            objects.insert(fallbackSurface, at: 0)
+        }
+
+        guard let surfaceIndex = objects.firstIndex(where: isSurface(_:)) else {
+            return InteractionWorldLayoutResult(
+                plan: plan,
+                summary: InteractionWorldLayoutSummary(
+                    strategy: "stage_surface_slots_v1",
+                    insertedSurfaceId: insertedSurfaceId,
+                    relations: [],
+                    objectSummaries: []
+                )
+            )
+        }
+
+        let rawObjects = objects
+        let rawById = Dictionary(uniqueKeysWithValues: rawObjects.map { ($0.id, $0) })
+        let rawSurface = objects[surfaceIndex]
+        let surface = copy(
+            rawSurface,
+            position: [0.0, 0.62, -0.95],
+            size: [
+                max(rawSurface.size.x, 1.05),
+                max(min(rawSurface.size.y, 0.10), 0.06),
+                max(rawSurface.size.z, 0.52)
+            ]
+        )
+        objects[surfaceIndex] = surface
+
+        let targetIds = placementTargetIds(in: plan.tasks)
+        let placedObjectIds = placedObjectIds(in: plan.tasks)
+        let surfaceTopY = surface.position.y + surface.size.y / 2
+        var slotCounters: [StageRole: Int] = [:]
+        var rolesById: [String: StageRole] = [surface.id: .surface]
+
+        objects = objects.map { object in
+            guard object.id != surface.id else { return surface }
+
+            let role = stageRole(
+                for: object,
+                placedObjectIds: placedObjectIds,
+                targetIds: targetIds
+            )
+            rolesById[object.id] = role
+            let slot = nextSlot(for: role, counters: &slotCounters)
+            let size = normalizedSize(for: object, role: role)
+            let position = SIMD3<Float>(
+                slot.x,
+                surfaceTopY + size.y / 2 + 0.015,
+                slot.y
+            )
+
+            if role == .personMarker {
+                return copy(object, position: [slot.x, 1.05, slot.y], size: size)
+            }
+
+            return copy(object, position: position, size: size)
+        }
+
+        let relations = inferRelations(
+            for: plan,
+            objects: objects,
+            originalObjectIds: originalObjectIds,
+            surfaceId: surface.id,
+            rolesById: rolesById
+        )
+        objects = applyRelations(
+            relations,
+            to: objects,
+            surfaceId: surface.id,
+            surfaceTopY: surfaceTopY,
+            rolesById: rolesById
+        )
+        objects = enforceSurfaceSupport(
+            objects,
+            surfaceId: surface.id,
+            surfaceTopY: surfaceTopY,
+            rolesById: rolesById
+        )
+        objects = repairSurfaceOverlaps(
+            objects,
+            surfaceId: surface.id,
+            surfaceTopY: surfaceTopY,
+            rolesById: rolesById
+        )
+        objects = enforceSurfaceSupport(
+            objects,
+            surfaceId: surface.id,
+            surfaceTopY: surfaceTopY,
+            rolesById: rolesById
+        )
+        objects = applyAssetCards(
+            to: objects,
+            surfaceId: surface.id,
+            rolesById: rolesById
+        )
+
+        let objectSummaries = objects.compactMap { finalObject -> InteractionWorldLayoutObjectSummary? in
+            guard let rawObject = rawById[finalObject.id],
+                  let role = rolesById[finalObject.id] else {
+                return nil
+            }
+            return summary(raw: rawObject, final: finalObject, role: role)
+        }
+
+        let solvedPlan = InteractionWorldPlan(
+            id: "\(plan.id)_stage_layout",
+            scenario: plan.scenario,
+            objects: objects,
+            tasks: plan.tasks
+        )
+
+        return InteractionWorldLayoutResult(
+            plan: solvedPlan,
+            summary: InteractionWorldLayoutSummary(
+                strategy: "stage_relation_slots_v1",
+                insertedSurfaceId: insertedSurfaceId,
+                relations: relations,
+                objectSummaries: objectSummaries
+            )
+        )
+    }
+
+    private enum StageRole: String, Hashable {
+        case surface
+        case sourceObject
+        case targetContainer
+        case payment
+        case uprightContext
+        case personMarker
+        case contextObject
+    }
+
+    private static func stageRole(
+        for object: WorldObjectSpec,
+        placedObjectIds: Set<String>,
+        targetIds: Set<String>
+    ) -> StageRole {
+        if isPersonMarker(object) {
+            return .personMarker
+        }
+        if isPaymentObject(object) {
+            return .payment
+        }
+        if isDisplayFixture(object) {
+            return .contextObject
+        }
+        if targetIds.contains(object.id) || isContainer(object) {
+            return .targetContainer
+        }
+        if isUprightContext(object) {
+            return .uprightContext
+        }
+        if placedObjectIds.contains(object.id) || isSmallManipulable(object) {
+            return .sourceObject
+        }
+        return .contextObject
+    }
+
+    private static func nextSlot(
+        for role: StageRole,
+        counters: inout [StageRole: Int]
+    ) -> SIMD2<Float> {
+        let index = counters[role, default: 0]
+        counters[role] = index + 1
+
+        let slots: [SIMD2<Float>]
+        switch role {
+        case .surface:
+            slots = [
+                [0.0, -0.95]
+            ]
+        case .sourceObject:
+            slots = [
+                [-0.36, -0.72],
+                [-0.16, -0.72],
+                [0.04, -0.72],
+                [-0.30, -0.88]
+            ]
+        case .targetContainer:
+            slots = [
+                [0.24, -0.78],
+                [0.42, -0.92],
+                [0.08, -0.88]
+            ]
+        case .payment:
+            slots = [
+                [0.42, -1.08],
+                [0.30, -1.12]
+            ]
+        case .uprightContext:
+            slots = [
+                [-0.42, -1.10],
+                [-0.24, -1.12],
+                [0.0, -1.14]
+            ]
+        case .personMarker:
+            slots = [
+                [0.0, -1.38],
+                [0.34, -1.36],
+                [-0.34, -1.36]
+            ]
+        case .contextObject:
+            slots = [
+                [0.0, -0.86],
+                [-0.44, -0.92],
+                [0.44, -0.76],
+                [0.16, -1.04]
+            ]
+        }
+
+        if index < slots.count {
+            return slots[index]
+        }
+
+        let overflow = Float(index - slots.count + 1)
+        return [min(0.48, -0.48 + overflow * 0.16), -0.66 - overflow * 0.08]
+    }
+
+    private static func inferRelations(
+        for plan: InteractionWorldPlan,
+        objects: [WorldObjectSpec],
+        originalObjectIds: Set<String>,
+        surfaceId: String,
+        rolesById: [String: StageRole]
+    ) -> [InteractionWorldSpatialRelation] {
+        var relations: [InteractionWorldSpatialRelation] = []
+
+        func append(
+            subjectId: String,
+            _ kind: InteractionWorldSpatialRelationKind,
+            objectId: String,
+            source: String
+        ) {
+            guard subjectId != objectId else { return }
+            relations.append(
+                InteractionWorldSpatialRelation(
+                    subjectId: subjectId,
+                    kind: kind,
+                    objectId: objectId,
+                    source: source
+                )
+            )
+        }
+
+        for object in objects where object.id != surfaceId {
+            guard let role = rolesById[object.id] else { continue }
+            switch role {
+            case .surface:
+                break
+            case .personMarker:
+                append(subjectId: object.id, .behind, objectId: surfaceId, source: "roleDefaults")
+                append(subjectId: object.id, .facing, objectId: surfaceId, source: "roleDefaults")
+            case .uprightContext:
+                append(subjectId: object.id, .on, objectId: surfaceId, source: "roleDefaults")
+                append(subjectId: object.id, .behind, objectId: surfaceId, source: "roleDefaults")
+            case .payment:
+                append(subjectId: object.id, .on, objectId: surfaceId, source: "roleDefaults")
+                append(subjectId: object.id, .rightOf, objectId: surfaceId, source: "roleDefaults")
+            case .sourceObject, .targetContainer, .contextObject:
+                append(subjectId: object.id, .on, objectId: surfaceId, source: "roleDefaults")
+            }
+        }
+
+        for task in plan.tasks {
+            switch task.expectedInteraction {
+            case .place(let objectId, let targetId):
+                append(subjectId: objectId, .on, objectId: surfaceId, source: "task:\(task.id)")
+                append(subjectId: targetId, .on, objectId: surfaceId, source: "task:\(task.id)")
+                append(subjectId: targetId, .rightOf, objectId: objectId, source: "task:\(task.id)")
+                append(subjectId: targetId, .near, objectId: objectId, source: "task:\(task.id)")
+            case .tap(let objectId):
+                if rolesById[objectId] == .payment {
+                    append(subjectId: objectId, .behind, objectId: surfaceId, source: "task:\(task.id)")
+                }
+            case .indicate(let objectId):
+                if rolesById[objectId] == .uprightContext {
+                    append(subjectId: objectId, .behind, objectId: surfaceId, source: "task:\(task.id)")
+                }
+            case .drag(let objectId):
+                append(subjectId: objectId, .on, objectId: surfaceId, source: "task:\(task.id)")
+            case .gesture:
+                break
+            }
+        }
+
+        if !originalObjectIds.contains(surfaceId) {
+            for object in objects where object.id != surfaceId && rolesById[object.id] != .personMarker {
+                append(subjectId: object.id, .near, objectId: surfaceId, source: "fallbackSurface")
+            }
+        }
+
+        var seen: Set<String> = []
+        return relations.filter { relation in
+            let key = relation.id
+            guard !seen.contains(key) else { return false }
+            seen.insert(key)
+            return true
+        }
+    }
+
+    private static func applyRelations(
+        _ relations: [InteractionWorldSpatialRelation],
+        to objects: [WorldObjectSpec],
+        surfaceId: String,
+        surfaceTopY: Float,
+        rolesById: [String: StageRole]
+    ) -> [WorldObjectSpec] {
+        var adjustedObjects = objects
+        for relation in relations {
+            guard let subjectIndex = adjustedObjects.firstIndex(where: { $0.id == relation.subjectId }),
+                  let target = adjustedObjects.first(where: { $0.id == relation.objectId }),
+                  adjustedObjects[subjectIndex].id != surfaceId else {
+                continue
+            }
+
+            var subject = adjustedObjects[subjectIndex]
+            let role = rolesById[subject.id] ?? .contextObject
+            var position = subject.position
+
+            switch relation.kind {
+            case .on:
+                if target.id == surfaceId || rolesById[target.id] == .surface {
+                    position.y = surfaceTopY + subject.size.y / 2 + 0.015
+                }
+            case .inside:
+                position.x = target.position.x
+                position.z = target.position.z
+                position.y = max(position.y, target.position.y + subject.size.y / 2 + 0.02)
+            case .rightOf:
+                if target.id != surfaceId {
+                    position.x = target.position.x + target.size.x / 2 + subject.size.x / 2 + 0.08
+                    position.z = target.position.z
+                } else {
+                    position.x = max(position.x, 0.28)
+                }
+            case .leftOf:
+                if target.id != surfaceId {
+                    position.x = target.position.x - target.size.x / 2 - subject.size.x / 2 - 0.08
+                    position.z = target.position.z
+                } else {
+                    position.x = min(position.x, -0.28)
+                }
+            case .behind:
+                let offset = target.id == surfaceId
+                    ? target.size.z / 2 + subject.size.z / 2 + 0.12
+                    : target.size.z / 2 + subject.size.z / 2 + 0.10
+                position.z = target.position.z - offset
+            case .inFrontOf:
+                let offset = target.size.z / 2 + subject.size.z / 2 + 0.10
+                position.z = target.position.z + offset
+            case .centerAligned:
+                position.x = target.position.x
+            case .near, .facing, .far:
+                break
+            }
+
+            if role == .personMarker {
+                position.y = 1.05
+            } else if role != .surface {
+                position.y = surfaceTopY + subject.size.y / 2 + 0.015
+            }
+            subject = copy(subject, position: clampStagePosition(position, role: role), size: subject.size)
+            adjustedObjects[subjectIndex] = subject
+        }
+
+        return adjustedObjects
+    }
+
+    private static func enforceSurfaceSupport(
+        _ objects: [WorldObjectSpec],
+        surfaceId: String,
+        surfaceTopY: Float,
+        rolesById: [String: StageRole]
+    ) -> [WorldObjectSpec] {
+        guard let surface = objects.first(where: { $0.id == surfaceId }) else {
+            return objects
+        }
+
+        return objects.map { object in
+            let role = rolesById[object.id] ?? .contextObject
+            guard object.id != surfaceId, role != .personMarker else {
+                return object
+            }
+
+            let xLimit = max(0.0, surface.size.x / 2 - object.size.x / 2 - 0.035)
+            let zLimit = max(0.0, surface.size.z / 2 - object.size.z / 2 - 0.035)
+            let position = SIMD3<Float>(
+                Swift.max(surface.position.x - xLimit, Swift.min(surface.position.x + xLimit, object.position.x)),
+                surfaceTopY + object.size.y / 2 + 0.015,
+                Swift.max(surface.position.z - zLimit, Swift.min(surface.position.z + zLimit, object.position.z))
+            )
+            return copy(object, position: position, size: object.size)
+        }
+    }
+
+    private static func repairSurfaceOverlaps(
+        _ objects: [WorldObjectSpec],
+        surfaceId: String,
+        surfaceTopY: Float,
+        rolesById: [String: StageRole]
+    ) -> [WorldObjectSpec] {
+        var repaired: [WorldObjectSpec] = []
+
+        for object in objects {
+            guard object.id != surfaceId else {
+                repaired.append(object)
+                continue
+            }
+
+            let role = rolesById[object.id] ?? .contextObject
+            guard role != .personMarker else {
+                repaired.append(object)
+                continue
+            }
+
+            var candidate = object
+            for attempt in 0..<8 where repaired.contains(where: { overlaps(candidate, $0, rolesById: rolesById) }) {
+                var position = candidate.position
+                let direction: Float = attempt.isMultiple(of: 2) ? 1 : -1
+                position.x += direction * (0.08 + Float(attempt / 2) * 0.04)
+                if attempt >= 4 {
+                    position.z -= 0.08
+                }
+                position.y = surfaceTopY + candidate.size.y / 2 + 0.015
+                candidate = copy(candidate, position: clampStagePosition(position, role: role), size: candidate.size)
+            }
+            repaired.append(candidate)
+        }
+
+        return repaired
+    }
+
+    private static func overlaps(
+        _ lhs: WorldObjectSpec,
+        _ rhs: WorldObjectSpec,
+        rolesById: [String: StageRole]
+    ) -> Bool {
+        guard rolesById[rhs.id] != .surface,
+              rolesById[lhs.id] != .personMarker,
+              rolesById[rhs.id] != .personMarker else {
+            return false
+        }
+
+        let padding: Float = 0.025
+        let lhsMinX = lhs.position.x - lhs.size.x / 2 - padding
+        let lhsMaxX = lhs.position.x + lhs.size.x / 2 + padding
+        let lhsMinZ = lhs.position.z - lhs.size.z / 2 - padding
+        let lhsMaxZ = lhs.position.z + lhs.size.z / 2 + padding
+        let rhsMinX = rhs.position.x - rhs.size.x / 2 - padding
+        let rhsMaxX = rhs.position.x + rhs.size.x / 2 + padding
+        let rhsMinZ = rhs.position.z - rhs.size.z / 2 - padding
+        let rhsMaxZ = rhs.position.z + rhs.size.z / 2 + padding
+
+        return lhsMinX < rhsMaxX
+            && lhsMaxX > rhsMinX
+            && lhsMinZ < rhsMaxZ
+            && lhsMaxZ > rhsMinZ
+    }
+
+    private static func clampStagePosition(
+        _ position: SIMD3<Float>,
+        role: StageRole
+    ) -> SIMD3<Float> {
+        let xLimit: Float = role == .personMarker ? 0.60 : 0.55
+        let zMin: Float = role == .personMarker ? -1.55 : -1.30
+        let zMax: Float = -0.58
+
+        return [
+            Swift.max(-xLimit, Swift.min(xLimit, position.x)),
+            position.y,
+            Swift.max(zMin, Swift.min(zMax, position.z))
+        ]
+    }
+
+    private static func summary(
+        raw: WorldObjectSpec,
+        final: WorldObjectSpec,
+        role: StageRole
+    ) -> InteractionWorldLayoutObjectSummary {
+        InteractionWorldLayoutObjectSummary(
+            objectId: final.id,
+            displayName: final.displayName,
+            role: role.rawValue,
+            rawPosition: raw.position,
+            finalPosition: final.position,
+            rawSize: raw.size,
+            finalSize: final.size
+        )
+    }
+
+    private static func normalizedSize(
+        for object: WorldObjectSpec,
+        role: StageRole
+    ) -> SIMD3<Float> {
+        switch role {
+        case .surface:
+            return object.size
+        case .sourceObject:
+            return clampSize(object.size, min: [0.10, 0.06, 0.08], max: [0.20, 0.18, 0.20])
+        case .targetContainer:
+            return clampSize(object.size, min: [0.18, 0.08, 0.16], max: [0.34, 0.22, 0.30])
+        case .payment:
+            return clampSize(object.size, min: [0.14, 0.05, 0.10], max: [0.22, 0.12, 0.18])
+        case .uprightContext:
+            return clampSize(object.size, min: [0.16, 0.14, 0.04], max: [0.30, 0.34, 0.08])
+        case .personMarker:
+            return clampSize(object.size, min: [0.08, 0.18, 0.08], max: [0.18, 0.34, 0.18])
+        case .contextObject:
+            return clampSize(object.size, min: [0.12, 0.08, 0.10], max: [0.28, 0.24, 0.24])
+        }
+    }
+
+    private static func applyAssetCards(
+        to objects: [WorldObjectSpec],
+        surfaceId: String,
+        rolesById: [String: StageRole]
+    ) -> [WorldObjectSpec] {
+        objects.map { object in
+            guard let role = rolesById[object.id] else { return object }
+            return object.withAssetCard(assetCard(for: object, role: role, surfaceId: surfaceId))
+        }
+    }
+
+    private static func assetCard(
+        for object: WorldObjectSpec,
+        role: StageRole,
+        surfaceId: String
+    ) -> WorldObjectAssetCard {
+        let assetKind = assetKind(for: object, role: role)
+        return WorldObjectAssetCard(
+            layoutRole: layoutRole(for: role),
+            assetKind: assetKind,
+            supportSurfaceId: supportSurfaceId(for: role, surfaceId: surfaceId),
+            orientationHint: orientationHint(for: assetKind),
+            frontHint: frontHint(for: assetKind),
+            targetSize: targetSize(for: object, assetKind: assetKind),
+            restingPolicy: role == .surface ? .centerAtPosition : .bottomOnSupport
+        )
+    }
+
+    private static func layoutRole(for role: StageRole) -> WorldObjectLayoutRole {
+        switch role {
+        case .surface:
+            return .surface
+        case .sourceObject:
+            return .sourceObject
+        case .targetContainer:
+            return .targetContainer
+        case .payment:
+            return .payment
+        case .uprightContext:
+            return .uprightContext
+        case .personMarker:
+            return .personMarker
+        case .contextObject:
+            return .contextObject
+        }
+    }
+
+    private static func supportSurfaceId(for role: StageRole, surfaceId: String) -> String? {
+        switch role {
+        case .surface, .personMarker:
+            return nil
+        case .sourceObject, .targetContainer, .payment, .uprightContext, .contextObject:
+            return surfaceId
+        }
+    }
+
+    private static func assetKind(for object: WorldObjectSpec, role: StageRole) -> WorldObjectAssetKind {
+        if role == .surface {
+            return .surface
+        }
+        if role == .payment {
+            return .paymentDevice
+        }
+        if role == .personMarker {
+            return .personMarker
+        }
+        if isDisplayFixture(object) {
+            return .displayFixture
+        }
+        if isUprightContext(object) {
+            return .menu
+        }
+        if object.kind == .cup || containsAny(object, ["cup", "coffee"]) {
+            return .cup
+        }
+        if object.kind == .tray || containsAny(object, ["tray", "plate"]) {
+            return .tray
+        }
+        if isContainer(object) {
+            return .container
+        }
+        return .smallObject
+    }
+
+    private static func orientationHint(for assetKind: WorldObjectAssetKind) -> WorldObjectOrientationHint {
+        switch assetKind {
+        case .surface:
+            return .horizontalSurface
+        case .paymentDevice, .displayFixture:
+            return .tabletopFlat
+        case .menu, .personMarker:
+            return .uprightFacingLearner
+        case .cup, .container:
+            return .openTopUpright
+        case .tray:
+            return .shallowTray
+        case .smallObject:
+            return .compact
+        }
+    }
+
+    private static func frontHint(for assetKind: WorldObjectAssetKind) -> WorldObjectFrontHint {
+        switch assetKind {
+        case .paymentDevice, .displayFixture, .menu, .personMarker:
+            return .facesLearner
+        case .surface, .smallObject, .container, .cup, .tray:
+            return .unconstrained
+        }
+    }
+
+    private static func targetSize(
+        for object: WorldObjectSpec,
+        assetKind: WorldObjectAssetKind
+    ) -> SIMD3<Float> {
+        switch assetKind {
+        case .surface:
+            return object.size
+        case .paymentDevice:
+            return clampSize(object.size, min: [0.16, 0.045, 0.12], max: [0.22, 0.08, 0.18])
+        case .displayFixture:
+            return clampSize(object.size, min: [0.22, 0.12, 0.18], max: [0.36, 0.22, 0.28])
+        case .menu:
+            return clampSize(object.size, min: [0.24, 0.26, 0.035], max: [0.36, 0.42, 0.07])
+        case .personMarker:
+            return clampSize(object.size, min: [0.10, 0.22, 0.10], max: [0.18, 0.36, 0.18])
+        case .cup:
+            return clampSize(object.size, min: [0.08, 0.09, 0.08], max: [0.14, 0.16, 0.14])
+        case .tray:
+            return clampSize(object.size, min: [0.22, 0.035, 0.16], max: [0.40, 0.08, 0.30])
+        case .container:
+            return clampSize(object.size, min: [0.18, 0.10, 0.16], max: [0.34, 0.24, 0.30])
+        case .smallObject:
+            return clampSize(object.size, min: [0.08, 0.06, 0.08], max: [0.20, 0.18, 0.20])
+        }
+    }
+
+    private static func placementTargetIds(in tasks: [InteractionTask]) -> Set<String> {
+        Set(tasks.compactMap { task in
+            if case .place(_, let targetId) = task.expectedInteraction {
+                return targetId
+            }
+            return nil
+        })
+    }
+
+    private static func placedObjectIds(in tasks: [InteractionTask]) -> Set<String> {
+        Set(tasks.compactMap { task in
+            if case .place(let objectId, _) = task.expectedInteraction {
+                return objectId
+            }
+            return nil
+        })
+    }
+
+    private static func isSurface(_ object: WorldObjectSpec) -> Bool {
+        switch object.kind {
+        case .counter:
+            return true
+        case .generic(let category):
+            return category == "flatSurface"
+                || containsAny(object, ["counter", "surface", "table", "stand", "stall", "desk"])
+        default:
+            return containsAny(object, ["counter", "surface", "table", "stand", "stall", "desk"])
+        }
+    }
+
+    private static func isContainer(_ object: WorldObjectSpec) -> Bool {
+        switch object.kind {
+        case .tray:
+            return true
+        case .generic(let category):
+            return category == "container"
+        default:
+            return containsAny(object, ["basket", "bag", "box", "tray", "bowl", "bin"])
+        }
+    }
+
+    private static func isPaymentObject(_ object: WorldObjectSpec) -> Bool {
+        object.kind == .cardReader
+            || containsAny(object, ["payment", "terminal", "reader", "register", "wallet", "card"])
+    }
+
+    private static func isPersonMarker(_ object: WorldObjectSpec) -> Bool {
+        object.kind == .npcMarker
+            || containsAny(object, [
+                "npc",
+                "cashier",
+                "vendor",
+                "barista",
+                "clerk",
+                "server",
+                "attendant",
+                "seller",
+                "staff",
+                "person"
+            ])
+    }
+
+    private static func isUprightContext(_ object: WorldObjectSpec) -> Bool {
+        object.kind == .menu
+            || containsAny(object, ["menu", "sign", "poster", "placard", "label"])
+    }
+
+    private static func isDisplayFixture(_ object: WorldObjectSpec) -> Bool {
+        object.kind == .displayCase
+            || containsAny(object, ["display case", "display_case", "pastry display", "pastry_display"])
+    }
+
+    private static func isSmallManipulable(_ object: WorldObjectSpec) -> Bool {
+        switch object.kind {
+        case .cup:
+            return true
+        case .generic(let category):
+            return category == "smallObject"
+        default:
+            return object.isInteractive && !isSurface(object)
+        }
+    }
+
+    private static func containsAny(
+        _ object: WorldObjectSpec,
+        _ needles: [String]
+    ) -> Bool {
+        let haystack = "\(object.id) \(object.displayName) \(object.description)"
+            .lowercased()
+        return needles.contains { haystack.contains($0) }
+    }
+
+    private static func clampSize(
+        _ size: SIMD3<Float>,
+        min minimum: SIMD3<Float>,
+        max maximum: SIMD3<Float>
+    ) -> SIMD3<Float> {
+        [
+            Swift.max(minimum.x, Swift.min(maximum.x, size.x)),
+            Swift.max(minimum.y, Swift.min(maximum.y, size.y)),
+            Swift.max(minimum.z, Swift.min(maximum.z, size.z))
+        ]
+    }
+
+    private static func makeFallbackSurface(existingIds: Set<String>) -> WorldObjectSpec {
+        var id = "interaction_surface"
+        var suffix = 2
+        while existingIds.contains(id) {
+            id = "interaction_surface_\(suffix)"
+            suffix += 1
+        }
+
+        return WorldObjectSpec(
+            id: id,
+            displayName: "Interaction Surface",
+            description: "Generated counter-like surface used to organize reachable practice objects.",
+            kind: .generic(category: "flatSurface"),
+            position: [0.0, 0.62, -0.95],
+            size: [1.05, 0.08, 0.52],
+            color: .brown,
+            isInteractive: false
+        )
+    }
+
+    private static func copy(
+        _ object: WorldObjectSpec,
+        position: SIMD3<Float>,
+        size: SIMD3<Float>
+    ) -> WorldObjectSpec {
+        WorldObjectSpec(
+            id: object.id,
+            displayName: object.displayName,
+            description: object.description,
+            kind: object.kind,
+            position: position,
+            size: size,
+            color: object.color,
+            isInteractive: object.isInteractive,
+            visualAsset: object.visualAsset,
+            assetCard: object.assetCard
+        )
+    }
 }
 
 private struct ObjectGenerationResponse: Codable {
@@ -571,6 +1482,18 @@ struct SAM3DSceneRealizationResponse: Codable, Equatable {
     }
 }
 
+private struct SAM3DSceneRealizationJobStartResponse: Codable, Equatable {
+    let jobId: String
+    let status: String
+}
+
+private struct SAM3DSceneRealizationJobStatusResponse: Codable, Equatable {
+    let jobId: String
+    let status: String
+    let result: SAM3DSceneRealizationResponse?
+    let error: String?
+}
+
 struct SAM3DRealizedObject: Codable, Equatable, Identifiable {
     var id: String { objectId }
 
@@ -578,10 +1501,36 @@ struct SAM3DRealizedObject: Codable, Equatable, Identifiable {
     let status: SAM3DRealizedObjectStatus
     let visualFormat: WorldObjectVisualFormat
     let assetURL: URL?
+    let previewImageURL: URL?
     let position: SIMD3<Float>?
     let size: SIMD3<Float>?
     let proxyShape: SAM3DProxyShapeSpec?
+    let canonicalPose: WorldObjectCanonicalPose?
     let notes: String?
+
+    init(
+        objectId: String,
+        status: SAM3DRealizedObjectStatus,
+        visualFormat: WorldObjectVisualFormat,
+        assetURL: URL?,
+        previewImageURL: URL? = nil,
+        position: SIMD3<Float>?,
+        size: SIMD3<Float>?,
+        proxyShape: SAM3DProxyShapeSpec?,
+        canonicalPose: WorldObjectCanonicalPose? = nil,
+        notes: String?
+    ) {
+        self.objectId = objectId
+        self.status = status
+        self.visualFormat = visualFormat
+        self.assetURL = assetURL
+        self.previewImageURL = previewImageURL
+        self.position = position
+        self.size = size
+        self.proxyShape = proxyShape
+        self.canonicalPose = canonicalPose
+        self.notes = notes
+    }
 }
 
 enum SAM3DRealizedObjectStatus: String, Codable, Equatable {
@@ -611,6 +1560,22 @@ struct SAM3DCachedAsset: Codable, Equatable {
     let objectId: String
     let remoteURL: URL
     let localURL: URL
+    let previewRemoteURL: URL?
+    let previewLocalURL: URL?
+
+    init(
+        objectId: String,
+        remoteURL: URL,
+        localURL: URL,
+        previewRemoteURL: URL? = nil,
+        previewLocalURL: URL? = nil
+    ) {
+        self.objectId = objectId
+        self.remoteURL = remoteURL
+        self.localURL = localURL
+        self.previewRemoteURL = previewRemoteURL
+        self.previewLocalURL = previewLocalURL
+    }
 }
 
 struct SAM3DSceneRealizationResult: Codable, Equatable {
@@ -630,7 +1595,11 @@ struct SAM3DSceneRealizationResult: Codable, Equatable {
 final class SAM3DSceneRealizationClient {
     var baseURL: URL
     var endpointPath = "realize-scene"
-    var timeoutInterval: TimeInterval = 300
+    var asyncEndpointPath = "realize-scene-async"
+    var timeoutInterval: TimeInterval = 1_800
+    var pollingInterval: TimeInterval = 5
+    var jobStatusRequestTimeout: TimeInterval = 180
+    var progressHandler: ((String) -> Void)?
 
     init(baseURL: URL = URL(string: "http://localhost:8010")!) {
         self.baseURL = baseURL
@@ -657,6 +1626,113 @@ final class SAM3DSceneRealizationClient {
     }
 
     private func requestRealization(
+        _ requestBody: SAM3DSceneRealizationRequest
+    ) async throws -> SAM3DSceneRealizationResponse {
+        do {
+            return try await requestAsyncRealization(requestBody)
+        } catch SAM3DSceneRealizationError.requestFailed(let statusCode, _) where statusCode == 404 {
+            return try await requestSynchronousRealization(requestBody)
+        }
+    }
+
+    private func requestAsyncRealization(
+        _ requestBody: SAM3DSceneRealizationRequest
+    ) async throws -> SAM3DSceneRealizationResponse {
+        let startURL = baseURL.appendingPathComponent(asyncEndpointPath)
+        var request = URLRequest(url: startURL)
+        request.httpMethod = "POST"
+        request.timeoutInterval = 30
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONEncoder().encode(requestBody)
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw SAM3DSceneRealizationError.invalidResponse
+        }
+
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            let body = String(data: data, encoding: .utf8) ?? ""
+            throw SAM3DSceneRealizationError.requestFailed(
+                statusCode: httpResponse.statusCode,
+                body: body
+            )
+        }
+
+        let job = try JSONDecoder().decode(SAM3DSceneRealizationJobStartResponse.self, from: data)
+        progressHandler?("SAM 3D job \(job.jobId.prefix(8)) started. Polling for generated assets...")
+        let deadline = Date().addingTimeInterval(timeoutInterval)
+
+        while Date() < deadline {
+            try await Task.sleep(nanoseconds: UInt64(pollingInterval * 1_000_000_000))
+            let status: SAM3DSceneRealizationJobStatusResponse
+            do {
+                status = try await requestJobStatus(jobId: job.jobId)
+            } catch let error as URLError where Self.isTransientPollingError(error) {
+                progressHandler?("SAM 3D job \(job.jobId.prefix(8)) is still busy. Continuing to poll...")
+                continue
+            }
+
+            switch status.status {
+            case "queued", "running":
+                progressHandler?("SAM 3D job \(job.jobId.prefix(8)) \(status.status). Waiting for generated assets...")
+            case "completed":
+                guard let result = status.result else {
+                    throw SAM3DSceneRealizationError.invalidResponse
+                }
+                progressHandler?("SAM 3D job \(job.jobId.prefix(8)) completed. Downloading assets...")
+                return result
+            case "failed":
+                throw SAM3DSceneRealizationError.requestFailed(
+                    statusCode: 500,
+                    body: status.error ?? "SAM 3D job failed."
+                )
+            default:
+                throw SAM3DSceneRealizationError.requestFailed(
+                    statusCode: 500,
+                    body: "Unknown SAM 3D job status: \(status.status)"
+                )
+            }
+        }
+
+        throw SAM3DSceneRealizationError.requestFailed(
+            statusCode: 408,
+            body: "SAM 3D job did not finish within \(Int(timeoutInterval)) seconds."
+        )
+    }
+
+    private func requestJobStatus(jobId: String) async throws -> SAM3DSceneRealizationJobStatusResponse {
+        let url = baseURL
+            .appendingPathComponent("jobs")
+            .appendingPathComponent(jobId)
+        var request = URLRequest(url: url)
+        request.timeoutInterval = jobStatusRequestTimeout
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw SAM3DSceneRealizationError.invalidResponse
+        }
+
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            let body = String(data: data, encoding: .utf8) ?? ""
+            throw SAM3DSceneRealizationError.requestFailed(
+                statusCode: httpResponse.statusCode,
+                body: body
+            )
+        }
+
+        return try JSONDecoder().decode(SAM3DSceneRealizationJobStatusResponse.self, from: data)
+    }
+
+    private static func isTransientPollingError(_ error: URLError) -> Bool {
+        switch error.code {
+        case .timedOut, .networkConnectionLost, .cannotConnectToHost, .cannotFindHost, .dnsLookupFailed:
+            return true
+        default:
+            return false
+        }
+    }
+
+    private func requestSynchronousRealization(
         _ requestBody: SAM3DSceneRealizationRequest
     ) async throws -> SAM3DSceneRealizationResponse {
         let url = baseURL.appendingPathComponent(endpointPath)
@@ -703,11 +1779,27 @@ final class SAM3DSceneRealizationClient {
             let fileName = "\(objectId)_\(abs(remoteURL.absoluteString.hashValue)).\(fileExtension)"
             let localURL = cacheDirectory.appendingPathComponent(fileName)
             try data.write(to: localURL, options: [.atomic])
+
+            let previewRemoteURL = response.objects.first { $0.objectId == objectId }?.previewImageURL
+            let previewLocalURL: URL?
+            if let previewRemoteURL {
+                let (previewData, _) = try await URLSession.shared.data(from: previewRemoteURL)
+                let previewExtension = previewRemoteURL.pathExtension.isEmpty ? "png" : previewRemoteURL.pathExtension
+                let previewFileName = "\(objectId)_preview_\(abs(previewRemoteURL.absoluteString.hashValue)).\(previewExtension)"
+                let localPreviewURL = cacheDirectory.appendingPathComponent(previewFileName)
+                try previewData.write(to: localPreviewURL, options: [.atomic])
+                previewLocalURL = localPreviewURL
+            } else {
+                previewLocalURL = nil
+            }
+
             cachedAssets.append(
                 SAM3DCachedAsset(
                     objectId: objectId,
                     remoteURL: remoteURL,
-                    localURL: localURL
+                    localURL: localURL,
+                    previewRemoteURL: previewRemoteURL,
+                    previewLocalURL: previewLocalURL
                 )
             )
         }
@@ -736,7 +1828,8 @@ enum SAM3DSceneReconciler {
     static func reconcile(
         plan: InteractionWorldPlan,
         response: SAM3DSceneRealizationResponse,
-        cachedAssets: [SAM3DCachedAsset]
+        cachedAssets: [SAM3DCachedAsset],
+        useRealizedLayout: Bool = false
     ) -> InteractionWorldPlan {
         let realizedByObjectId = Dictionary(
             uniqueKeysWithValues: response.objects.map { ($0.objectId, $0) }
@@ -757,6 +1850,11 @@ enum SAM3DSceneReconciler {
                 status: realizedObject.status.worldStatus,
                 remoteURL: realizedObject.assetURL,
                 localURL: cachedAsset?.localURL,
+                previewRemoteURL: realizedObject.previewImageURL,
+                previewLocalURL: cachedAsset?.previewLocalURL,
+                realizedPosition: realizedObject.position,
+                realizedSize: realizedObject.size ?? realizedObject.proxyShape?.size,
+                canonicalPose: realizedObject.canonicalPose,
                 notes: realizedObject.notes
             )
 
@@ -765,11 +1863,12 @@ enum SAM3DSceneReconciler {
                 displayName: object.displayName,
                 description: object.description,
                 kind: object.kind,
-                position: realizedObject.position ?? object.position,
-                size: realizedObject.size ?? realizedObject.proxyShape?.size ?? object.size,
+                position: useRealizedLayout ? realizedObject.position ?? object.position : object.position,
+                size: useRealizedLayout ? realizedObject.size ?? realizedObject.proxyShape?.size ?? object.size : object.size,
                 color: object.color,
                 isInteractive: object.isInteractive,
-                visualAsset: visualAsset
+                visualAsset: visualAsset,
+                assetCard: object.assetCard
             )
         }
 

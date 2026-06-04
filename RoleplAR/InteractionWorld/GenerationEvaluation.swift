@@ -34,10 +34,104 @@ struct InteractionWorldRunLog: Codable, Equatable {
     let scenario: ScenarioCard
     let generationResult: GenerationResult
     let loadedPlan: InteractionWorldPlan?
+    let layoutSummary: InteractionWorldLayoutSummary?
     let generationEvaluation: GenerationEvaluation
     let runtimeEvaluation: InteractionEvaluationResult?
     let manualEvaluation: ManualEvaluationSnapshot?
     let eventLog: [InteractionEventLogSnapshot]
+}
+
+struct SavedInteractionWorldScene: Identifiable, Equatable {
+    let url: URL
+    let exportedAt: Date
+    let scenarioId: String
+    let scenarioTitle: String
+    let objectCount: Int
+    let realizedObjectCount: Int
+
+    var id: String {
+        url.path
+    }
+
+    var fileName: String {
+        url.lastPathComponent
+    }
+}
+
+enum InteractionWorldSavedSceneStore {
+    private static let directoryName = "InteractionWorldSavedScenes"
+
+    static func defaultBaseDirectory() -> URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+
+    static func savedScenesDirectory(baseDirectory: URL = defaultBaseDirectory()) -> URL {
+        baseDirectory.appendingPathComponent(directoryName, isDirectory: true)
+    }
+
+    static func write(
+        _ log: InteractionWorldRunLog,
+        baseDirectory: URL = defaultBaseDirectory()
+    ) throws -> URL {
+        let directory = savedScenesDirectory(baseDirectory: baseDirectory)
+        try FileManager.default.createDirectory(
+            at: directory,
+            withIntermediateDirectories: true
+        )
+
+        let timestamp = Int(log.exportedAt.timeIntervalSince1970)
+        let fileName = "interaction_world_scene_\(log.scenario.id)_\(timestamp).json"
+        let url = directory.appendingPathComponent(fileName)
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        let data = try encoder.encode(log)
+        try data.write(to: url, options: [.atomic])
+
+        return url
+    }
+
+    static func load(url: URL) throws -> InteractionWorldRunLog {
+        let data = try Data(contentsOf: url)
+        return try JSONDecoder().decode(InteractionWorldRunLog.self, from: data)
+    }
+
+    static func list(
+        baseDirectory: URL = defaultBaseDirectory()
+    ) throws -> [SavedInteractionWorldScene] {
+        let directory = savedScenesDirectory(baseDirectory: baseDirectory)
+        guard FileManager.default.fileExists(atPath: directory.path) else {
+            return []
+        }
+
+        let urls = try FileManager.default.contentsOfDirectory(
+            at: directory,
+            includingPropertiesForKeys: nil
+        )
+
+        return urls
+            .filter { $0.pathExtension == "json" }
+            .compactMap { url in
+                guard let log = try? load(url: url) else {
+                    return nil
+                }
+                let plan = log.loadedPlan ?? log.generationResult.plan
+                let realizedObjectCount = plan?.objects.filter {
+                    $0.visualAsset?.status == .realized
+                }.count ?? 0
+                return SavedInteractionWorldScene(
+                    url: url,
+                    exportedAt: log.exportedAt,
+                    scenarioId: log.scenario.id,
+                    scenarioTitle: log.scenario.setting,
+                    objectCount: plan?.objects.count ?? 0,
+                    realizedObjectCount: realizedObjectCount
+                )
+            }
+            .sorted { lhs, rhs in
+                lhs.exportedAt > rhs.exportedAt
+            }
+    }
 }
 
 enum FailureMode: String, Codable, CaseIterable {
@@ -148,6 +242,7 @@ enum InteractionWorldRunLogFactory {
             scenario: result.scenario,
             generationResult: result,
             loadedPlan: runtime?.plan,
+            layoutSummary: result.layoutSummary,
             generationEvaluation: GenerationEvaluator.evaluate(
                 result,
                 runtimeEvaluation: runtimeSummary
