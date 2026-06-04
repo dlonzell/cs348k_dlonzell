@@ -1,0 +1,50 @@
+{
+  "task_counts": {
+    "faithful": 36,
+    "compromise": 4,
+    "invalid": 3,
+    "missed": 0
+  },
+  "metric_counts": {
+    "objectRealization": {
+      "yes": 23,
+      "partial": 15,
+      "no": 5
+    },
+    "spatialPlausibility": {
+      "yes": 31,
+      "partial": 4,
+      "no": 8
+    },
+    "contextSufficiency": {
+      "yes": 34,
+      "partial": 4,
+      "no": 5
+    },
+    "affordanceInstrumentation": {
+      "yes": 15,
+      "partial": 20,
+      "no": 8
+    },
+    "taskCompletion": {
+      "yes": 22,
+      "partial": 13,
+      "no": 8
+    }
+  },
+  "funnel": {
+    "demanded": 42,
+    "generated": 43,
+    "aligned": 40,
+    "playable_partial_or_yes": 35
+  },
+  "generation_times": {
+    "Market": 9.486706018447876,
+    "Browse": 6.448775053024292,
+    "Station": 11.02228593826294,
+    "Shrine": 9.462831974029541,
+    "Try-on": 9.204936027526855
+  },
+  "median_generation_time": 9.462831974029541,
+  "n_scenarios": 9
+}

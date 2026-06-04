@@ -1,0 +1,1422 @@
+{
+  "eventLog" : [
+
+  ],
+  "exportedAt" : 802209539.789447,
+  "generationEvaluation" : {
+    "attemptCount" : 1,
+    "scenarioId" : "cafe_paying_check",
+    "step1ObjectGeneration" : {
+      "succeeded" : true
+    },
+    "step3TaskGeneration" : {
+      "succeeded" : true
+    },
+    "step4Validation" : {
+      "succeeded" : true
+    },
+    "step6Runtime" : {
+      "completedTasks" : 0,
+      "totalTasks" : 4
+    },
+    "succeeded" : true,
+    "totalTimeSeconds" : 9.657315015792847
+  },
+  "generationResult" : {
+    "attempts" : [
+      {
+        "attemptNumber" : 1,
+        "durationSeconds" : 9.65730893611908,
+        "outcome" : {
+          "success" : {
+
+          }
+        },
+        "rawObjectsJSON" : "{\n  \"objects\": [\n    {\n      \"id\": \"cafe_counter\",\n      \"displayName\": \"Cafe Counter\",\n      \"description\": \"Wooden cafe counter surface for transactions\",\n      \"kind\": { \"type\": \"counter\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.7, -1.0],\n      \"size\": [1.0, 0.1, 0.5],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"bill_tray\",\n      \"displayName\": \"Bill Tray\",\n      \"description\": \"Small tray holding the bill\",\n      \"kind\": { \"type\": \"tray\", \"category\": \"container\" },\n      \"position\": [-0.2, 0.75, -0.8],\n      \"size\": [0.2, 0.02, 0.15],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"payment_card\",\n      \"displayName\": \"Payment Card\",\n      \"description\": \"Credit card for payment\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [-0.15, 0.76, -0.75],\n      \"size\": [0.085, 0.005, 0.055],\n      \"color\": \"blue\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"card_reader\",\n      \"displayName\": \"Card Reader\",\n      \"description\": \"Electronic card reader for processing payments\",\n      \"kind\": { \"type\": \"cardReader\", \"category\": \"uprightObject\" },\n      \"position\": [0.0, 0.75, -0.85],\n      \"size\": [0.1, 0.15, 0.1],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"receipt\",\n      \"displayName\": \"Receipt\",\n      \"description\": \"Printed receipt from the transaction\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [0.1, 0.76, -0.9],\n      \"size\": [0.1, 0.01, 0.05],\n      \"color\": \"white\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"change\",\n      \"displayName\": \"Change\",\n      \"description\": \"Coins and small bills as change\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [0.15, 0.76, -0.85],\n      \"size\": [0.05, 0.02, 0.05],\n      \"color\": \"yellow\",\n      \"isInteractive\": true\n    }\n  ]\n}",
+        "rawTasksJSON" : "{\n  \"tasks\": [\n    {\n      \"id\": \"request_the_check\",\n      \"instruction\": \"Indicate the bill tray to request the check.\",\n      \"requiredObjectIds\": [\"bill_tray\"],\n      \"expectedInteraction\": { \"type\": \"indicate\", \"objectId\": \"bill_tray\" }\n    },\n    {\n      \"id\": \"place_card_on_tray\",\n      \"instruction\": \"Place your card on the bill tray.\",\n      \"requiredObjectIds\": [\"payment_card\", \"bill_tray\"],\n      \"expectedInteraction\": { \"type\": \"place\", \"objectId\": \"payment_card\", \"targetId\": \"bill_tray\" }\n    },\n    {\n      \"id\": \"tap_card_reader\",\n      \"instruction\": \"Tap the card reader to pay.\",\n      \"requiredObjectIds\": [\"card_reader\"],\n      \"expectedInteraction\": { \"type\": \"tap\", \"objectId\": \"card_reader\" }\n    },\n    {\n      \"id\": \"take_receipt_and_change\",\n      \"instruction\": \"Take your receipt and change.\",\n      \"requiredObjectIds\": [\"receipt\", \"change\"],\n      \"expectedInteraction\": { \"type\": \"drag\", \"objectId\": \"receipt\" }\n    }\n  ]\n}",
+        "stage" : "fullPipeline"
+      }
+    ],
+    "layoutSummary" : {
+      "objectSummaries" : [
+        {
+          "displayName" : "Cafe Counter",
+          "finalPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "objectId" : "cafe_counter",
+          "rawPosition" : [
+            0,
+            0.7,
+            -1
+          ],
+          "rawSize" : [
+            1,
+            0.1,
+            0.5
+          ],
+          "role" : "surface"
+        },
+        {
+          "displayName" : "Bill Tray",
+          "finalPosition" : [
+            0.39,
+            0.725,
+            -1.08
+          ],
+          "finalSize" : [
+            0.2,
+            0.08,
+            0.16
+          ],
+          "objectId" : "bill_tray",
+          "rawPosition" : [
+            -0.2,
+            0.75,
+            -0.8
+          ],
+          "rawSize" : [
+            0.2,
+            0.02,
+            0.15
+          ],
+          "role" : "targetContainer"
+        },
+        {
+          "displayName" : "Payment Card",
+          "finalPosition" : [
+            0.42,
+            0.71,
+            -1.125
+          ],
+          "finalSize" : [
+            0.14,
+            0.05,
+            0.1
+          ],
+          "objectId" : "payment_card",
+          "rawPosition" : [
+            -0.15,
+            0.76,
+            -0.75
+          ],
+          "rawSize" : [
+            0.085,
+            0.005,
+            0.055
+          ],
+          "role" : "payment"
+        },
+        {
+          "displayName" : "Card Reader",
+          "finalPosition" : [
+            0.3,
+            0.745,
+            -1.125
+          ],
+          "finalSize" : [
+            0.14,
+            0.12,
+            0.1
+          ],
+          "objectId" : "card_reader",
+          "rawPosition" : [
+            0,
+            0.75,
+            -0.85
+          ],
+          "rawSize" : [
+            0.1,
+            0.15,
+            0.1
+          ],
+          "role" : "payment"
+        },
+        {
+          "displayName" : "Receipt",
+          "finalPosition" : [
+            -0.36,
+            0.715,
+            -0.765
+          ],
+          "finalSize" : [
+            0.1,
+            0.06,
+            0.08
+          ],
+          "objectId" : "receipt",
+          "rawPosition" : [
+            0.1,
+            0.76,
+            -0.9
+          ],
+          "rawSize" : [
+            0.1,
+            0.01,
+            0.05
+          ],
+          "role" : "sourceObject"
+        },
+        {
+          "displayName" : "Change",
+          "finalPosition" : [
+            -0.16,
+            0.715,
+            -0.765
+          ],
+          "finalSize" : [
+            0.1,
+            0.06,
+            0.08
+          ],
+          "objectId" : "change",
+          "rawPosition" : [
+            0.15,
+            0.76,
+            -0.85
+          ],
+          "rawSize" : [
+            0.05,
+            0.02,
+            0.05
+          ],
+          "role" : "sourceObject"
+        }
+      ],
+      "relations" : [
+        {
+          "kind" : "on",
+          "objectId" : "cafe_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "bill_tray"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "cafe_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "payment_card"
+        },
+        {
+          "kind" : "rightOf",
+          "objectId" : "cafe_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "payment_card"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "cafe_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "card_reader"
+        },
+        {
+          "kind" : "rightOf",
+          "objectId" : "cafe_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "card_reader"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "cafe_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "receipt"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "cafe_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "change"
+        },
+        {
+          "kind" : "rightOf",
+          "objectId" : "payment_card",
+          "source" : "task:place_card_on_tray",
+          "subjectId" : "bill_tray"
+        },
+        {
+          "kind" : "near",
+          "objectId" : "payment_card",
+          "source" : "task:place_card_on_tray",
+          "subjectId" : "bill_tray"
+        },
+        {
+          "kind" : "behind",
+          "objectId" : "cafe_counter",
+          "source" : "task:tap_card_reader",
+          "subjectId" : "card_reader"
+        }
+      ],
+      "strategy" : "stage_relation_slots_v1"
+    },
+    "plan" : {
+      "id" : "cafe_paying_check_generated_attempt_1_stage_layout_sam3d_realized",
+      "objects" : [
+        {
+          "assetCard" : {
+            "assetKind" : "surface",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "surface",
+            "orientationHint" : "horizontalSurface",
+            "restingPolicy" : "centerAtPosition",
+            "targetSize" : [
+              1.05,
+              0.1,
+              0.52
+            ]
+          },
+          "color" : "brown",
+          "description" : "Wooden cafe counter surface for transactions",
+          "displayName" : "Cafe Counter",
+          "id" : "cafe_counter",
+          "isInteractive" : false,
+          "kind" : {
+            "type" : "counter"
+          },
+          "position" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[bill_tray, payment_card, card_reader, receipt, change], maxObjects=0.",
+            "realizedPosition" : [
+              0,
+              0.62,
+              -0.95
+            ],
+            "realizedSize" : [
+              1.05,
+              0.1,
+              0.52
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "tray",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "targetContainer",
+            "orientationHint" : "shallowTray",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "cafe_counter",
+            "targetSize" : [
+              0.22,
+              0.08,
+              0.16
+            ]
+          },
+          "color" : "gray",
+          "description" : "Small tray holding the bill",
+          "displayName" : "Bill Tray",
+          "id" : "bill_tray",
+          "isInteractive" : true,
+          "kind" : {
+            "type" : "tray"
+          },
+          "position" : [
+            0.39,
+            0.725,
+            -1.08
+          ],
+          "size" : [
+            0.2,
+            0.08,
+            0.16
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+            "realizedPosition" : [
+              0.39,
+              0.725,
+              -1.08
+            ],
+            "realizedSize" : [
+              0.2,
+              0.08,
+              0.16
+            ],
+            "source" : "sam3D",
+            "status" : "failed"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "paymentDevice",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "payment",
+            "orientationHint" : "tabletopFlat",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "cafe_counter",
+            "targetSize" : [
+              0.16,
+              0.05,
+              0.12
+            ]
+          },
+          "color" : "blue",
+          "description" : "Credit card for payment",
+          "displayName" : "Payment Card",
+          "id" : "payment_card",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            0.42,
+            0.71,
+            -1.125
+          ],
+          "size" : [
+            0.14,
+            0.05,
+            0.1
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+            "realizedPosition" : [
+              0.42,
+              0.71,
+              -1.125
+            ],
+            "realizedSize" : [
+              0.14,
+              0.05,
+              0.1
+            ],
+            "source" : "sam3D",
+            "status" : "failed"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "paymentDevice",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "payment",
+            "orientationHint" : "tabletopFlat",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "cafe_counter",
+            "targetSize" : [
+              0.16,
+              0.08,
+              0.12
+            ]
+          },
+          "color" : "gray",
+          "description" : "Electronic card reader for processing payments",
+          "displayName" : "Card Reader",
+          "id" : "card_reader",
+          "isInteractive" : true,
+          "kind" : {
+            "type" : "cardReader"
+          },
+          "position" : [
+            0.3,
+            0.745,
+            -1.125
+          ],
+          "size" : [
+            0.14,
+            0.12,
+            0.1
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+            "realizedPosition" : [
+              0.3,
+              0.745,
+              -1.125
+            ],
+            "realizedSize" : [
+              0.14,
+              0.12,
+              0.1
+            ],
+            "source" : "sam3D",
+            "status" : "failed"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "sourceObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "cafe_counter",
+            "targetSize" : [
+              0.1,
+              0.06,
+              0.08
+            ]
+          },
+          "color" : "gray",
+          "description" : "Printed receipt from the transaction",
+          "displayName" : "Receipt",
+          "id" : "receipt",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.36,
+            0.715,
+            -0.765
+          ],
+          "size" : [
+            0.1,
+            0.06,
+            0.08
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+            "realizedPosition" : [
+              -0.36,
+              0.715,
+              -0.765
+            ],
+            "realizedSize" : [
+              0.1,
+              0.06,
+              0.08
+            ],
+            "source" : "sam3D",
+            "status" : "failed"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "sourceObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "cafe_counter",
+            "targetSize" : [
+              0.1,
+              0.06,
+              0.08
+            ]
+          },
+          "color" : "yellow",
+          "description" : "Coins and small bills as change",
+          "displayName" : "Change",
+          "id" : "change",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.16,
+            0.715,
+            -0.765
+          ],
+          "size" : [
+            0.1,
+            0.06,
+            0.08
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+            "realizedPosition" : [
+              -0.16,
+              0.715,
+              -0.765
+            ],
+            "realizedSize" : [
+              0.1,
+              0.06,
+              0.08
+            ],
+            "source" : "sam3D",
+            "status" : "failed"
+          }
+        }
+      ],
+      "scenario" : {
+        "expectedObjectCategories" : [
+          "counter",
+          "bill_tray",
+          "payment_card",
+          "card_reader",
+          "receipt",
+          "change"
+        ],
+        "id" : "cafe_paying_check",
+        "learnerRole" : "customer paying",
+        "localContext" : "A small tray with the bill sits on the counter next to a card reader; a receipt is produced after payment.",
+        "sceneGoal" : "Pay the check and collect your receipt",
+        "setting" : "Cafe counter at the end of a meal",
+        "targetInteractions" : [
+          "request the check",
+          "place your card on the tray",
+          "tap the card reader to pay",
+          "take your receipt and change"
+        ]
+      },
+      "tasks" : [
+        {
+          "expectedInteraction" : {
+            "objectId" : "bill_tray",
+            "type" : "indicate"
+          },
+          "id" : "request_the_check",
+          "instruction" : "Indicate the bill tray to request the check.",
+          "requiredObjectIds" : [
+            "bill_tray"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "payment_card",
+            "targetId" : "bill_tray",
+            "type" : "place"
+          },
+          "id" : "place_card_on_tray",
+          "instruction" : "Place your card on the bill tray.",
+          "requiredObjectIds" : [
+            "payment_card",
+            "bill_tray"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "card_reader",
+            "type" : "tap"
+          },
+          "id" : "tap_card_reader",
+          "instruction" : "Tap the card reader to pay.",
+          "requiredObjectIds" : [
+            "card_reader"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "receipt",
+            "type" : "drag"
+          },
+          "id" : "take_receipt_and_change",
+          "instruction" : "Take your receipt and change.",
+          "requiredObjectIds" : [
+            "receipt",
+            "change"
+          ]
+        }
+      ]
+    },
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "bill_tray",
+        "payment_card",
+        "card_reader",
+        "receipt",
+        "change"
+      ],
+      "id" : "cafe_paying_check",
+      "learnerRole" : "customer paying",
+      "localContext" : "A small tray with the bill sits on the counter next to a card reader; a receipt is produced after payment.",
+      "sceneGoal" : "Pay the check and collect your receipt",
+      "setting" : "Cafe counter at the end of a meal",
+      "targetInteractions" : [
+        "request the check",
+        "place your card on the tray",
+        "tap the card reader to pay",
+        "take your receipt and change"
+      ]
+    },
+    "totalGenerationTimeSeconds" : 9.657315015792847
+  },
+  "layoutSummary" : {
+    "objectSummaries" : [
+      {
+        "displayName" : "Cafe Counter",
+        "finalPosition" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize" : [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "objectId" : "cafe_counter",
+        "rawPosition" : [
+          0,
+          0.7,
+          -1
+        ],
+        "rawSize" : [
+          1,
+          0.1,
+          0.5
+        ],
+        "role" : "surface"
+      },
+      {
+        "displayName" : "Bill Tray",
+        "finalPosition" : [
+          0.39,
+          0.725,
+          -1.08
+        ],
+        "finalSize" : [
+          0.2,
+          0.08,
+          0.16
+        ],
+        "objectId" : "bill_tray",
+        "rawPosition" : [
+          -0.2,
+          0.75,
+          -0.8
+        ],
+        "rawSize" : [
+          0.2,
+          0.02,
+          0.15
+        ],
+        "role" : "targetContainer"
+      },
+      {
+        "displayName" : "Payment Card",
+        "finalPosition" : [
+          0.42,
+          0.71,
+          -1.125
+        ],
+        "finalSize" : [
+          0.14,
+          0.05,
+          0.1
+        ],
+        "objectId" : "payment_card",
+        "rawPosition" : [
+          -0.15,
+          0.76,
+          -0.75
+        ],
+        "rawSize" : [
+          0.085,
+          0.005,
+          0.055
+        ],
+        "role" : "payment"
+      },
+      {
+        "displayName" : "Card Reader",
+        "finalPosition" : [
+          0.3,
+          0.745,
+          -1.125
+        ],
+        "finalSize" : [
+          0.14,
+          0.12,
+          0.1
+        ],
+        "objectId" : "card_reader",
+        "rawPosition" : [
+          0,
+          0.75,
+          -0.85
+        ],
+        "rawSize" : [
+          0.1,
+          0.15,
+          0.1
+        ],
+        "role" : "payment"
+      },
+      {
+        "displayName" : "Receipt",
+        "finalPosition" : [
+          -0.36,
+          0.715,
+          -0.765
+        ],
+        "finalSize" : [
+          0.1,
+          0.06,
+          0.08
+        ],
+        "objectId" : "receipt",
+        "rawPosition" : [
+          0.1,
+          0.76,
+          -0.9
+        ],
+        "rawSize" : [
+          0.1,
+          0.01,
+          0.05
+        ],
+        "role" : "sourceObject"
+      },
+      {
+        "displayName" : "Change",
+        "finalPosition" : [
+          -0.16,
+          0.715,
+          -0.765
+        ],
+        "finalSize" : [
+          0.1,
+          0.06,
+          0.08
+        ],
+        "objectId" : "change",
+        "rawPosition" : [
+          0.15,
+          0.76,
+          -0.85
+        ],
+        "rawSize" : [
+          0.05,
+          0.02,
+          0.05
+        ],
+        "role" : "sourceObject"
+      }
+    ],
+    "relations" : [
+      {
+        "kind" : "on",
+        "objectId" : "cafe_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "bill_tray"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "cafe_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "payment_card"
+      },
+      {
+        "kind" : "rightOf",
+        "objectId" : "cafe_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "payment_card"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "cafe_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "card_reader"
+      },
+      {
+        "kind" : "rightOf",
+        "objectId" : "cafe_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "card_reader"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "cafe_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "receipt"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "cafe_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "change"
+      },
+      {
+        "kind" : "rightOf",
+        "objectId" : "payment_card",
+        "source" : "task:place_card_on_tray",
+        "subjectId" : "bill_tray"
+      },
+      {
+        "kind" : "near",
+        "objectId" : "payment_card",
+        "source" : "task:place_card_on_tray",
+        "subjectId" : "bill_tray"
+      },
+      {
+        "kind" : "behind",
+        "objectId" : "cafe_counter",
+        "source" : "task:tap_card_reader",
+        "subjectId" : "card_reader"
+      }
+    ],
+    "strategy" : "stage_relation_slots_v1"
+  },
+  "loadedPlan" : {
+    "id" : "cafe_paying_check_generated_attempt_1_stage_layout_sam3d_realized",
+    "objects" : [
+      {
+        "assetCard" : {
+          "assetKind" : "surface",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "surface",
+          "orientationHint" : "horizontalSurface",
+          "restingPolicy" : "centerAtPosition",
+          "targetSize" : [
+            1.05,
+            0.1,
+            0.52
+          ]
+        },
+        "color" : "brown",
+        "description" : "Wooden cafe counter surface for transactions",
+        "displayName" : "Cafe Counter",
+        "id" : "cafe_counter",
+        "isInteractive" : false,
+        "kind" : {
+          "type" : "counter"
+        },
+        "position" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size" : [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[bill_tray, payment_card, card_reader, receipt, change], maxObjects=0.",
+          "realizedPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "realizedSize" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "tray",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "targetContainer",
+          "orientationHint" : "shallowTray",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "cafe_counter",
+          "targetSize" : [
+            0.22,
+            0.08,
+            0.16
+          ]
+        },
+        "color" : "gray",
+        "description" : "Small tray holding the bill",
+        "displayName" : "Bill Tray",
+        "id" : "bill_tray",
+        "isInteractive" : true,
+        "kind" : {
+          "type" : "tray"
+        },
+        "position" : [
+          0.39,
+          0.725,
+          -1.08
+        ],
+        "size" : [
+          0.2,
+          0.08,
+          0.16
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+          "realizedPosition" : [
+            0.39,
+            0.725,
+            -1.08
+          ],
+          "realizedSize" : [
+            0.2,
+            0.08,
+            0.16
+          ],
+          "source" : "sam3D",
+          "status" : "failed"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "paymentDevice",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "payment",
+          "orientationHint" : "tabletopFlat",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "cafe_counter",
+          "targetSize" : [
+            0.16,
+            0.05,
+            0.12
+          ]
+        },
+        "color" : "blue",
+        "description" : "Credit card for payment",
+        "displayName" : "Payment Card",
+        "id" : "payment_card",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          0.42,
+          0.71,
+          -1.125
+        ],
+        "size" : [
+          0.14,
+          0.05,
+          0.1
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+          "realizedPosition" : [
+            0.42,
+            0.71,
+            -1.125
+          ],
+          "realizedSize" : [
+            0.14,
+            0.05,
+            0.1
+          ],
+          "source" : "sam3D",
+          "status" : "failed"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "paymentDevice",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "payment",
+          "orientationHint" : "tabletopFlat",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "cafe_counter",
+          "targetSize" : [
+            0.16,
+            0.08,
+            0.12
+          ]
+        },
+        "color" : "gray",
+        "description" : "Electronic card reader for processing payments",
+        "displayName" : "Card Reader",
+        "id" : "card_reader",
+        "isInteractive" : true,
+        "kind" : {
+          "type" : "cardReader"
+        },
+        "position" : [
+          0.3,
+          0.745,
+          -1.125
+        ],
+        "size" : [
+          0.14,
+          0.12,
+          0.1
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+          "realizedPosition" : [
+            0.3,
+            0.745,
+            -1.125
+          ],
+          "realizedSize" : [
+            0.14,
+            0.12,
+            0.1
+          ],
+          "source" : "sam3D",
+          "status" : "failed"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "sourceObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "cafe_counter",
+          "targetSize" : [
+            0.1,
+            0.06,
+            0.08
+          ]
+        },
+        "color" : "gray",
+        "description" : "Printed receipt from the transaction",
+        "displayName" : "Receipt",
+        "id" : "receipt",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.36,
+          0.715,
+          -0.765
+        ],
+        "size" : [
+          0.1,
+          0.06,
+          0.08
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+          "realizedPosition" : [
+            -0.36,
+            0.715,
+            -0.765
+          ],
+          "realizedSize" : [
+            0.1,
+            0.06,
+            0.08
+          ],
+          "source" : "sam3D",
+          "status" : "failed"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "sourceObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "cafe_counter",
+          "targetSize" : [
+            0.1,
+            0.06,
+            0.08
+          ]
+        },
+        "color" : "yellow",
+        "description" : "Coins and small bills as change",
+        "displayName" : "Change",
+        "id" : "change",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.16,
+          0.715,
+          -0.765
+        ],
+        "size" : [
+          0.1,
+          0.06,
+          0.08
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Invalid header value b'Bearer eval \\n# Copyright (C) 2012 Anaconda, Inc\\n# SPDX-License-Identifier: BSD-3-Clause\\n\\n__mamba_exe() (\\n    \"\/home\/ixdstanford\/bin\/micromamba\" \"${@}\"\\n)\\n\\n__mamba_hashr() {\\n    if [ -n \"${ZSH_VERSION:+x}\" ]; then\\n        \\\\rehash\\n    elif [ -n \"${POSH_VERSION:+x}\" ]; then\\n        :  # pass\\n    else\\n        \\\\hash -r\\n    fi\\n}\\n\\n__mamba_xctivate() {\\n    \\\\local ask_mamba\\n    ask_mamba=\"$(PS1=\"${PS1:-}\" __mamba_exe shell \"${@}\" --shell bash)\" || \\\\return\\n    \\\\eval \"${ask_mamba}\"\\n    __mamba_hashr\\n}\\n\\n__mamba_wrap() {\\n    \\\\local cmd=\"${1-__missing__}\"\\n    case \"${cmd}\" in\\n        activate|reactivate|deactivate)\\n            __mamba_xctivate \"${@}\"\\n            ;;\\n        install|update|upgrade|remove|uninstall)\\n            __mamba_exe \"${@}\" || \\\\return\\n            __mamba_xctivate reactivate\\n            ;;\\n        self-update)\\n            __mamba_exe \"${@}\" || \\\\return\\n\\n            # remove leftover backup file on Windows\\n            if [ -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\" ]; then\\n                rm -f \"\/home\/ixdstanford\/bin\/micromamba.bkup\"\\n            fi\\n            ;;\\n        *)\\n            __mamba_exe \"${@}\"\\n            ;;\\n    esac\\n}\\n\\n\\n# We need to define a function with the same name as the executable to be called by the user.\\n# There is no way to register it dynamically without relying on hacks or eval.\\n__exe_name=\"$(basename \"\/home\/ixdstanford\/bin\/micromamba\")\"\\n__exe_name=\"${__exe_name%.*}\"\\n\\ncase \"${__exe_name}\" in\\n    micromamba)\\n        micromamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    mamba)\\n        mamba() {\\n            __mamba_wrap \"$@\"\\n        }\\n        ;;\\n    *)\\n        echo \"Error unknown MAMBA_EXE: \\\\\"\/home\/ixdstanford\/bin\/micromamba\\\\\", filename must be mamba or micromamba\" 1>&2\\n        ;;\\nesac\\n\\n\\nif [ -z \"${CONDA_SHLVL+x}\" ]; then\\n    \\\\export CONDA_SHLVL=0\\n    \\\\export PATH=\"${MAMBA_ROOT_PREFIX}\/condabin:${PATH}\"\\n\\n    # We\\'re not allowing PS1 to be unbound. It must at least be set.\\n    # However, we\\'re not exporting it, which can cause problems when starting a second shell\\n    # via a first shell (i.e. starting zsh from bash).\\n    if [ -z \"${PS1+x}\" ]; then\\n        PS1=\\n    fi\\nfi\\n\\nif [ -n \"${ZSH_VERSION:+x}\" ]; then\\n  if ! command -v compinit > \/dev\/null; then\\n    autoload -U +X compinit && if [[ \"${ZSH_DISABLE_COMPFIX-}\" = true ]]; then\\n      compinit -u\\n    else\\n      compinit\\n    fi\\n  fi\\n  autoload -U +X bashcompinit && bashcompinit\\n\\n  _umamba_zsh_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${(@s: :)${(@s: :)COMP_LINE}:1}\"))\\n  }\\n\\n  complete -o default -F _umamba_zsh_completions micromamba\\nfi\\nif [ -n \"${BASH_VERSION:+x}\" ]; then\\n  _umamba_bash_completions()\\n  {\\n    COMPREPLY=($(__mamba_exe completer \"${COMP_WORDS[@]:1}\"))\\n  }\\n  complete -o default -F _umamba_bash_completions micromamba\\nfi\\nmicromamba activate sam3d-objects\\n\\ncd ~\/sam-3d-objects\\n\\nexport OPENAI_API_KEY=PASTE_YOUR_NEW_OPENAI_KEY_HERE\\n\\n'",
+          "realizedPosition" : [
+            -0.16,
+            0.715,
+            -0.765
+          ],
+          "realizedSize" : [
+            0.1,
+            0.06,
+            0.08
+          ],
+          "source" : "sam3D",
+          "status" : "failed"
+        }
+      }
+    ],
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "bill_tray",
+        "payment_card",
+        "card_reader",
+        "receipt",
+        "change"
+      ],
+      "id" : "cafe_paying_check",
+      "learnerRole" : "customer paying",
+      "localContext" : "A small tray with the bill sits on the counter next to a card reader; a receipt is produced after payment.",
+      "sceneGoal" : "Pay the check and collect your receipt",
+      "setting" : "Cafe counter at the end of a meal",
+      "targetInteractions" : [
+        "request the check",
+        "place your card on the tray",
+        "tap the card reader to pay",
+        "take your receipt and change"
+      ]
+    },
+    "tasks" : [
+      {
+        "expectedInteraction" : {
+          "objectId" : "bill_tray",
+          "type" : "indicate"
+        },
+        "id" : "request_the_check",
+        "instruction" : "Indicate the bill tray to request the check.",
+        "requiredObjectIds" : [
+          "bill_tray"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "payment_card",
+          "targetId" : "bill_tray",
+          "type" : "place"
+        },
+        "id" : "place_card_on_tray",
+        "instruction" : "Place your card on the bill tray.",
+        "requiredObjectIds" : [
+          "payment_card",
+          "bill_tray"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "card_reader",
+          "type" : "tap"
+        },
+        "id" : "tap_card_reader",
+        "instruction" : "Tap the card reader to pay.",
+        "requiredObjectIds" : [
+          "card_reader"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "receipt",
+          "type" : "drag"
+        },
+        "id" : "take_receipt_and_change",
+        "instruction" : "Take your receipt and change.",
+        "requiredObjectIds" : [
+          "receipt",
+          "change"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation" : {
+    "answeredCount" : 20,
+    "generatedObjectRatings" : [
+      {
+        "objectId" : "bill_tray",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "cafe_counter",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "card_reader",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "change",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "payment_card",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "receipt",
+        "rating" : "expected"
+      }
+    ],
+    "generatedTaskRatings" : [
+      {
+        "rating" : "faithful",
+        "taskId" : "place_card_on_tray"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "request_the_check"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "take_receipt_and_change"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "tap_card_reader"
+      }
+    ],
+    "scenarioFidelityRating" : "partiallyFaithful",
+    "scenarioLayoutRating" : "plausible",
+    "taskMetricRatings" : [
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "place_card_on_tray"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "place_card_on_tray"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "no",
+        "taskId" : "place_card_on_tray"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "place_card_on_tray"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "place_card_on_tray"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "request_the_check"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "request_the_check"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "partial",
+        "taskId" : "request_the_check"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "request_the_check"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "request_the_check"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "take_receipt_and_change"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "take_receipt_and_change"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "take_receipt_and_change"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "take_receipt_and_change"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "take_receipt_and_change"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "partial",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      }
+    ],
+    "totalCount" : 20,
+    "yesCount" : 14
+  },
+  "runtimeEvaluation" : {
+    "completedTasks" : 0,
+    "firstFailedTaskId" : "request_the_check",
+    "handlerCoveragePassed" : 4,
+    "handlerCoverageTotal" : 4,
+    "objectCoveragePassed" : 6,
+    "objectCoverageTotal" : 6,
+    "totalTasks" : 4
+  },
+  "scenario" : {
+    "expectedObjectCategories" : [
+      "counter",
+      "bill_tray",
+      "payment_card",
+      "card_reader",
+      "receipt",
+      "change"
+    ],
+    "id" : "cafe_paying_check",
+    "learnerRole" : "customer paying",
+    "localContext" : "A small tray with the bill sits on the counter next to a card reader; a receipt is produced after payment.",
+    "sceneGoal" : "Pay the check and collect your receipt",
+    "setting" : "Cafe counter at the end of a meal",
+    "targetInteractions" : [
+      "request the check",
+      "place your card on the tray",
+      "tap the card reader to pay",
+      "take your receipt and change"
+    ]
+  }
+}

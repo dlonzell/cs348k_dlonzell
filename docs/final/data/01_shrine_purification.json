@@ -1,0 +1,1769 @@
+{
+  "eventLog" : [
+    {
+      "eventDescription" : "point",
+      "matched" : false,
+      "taskId" : "bow_at_torii_gate",
+      "timestamp" : 802203576.102177
+    },
+    {
+      "eventDescription" : "wave",
+      "matched" : false,
+      "taskId" : "bow_at_torii_gate",
+      "timestamp" : 802203575.355409
+    },
+    {
+      "eventDescription" : "select water_basin",
+      "matched" : false,
+      "taskId" : "bow_at_torii_gate",
+      "timestamp" : 802203573.017982
+    }
+  ],
+  "exportedAt" : 802204142.249209,
+  "generationEvaluation" : {
+    "attemptCount" : 1,
+    "scenarioId" : "shrine_purification",
+    "step1ObjectGeneration" : {
+      "succeeded" : true
+    },
+    "step3TaskGeneration" : {
+      "succeeded" : true
+    },
+    "step4Validation" : {
+      "succeeded" : true
+    },
+    "step6Runtime" : {
+      "completedTasks" : 0,
+      "totalTasks" : 8
+    },
+    "succeeded" : true,
+    "totalTimeSeconds" : 9.462831974029541
+  },
+  "generationResult" : {
+    "attempts" : [
+      {
+        "attemptNumber" : 1,
+        "durationSeconds" : 9.462821960449219,
+        "outcome" : {
+          "success" : {
+
+          }
+        },
+        "rawObjectsJSON" : "{\n  \"objects\": [\n    {\n      \"id\": \"stone_surface\",\n      \"displayName\": \"Stone Surface\",\n      \"description\": \"Low stone surface holding ritual items\",\n      \"kind\": { \"type\": \"counter\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.6, -1.0],\n      \"size\": [1.0, 0.1, 0.5],\n      \"color\": \"gray\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"water_basin\",\n      \"displayName\": \"Water Basin\",\n      \"description\": \"Water basin used for purification\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"container\" },\n      \"position\": [-0.3, 0.65, -1.0],\n      \"size\": [0.4, 0.15, 0.4],\n      \"color\": \"blue\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"ladle\",\n      \"displayName\": \"Ladle\",\n      \"description\": \"Wooden ladle for rinsing hands and mouth\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [-0.3, 0.75, -0.9],\n      \"size\": [0.1, 0.05, 0.3],\n      \"color\": \"brown\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"donation_box\",\n      \"displayName\": \"Donation Box\",\n      \"description\": \"Wooden box for monetary offerings\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"container\" },\n      \"position\": [0.0, 0.65, -1.2],\n      \"size\": [0.4, 0.3, 0.4],\n      \"color\": \"brown\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"amulet_tray\",\n      \"displayName\": \"Amulet Tray\",\n      \"description\": \"Tray holding various amulets\",\n      \"kind\": { \"type\": \"tray\", \"category\": \"container\" },\n      \"position\": [0.3, 0.65, -1.0],\n      \"size\": [0.3, 0.05, 0.2],\n      \"color\": \"red\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"priest_marker\",\n      \"displayName\": \"Priest Marker\",\n      \"description\": \"Marker indicating the position of the priest\",\n      \"kind\": { \"type\": \"npcMarker\", \"category\": \"marker\" },\n      \"position\": [0.5, 0.0, -1.5],\n      \"size\": [0.2, 1.8, 0.2],\n      \"color\": \"purple\",\n      \"isInteractive\": true\n    }\n  ]\n}",
+        "rawTasksJSON" : "{\"tasks\":[{\"id\":\"bow_at_torii_gate\",\"instruction\":\"Bow at the torii gate.\",\"requiredObjectIds\":[],\"expectedInteraction\":{\"type\":\"gesture\",\"gesture\":\"openPalm\"}},{\"id\":\"take_ladle\",\"instruction\":\"Take the ladle from the basin.\",\"requiredObjectIds\":[\"ladle\",\"water_basin\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"ladle\"}},{\"id\":\"rinse_hands\",\"instruction\":\"Rinse your hands with the ladle.\",\"requiredObjectIds\":[\"ladle\",\"water_basin\"],\"expectedInteraction\":{\"type\":\"drag\",\"objectId\":\"ladle\"}},{\"id\":\"rinse_mouth\",\"instruction\":\"Rinse your mouth with the ladle.\",\"requiredObjectIds\":[\"ladle\",\"water_basin\"],\"expectedInteraction\":{\"type\":\"drag\",\"objectId\":\"ladle\"}},{\"id\":\"replace_ladle\",\"instruction\":\"Replace the ladle on the basin.\",\"requiredObjectIds\":[\"ladle\",\"water_basin\"],\"expectedInteraction\":{\"type\":\"place\",\"objectId\":\"ladle\",\"targetId\":\"water_basin\"}},{\"id\":\"place_coin_in_donation_box\",\"instruction\":\"Place a coin in the donation box.\",\"requiredObjectIds\":[\"donation_box\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"donation_box\"}},{\"id\":\"bow_and_clap_to_pray\",\"instruction\":\"Bow and clap to pray.\",\"requiredObjectIds\":[],\"expectedInteraction\":{\"type\":\"gesture\",\"gesture\":\"openPalm\"}},{\"id\":\"receive_amulet_from_priest\",\"instruction\":\"Receive an amulet from the priest.\",\"requiredObjectIds\":[\"priest_marker\",\"amulet_tray\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"priest_marker\"}}]}",
+        "stage" : "fullPipeline"
+      }
+    ],
+    "layoutSummary" : {
+      "objectSummaries" : [
+        {
+          "displayName" : "Stone Surface",
+          "finalPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "objectId" : "stone_surface",
+          "rawPosition" : [
+            0,
+            0.6,
+            -1
+          ],
+          "rawSize" : [
+            1,
+            0.1,
+            0.5
+          ],
+          "role" : "surface"
+        },
+        {
+          "displayName" : "Water Basin",
+          "finalPosition" : [
+            -0.060000002,
+            0.76,
+            -0.875
+          ],
+          "finalSize" : [
+            0.34,
+            0.15,
+            0.3
+          ],
+          "objectId" : "water_basin",
+          "rawPosition" : [
+            -0.3,
+            0.65,
+            -1
+          ],
+          "rawSize" : [
+            0.4,
+            0.15,
+            0.4
+          ],
+          "role" : "targetContainer"
+        },
+        {
+          "displayName" : "Ladle",
+          "finalPosition" : [
+            -0.36,
+            0.715,
+            -0.825
+          ],
+          "finalSize" : [
+            0.1,
+            0.06,
+            0.2
+          ],
+          "objectId" : "ladle",
+          "rawPosition" : [
+            -0.3,
+            0.75,
+            -0.9
+          ],
+          "rawSize" : [
+            0.1,
+            0.05,
+            0.3
+          ],
+          "role" : "sourceObject"
+        },
+        {
+          "displayName" : "Donation Box",
+          "finalPosition" : [
+            0.31999996,
+            0.795,
+            -0.92
+          ],
+          "finalSize" : [
+            0.34,
+            0.22,
+            0.3
+          ],
+          "objectId" : "donation_box",
+          "rawPosition" : [
+            0,
+            0.65,
+            -1.2
+          ],
+          "rawSize" : [
+            0.4,
+            0.3,
+            0.4
+          ],
+          "role" : "targetContainer"
+        },
+        {
+          "displayName" : "Amulet Tray",
+          "finalPosition" : [
+            0.07999998,
+            0.725,
+            -1.075
+          ],
+          "finalSize" : [
+            0.3,
+            0.08,
+            0.2
+          ],
+          "objectId" : "amulet_tray",
+          "rawPosition" : [
+            0.3,
+            0.65,
+            -1
+          ],
+          "rawSize" : [
+            0.3,
+            0.05,
+            0.2
+          ],
+          "role" : "targetContainer"
+        },
+        {
+          "displayName" : "Priest Marker",
+          "finalPosition" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "finalSize" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "objectId" : "priest_marker",
+          "rawPosition" : [
+            0.5,
+            0,
+            -1.5
+          ],
+          "rawSize" : [
+            0.2,
+            1.8,
+            0.2
+          ],
+          "role" : "personMarker"
+        }
+      ],
+      "relations" : [
+        {
+          "kind" : "on",
+          "objectId" : "stone_surface",
+          "source" : "roleDefaults",
+          "subjectId" : "water_basin"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "stone_surface",
+          "source" : "roleDefaults",
+          "subjectId" : "ladle"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "stone_surface",
+          "source" : "roleDefaults",
+          "subjectId" : "donation_box"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "stone_surface",
+          "source" : "roleDefaults",
+          "subjectId" : "amulet_tray"
+        },
+        {
+          "kind" : "behind",
+          "objectId" : "stone_surface",
+          "source" : "roleDefaults",
+          "subjectId" : "priest_marker"
+        },
+        {
+          "kind" : "facing",
+          "objectId" : "stone_surface",
+          "source" : "roleDefaults",
+          "subjectId" : "priest_marker"
+        },
+        {
+          "kind" : "rightOf",
+          "objectId" : "ladle",
+          "source" : "task:replace_ladle",
+          "subjectId" : "water_basin"
+        },
+        {
+          "kind" : "near",
+          "objectId" : "ladle",
+          "source" : "task:replace_ladle",
+          "subjectId" : "water_basin"
+        }
+      ],
+      "strategy" : "stage_relation_slots_v1"
+    },
+    "plan" : {
+      "id" : "shrine_purification_generated_attempt_1_stage_layout_sam3d_realized",
+      "objects" : [
+        {
+          "assetCard" : {
+            "assetKind" : "surface",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "surface",
+            "orientationHint" : "horizontalSurface",
+            "restingPolicy" : "centerAtPosition",
+            "targetSize" : [
+              1.05,
+              0.1,
+              0.52
+            ]
+          },
+          "color" : "gray",
+          "description" : "Low stone surface holding ritual items",
+          "displayName" : "Stone Surface",
+          "id" : "stone_surface",
+          "isInteractive" : false,
+          "kind" : {
+            "type" : "counter"
+          },
+          "position" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[ladle, water_basin, donation_box, priest_marker, amulet_tray], maxObjects=0.",
+            "realizedPosition" : [
+              0,
+              0.62,
+              -0.95
+            ],
+            "realizedSize" : [
+              1.05,
+              0.1,
+              0.52
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "container",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "targetContainer",
+            "orientationHint" : "openTopUpright",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "stone_surface",
+            "targetSize" : [
+              0.34,
+              0.15,
+              0.3
+            ]
+          },
+          "color" : "blue",
+          "description" : "Water basin used for purification",
+          "displayName" : "Water Basin",
+          "id" : "water_basin",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "container",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.060000002,
+            0.76,
+            -0.875
+          ],
+          "size" : [
+            0.34,
+            0.15,
+            0.3
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Z",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/water_basin\/water_basin_pose_candidates.png",
+              "confidence" : 0.9,
+              "reason" : "Candidate E shows the water basin resting naturally on its base with an open top facing upward, consistent with expected use and support on a surface.",
+              "restingPose" : "upright basin",
+              "selectedCandidate" : "E",
+              "upAxis" : "+Z"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/water_basin_6954406786284720708.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/water_basin_preview_5244066948850772365.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/water_basin\/water_basin_reference.png",
+            "realizedPosition" : [
+              -0.060000002,
+              0.76,
+              -0.875
+            ],
+            "realizedSize" : [
+              0.34,
+              0.15,
+              0.3
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/water_basin\/water_basin.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "sourceObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "stone_surface",
+            "targetSize" : [
+              0.1,
+              0.06,
+              0.2
+            ]
+          },
+          "color" : "brown",
+          "description" : "Wooden ladle for rinsing hands and mouth",
+          "displayName" : "Ladle",
+          "id" : "ladle",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.36,
+            0.715,
+            -0.825
+          ],
+          "size" : [
+            0.1,
+            0.06,
+            0.2
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-X",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/ladle\/ladle_pose_candidates.png",
+              "confidence" : 0.95,
+              "frontAxis" : "-Z",
+              "reason" : "The ladle naturally rests with its handle horizontal and the bowl down on a surface. Candidate A shows the ladle lying with its handle along the X axis, bowl down on -X. The front can be inferred as outward from the bowl opening, here -Z direction.",
+              "restingPose" : "handle horizontal, bowl down",
+              "selectedCandidate" : "A",
+              "upAxis" : "+X"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ladle_1000369601795502440.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ladle_preview_3709098511732832855.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/ladle\/ladle_reference.png",
+            "realizedPosition" : [
+              -0.36,
+              0.715,
+              -0.825
+            ],
+            "realizedSize" : [
+              0.1,
+              0.06,
+              0.2
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/ladle\/ladle.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "container",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "targetContainer",
+            "orientationHint" : "openTopUpright",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "stone_surface",
+            "targetSize" : [
+              0.34,
+              0.22,
+              0.3
+            ]
+          },
+          "color" : "brown",
+          "description" : "Wooden box for monetary offerings",
+          "displayName" : "Donation Box",
+          "id" : "donation_box",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "container",
+            "type" : "generic"
+          },
+          "position" : [
+            0.31999996,
+            0.795,
+            -0.92
+          ],
+          "size" : [
+            0.34,
+            0.22,
+            0.3
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Y",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/donation_box\/donation_box_pose_candidates.png",
+              "confidence" : 1,
+              "reason" : "The +Y axis as up places the box upright with the opening on top, matching the expected resting position for a donation box on a support surface.",
+              "restingPose" : "upright on bottom",
+              "selectedCandidate" : "C",
+              "upAxis" : "+Y"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/donation_box_1667383009893690654.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/donation_box_preview_4092612886891561043.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/donation_box\/donation_box_reference.png",
+            "realizedPosition" : [
+              0.31999996,
+              0.795,
+              -0.92
+            ],
+            "realizedSize" : [
+              0.34,
+              0.22,
+              0.3
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/donation_box\/donation_box.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "tray",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "targetContainer",
+            "orientationHint" : "shallowTray",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "stone_surface",
+            "targetSize" : [
+              0.3,
+              0.08,
+              0.2
+            ]
+          },
+          "color" : "red",
+          "description" : "Tray holding various amulets",
+          "displayName" : "Amulet Tray",
+          "id" : "amulet_tray",
+          "isInteractive" : true,
+          "kind" : {
+            "type" : "tray"
+          },
+          "position" : [
+            0.07999998,
+            0.725,
+            -1.075
+          ],
+          "size" : [
+            0.3,
+            0.08,
+            0.2
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Y",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/amulet_tray\/amulet_tray_pose_candidates.png",
+              "confidence" : 1,
+              "reason" : "Tray naturally rests flat with bottom face on a surface along -Y, +Y is up; no clear distinct front so frontAxis is null.",
+              "restingPose" : "flat on bottom",
+              "selectedCandidate" : "C",
+              "upAxis" : "+Y"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/amulet_tray_1613304413372752809.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/amulet_tray_preview_2463062985575896659.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/amulet_tray\/amulet_tray_reference.png",
+            "realizedPosition" : [
+              0.07999998,
+              0.725,
+              -1.075
+            ],
+            "realizedSize" : [
+              0.3,
+              0.08,
+              0.2
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/amulet_tray\/amulet_tray.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "personMarker",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "personMarker",
+            "orientationHint" : "uprightFacingLearner",
+            "restingPolicy" : "bottomOnSupport",
+            "targetSize" : [
+              0.18,
+              0.34,
+              0.18
+            ]
+          },
+          "color" : "purple",
+          "description" : "Marker indicating the position of the priest",
+          "displayName" : "Priest Marker",
+          "id" : "priest_marker",
+          "isInteractive" : true,
+          "kind" : {
+            "type" : "npcMarker"
+          },
+          "position" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "size" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Z",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/priest_marker\/priest_marker_pose_candidates.png",
+              "confidence" : 1,
+              "frontAxis" : "+Y",
+              "reason" : "Candidate E shows the marker standing upright on a solid base, which matches the expected orientation for a person marker. The front axis is +Y because the face is facing that direction.",
+              "restingPose" : "standing upright on base",
+              "selectedCandidate" : "E",
+              "upAxis" : "+Z"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/priest_marker_7727257405885148351.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/priest_marker_preview_2903863742567129762.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/priest_marker\/priest_marker_reference.png",
+            "realizedPosition" : [
+              0,
+              1.05,
+              -1.42
+            ],
+            "realizedSize" : [
+              0.18,
+              0.34,
+              0.18
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/priest_marker\/priest_marker.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        }
+      ],
+      "scenario" : {
+        "expectedObjectCategories" : [
+          "counter",
+          "container",
+          "smallObject",
+          "container",
+          "smallObject",
+          "npc_marker"
+        ],
+        "id" : "shrine_purification",
+        "learnerRole" : "visitor performing the purification ritual",
+        "localContext" : "A low stone surface holds a water basin with a ladle, a donation box, and a small tray of amulets; a priest marker stands nearby.",
+        "sceneGoal" : "Purify your hands, make an offering, and choose an amulet",
+        "setting" : "Shinto shrine purification area",
+        "targetInteractions" : [
+          "bow at the torii gate",
+          "take the ladle and rinse your hands",
+          "rinse your mouth",
+          "replace the ladle on the basin",
+          "place a coin in the donation box",
+          "bow and clap to pray",
+          "receive an amulet from the priest"
+        ]
+      },
+      "tasks" : [
+        {
+          "expectedInteraction" : {
+            "gesture" : "openPalm",
+            "type" : "gesture"
+          },
+          "id" : "bow_at_torii_gate",
+          "instruction" : "Bow at the torii gate.",
+          "requiredObjectIds" : [
+
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "ladle",
+            "type" : "tap"
+          },
+          "id" : "take_ladle",
+          "instruction" : "Take the ladle from the basin.",
+          "requiredObjectIds" : [
+            "ladle",
+            "water_basin"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "ladle",
+            "type" : "drag"
+          },
+          "id" : "rinse_hands",
+          "instruction" : "Rinse your hands with the ladle.",
+          "requiredObjectIds" : [
+            "ladle",
+            "water_basin"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "ladle",
+            "type" : "drag"
+          },
+          "id" : "rinse_mouth",
+          "instruction" : "Rinse your mouth with the ladle.",
+          "requiredObjectIds" : [
+            "ladle",
+            "water_basin"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "ladle",
+            "targetId" : "water_basin",
+            "type" : "place"
+          },
+          "id" : "replace_ladle",
+          "instruction" : "Replace the ladle on the basin.",
+          "requiredObjectIds" : [
+            "ladle",
+            "water_basin"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "donation_box",
+            "type" : "tap"
+          },
+          "id" : "place_coin_in_donation_box",
+          "instruction" : "Place a coin in the donation box.",
+          "requiredObjectIds" : [
+            "donation_box"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "gesture" : "openPalm",
+            "type" : "gesture"
+          },
+          "id" : "bow_and_clap_to_pray",
+          "instruction" : "Bow and clap to pray.",
+          "requiredObjectIds" : [
+
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "priest_marker",
+            "type" : "tap"
+          },
+          "id" : "receive_amulet_from_priest",
+          "instruction" : "Receive an amulet from the priest.",
+          "requiredObjectIds" : [
+            "priest_marker",
+            "amulet_tray"
+          ]
+        }
+      ]
+    },
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "container",
+        "smallObject",
+        "container",
+        "smallObject",
+        "npc_marker"
+      ],
+      "id" : "shrine_purification",
+      "learnerRole" : "visitor performing the purification ritual",
+      "localContext" : "A low stone surface holds a water basin with a ladle, a donation box, and a small tray of amulets; a priest marker stands nearby.",
+      "sceneGoal" : "Purify your hands, make an offering, and choose an amulet",
+      "setting" : "Shinto shrine purification area",
+      "targetInteractions" : [
+        "bow at the torii gate",
+        "take the ladle and rinse your hands",
+        "rinse your mouth",
+        "replace the ladle on the basin",
+        "place a coin in the donation box",
+        "bow and clap to pray",
+        "receive an amulet from the priest"
+      ]
+    },
+    "totalGenerationTimeSeconds" : 9.462831974029541
+  },
+  "layoutSummary" : {
+    "objectSummaries" : [
+      {
+        "displayName" : "Stone Surface",
+        "finalPosition" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize" : [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "objectId" : "stone_surface",
+        "rawPosition" : [
+          0,
+          0.6,
+          -1
+        ],
+        "rawSize" : [
+          1,
+          0.1,
+          0.5
+        ],
+        "role" : "surface"
+      },
+      {
+        "displayName" : "Water Basin",
+        "finalPosition" : [
+          -0.060000002,
+          0.76,
+          -0.875
+        ],
+        "finalSize" : [
+          0.34,
+          0.15,
+          0.3
+        ],
+        "objectId" : "water_basin",
+        "rawPosition" : [
+          -0.3,
+          0.65,
+          -1
+        ],
+        "rawSize" : [
+          0.4,
+          0.15,
+          0.4
+        ],
+        "role" : "targetContainer"
+      },
+      {
+        "displayName" : "Ladle",
+        "finalPosition" : [
+          -0.36,
+          0.715,
+          -0.825
+        ],
+        "finalSize" : [
+          0.1,
+          0.06,
+          0.2
+        ],
+        "objectId" : "ladle",
+        "rawPosition" : [
+          -0.3,
+          0.75,
+          -0.9
+        ],
+        "rawSize" : [
+          0.1,
+          0.05,
+          0.3
+        ],
+        "role" : "sourceObject"
+      },
+      {
+        "displayName" : "Donation Box",
+        "finalPosition" : [
+          0.31999996,
+          0.795,
+          -0.92
+        ],
+        "finalSize" : [
+          0.34,
+          0.22,
+          0.3
+        ],
+        "objectId" : "donation_box",
+        "rawPosition" : [
+          0,
+          0.65,
+          -1.2
+        ],
+        "rawSize" : [
+          0.4,
+          0.3,
+          0.4
+        ],
+        "role" : "targetContainer"
+      },
+      {
+        "displayName" : "Amulet Tray",
+        "finalPosition" : [
+          0.07999998,
+          0.725,
+          -1.075
+        ],
+        "finalSize" : [
+          0.3,
+          0.08,
+          0.2
+        ],
+        "objectId" : "amulet_tray",
+        "rawPosition" : [
+          0.3,
+          0.65,
+          -1
+        ],
+        "rawSize" : [
+          0.3,
+          0.05,
+          0.2
+        ],
+        "role" : "targetContainer"
+      },
+      {
+        "displayName" : "Priest Marker",
+        "finalPosition" : [
+          0,
+          1.05,
+          -1.42
+        ],
+        "finalSize" : [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "objectId" : "priest_marker",
+        "rawPosition" : [
+          0.5,
+          0,
+          -1.5
+        ],
+        "rawSize" : [
+          0.2,
+          1.8,
+          0.2
+        ],
+        "role" : "personMarker"
+      }
+    ],
+    "relations" : [
+      {
+        "kind" : "on",
+        "objectId" : "stone_surface",
+        "source" : "roleDefaults",
+        "subjectId" : "water_basin"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "stone_surface",
+        "source" : "roleDefaults",
+        "subjectId" : "ladle"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "stone_surface",
+        "source" : "roleDefaults",
+        "subjectId" : "donation_box"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "stone_surface",
+        "source" : "roleDefaults",
+        "subjectId" : "amulet_tray"
+      },
+      {
+        "kind" : "behind",
+        "objectId" : "stone_surface",
+        "source" : "roleDefaults",
+        "subjectId" : "priest_marker"
+      },
+      {
+        "kind" : "facing",
+        "objectId" : "stone_surface",
+        "source" : "roleDefaults",
+        "subjectId" : "priest_marker"
+      },
+      {
+        "kind" : "rightOf",
+        "objectId" : "ladle",
+        "source" : "task:replace_ladle",
+        "subjectId" : "water_basin"
+      },
+      {
+        "kind" : "near",
+        "objectId" : "ladle",
+        "source" : "task:replace_ladle",
+        "subjectId" : "water_basin"
+      }
+    ],
+    "strategy" : "stage_relation_slots_v1"
+  },
+  "loadedPlan" : {
+    "id" : "shrine_purification_generated_attempt_1_stage_layout_sam3d_realized",
+    "objects" : [
+      {
+        "assetCard" : {
+          "assetKind" : "surface",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "surface",
+          "orientationHint" : "horizontalSurface",
+          "restingPolicy" : "centerAtPosition",
+          "targetSize" : [
+            1.05,
+            0.1,
+            0.52
+          ]
+        },
+        "color" : "gray",
+        "description" : "Low stone surface holding ritual items",
+        "displayName" : "Stone Surface",
+        "id" : "stone_surface",
+        "isInteractive" : false,
+        "kind" : {
+          "type" : "counter"
+        },
+        "position" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size" : [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[ladle, water_basin, donation_box, priest_marker, amulet_tray], maxObjects=0.",
+          "realizedPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "realizedSize" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "container",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "targetContainer",
+          "orientationHint" : "openTopUpright",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "stone_surface",
+          "targetSize" : [
+            0.34,
+            0.15,
+            0.3
+          ]
+        },
+        "color" : "blue",
+        "description" : "Water basin used for purification",
+        "displayName" : "Water Basin",
+        "id" : "water_basin",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "container",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.060000002,
+          0.76,
+          -0.875
+        ],
+        "size" : [
+          0.34,
+          0.15,
+          0.3
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Z",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/water_basin\/water_basin_pose_candidates.png",
+            "confidence" : 0.9,
+            "reason" : "Candidate E shows the water basin resting naturally on its base with an open top facing upward, consistent with expected use and support on a surface.",
+            "restingPose" : "upright basin",
+            "selectedCandidate" : "E",
+            "upAxis" : "+Z"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/water_basin_6954406786284720708.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/water_basin_preview_5244066948850772365.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/water_basin\/water_basin_reference.png",
+          "realizedPosition" : [
+            -0.060000002,
+            0.76,
+            -0.875
+          ],
+          "realizedSize" : [
+            0.34,
+            0.15,
+            0.3
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/water_basin\/water_basin.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "sourceObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "stone_surface",
+          "targetSize" : [
+            0.1,
+            0.06,
+            0.2
+          ]
+        },
+        "color" : "brown",
+        "description" : "Wooden ladle for rinsing hands and mouth",
+        "displayName" : "Ladle",
+        "id" : "ladle",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.36,
+          0.715,
+          -0.825
+        ],
+        "size" : [
+          0.1,
+          0.06,
+          0.2
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-X",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/ladle\/ladle_pose_candidates.png",
+            "confidence" : 0.95,
+            "frontAxis" : "-Z",
+            "reason" : "The ladle naturally rests with its handle horizontal and the bowl down on a surface. Candidate A shows the ladle lying with its handle along the X axis, bowl down on -X. The front can be inferred as outward from the bowl opening, here -Z direction.",
+            "restingPose" : "handle horizontal, bowl down",
+            "selectedCandidate" : "A",
+            "upAxis" : "+X"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ladle_1000369601795502440.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ladle_preview_3709098511732832855.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/ladle\/ladle_reference.png",
+          "realizedPosition" : [
+            -0.36,
+            0.715,
+            -0.825
+          ],
+          "realizedSize" : [
+            0.1,
+            0.06,
+            0.2
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/ladle\/ladle.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "container",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "targetContainer",
+          "orientationHint" : "openTopUpright",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "stone_surface",
+          "targetSize" : [
+            0.34,
+            0.22,
+            0.3
+          ]
+        },
+        "color" : "brown",
+        "description" : "Wooden box for monetary offerings",
+        "displayName" : "Donation Box",
+        "id" : "donation_box",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "container",
+          "type" : "generic"
+        },
+        "position" : [
+          0.31999996,
+          0.795,
+          -0.92
+        ],
+        "size" : [
+          0.34,
+          0.22,
+          0.3
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Y",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/donation_box\/donation_box_pose_candidates.png",
+            "confidence" : 1,
+            "reason" : "The +Y axis as up places the box upright with the opening on top, matching the expected resting position for a donation box on a support surface.",
+            "restingPose" : "upright on bottom",
+            "selectedCandidate" : "C",
+            "upAxis" : "+Y"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/donation_box_1667383009893690654.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/donation_box_preview_4092612886891561043.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/donation_box\/donation_box_reference.png",
+          "realizedPosition" : [
+            0.31999996,
+            0.795,
+            -0.92
+          ],
+          "realizedSize" : [
+            0.34,
+            0.22,
+            0.3
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/donation_box\/donation_box.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "tray",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "targetContainer",
+          "orientationHint" : "shallowTray",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "stone_surface",
+          "targetSize" : [
+            0.3,
+            0.08,
+            0.2
+          ]
+        },
+        "color" : "red",
+        "description" : "Tray holding various amulets",
+        "displayName" : "Amulet Tray",
+        "id" : "amulet_tray",
+        "isInteractive" : true,
+        "kind" : {
+          "type" : "tray"
+        },
+        "position" : [
+          0.07999998,
+          0.725,
+          -1.075
+        ],
+        "size" : [
+          0.3,
+          0.08,
+          0.2
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Y",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/amulet_tray\/amulet_tray_pose_candidates.png",
+            "confidence" : 1,
+            "reason" : "Tray naturally rests flat with bottom face on a surface along -Y, +Y is up; no clear distinct front so frontAxis is null.",
+            "restingPose" : "flat on bottom",
+            "selectedCandidate" : "C",
+            "upAxis" : "+Y"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/amulet_tray_1613304413372752809.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/amulet_tray_preview_2463062985575896659.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/amulet_tray\/amulet_tray_reference.png",
+          "realizedPosition" : [
+            0.07999998,
+            0.725,
+            -1.075
+          ],
+          "realizedSize" : [
+            0.3,
+            0.08,
+            0.2
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/amulet_tray\/amulet_tray.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "personMarker",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "personMarker",
+          "orientationHint" : "uprightFacingLearner",
+          "restingPolicy" : "bottomOnSupport",
+          "targetSize" : [
+            0.18,
+            0.34,
+            0.18
+          ]
+        },
+        "color" : "purple",
+        "description" : "Marker indicating the position of the priest",
+        "displayName" : "Priest Marker",
+        "id" : "priest_marker",
+        "isInteractive" : true,
+        "kind" : {
+          "type" : "npcMarker"
+        },
+        "position" : [
+          0,
+          1.05,
+          -1.42
+        ],
+        "size" : [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Z",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/priest_marker\/priest_marker_pose_candidates.png",
+            "confidence" : 1,
+            "frontAxis" : "+Y",
+            "reason" : "Candidate E shows the marker standing upright on a solid base, which matches the expected orientation for a person marker. The front axis is +Y because the face is facing that direction.",
+            "restingPose" : "standing upright on base",
+            "selectedCandidate" : "E",
+            "upAxis" : "+Z"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/priest_marker_7727257405885148351.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/priest_marker_preview_2903863742567129762.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/priest_marker\/priest_marker_reference.png",
+          "realizedPosition" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "realizedSize" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/4aed709b-3528-412f-aa0c-cf020524a109\/priest_marker\/priest_marker.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      }
+    ],
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "container",
+        "smallObject",
+        "container",
+        "smallObject",
+        "npc_marker"
+      ],
+      "id" : "shrine_purification",
+      "learnerRole" : "visitor performing the purification ritual",
+      "localContext" : "A low stone surface holds a water basin with a ladle, a donation box, and a small tray of amulets; a priest marker stands nearby.",
+      "sceneGoal" : "Purify your hands, make an offering, and choose an amulet",
+      "setting" : "Shinto shrine purification area",
+      "targetInteractions" : [
+        "bow at the torii gate",
+        "take the ladle and rinse your hands",
+        "rinse your mouth",
+        "replace the ladle on the basin",
+        "place a coin in the donation box",
+        "bow and clap to pray",
+        "receive an amulet from the priest"
+      ]
+    },
+    "tasks" : [
+      {
+        "expectedInteraction" : {
+          "gesture" : "openPalm",
+          "type" : "gesture"
+        },
+        "id" : "bow_at_torii_gate",
+        "instruction" : "Bow at the torii gate.",
+        "requiredObjectIds" : [
+
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "ladle",
+          "type" : "tap"
+        },
+        "id" : "take_ladle",
+        "instruction" : "Take the ladle from the basin.",
+        "requiredObjectIds" : [
+          "ladle",
+          "water_basin"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "ladle",
+          "type" : "drag"
+        },
+        "id" : "rinse_hands",
+        "instruction" : "Rinse your hands with the ladle.",
+        "requiredObjectIds" : [
+          "ladle",
+          "water_basin"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "ladle",
+          "type" : "drag"
+        },
+        "id" : "rinse_mouth",
+        "instruction" : "Rinse your mouth with the ladle.",
+        "requiredObjectIds" : [
+          "ladle",
+          "water_basin"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "ladle",
+          "targetId" : "water_basin",
+          "type" : "place"
+        },
+        "id" : "replace_ladle",
+        "instruction" : "Replace the ladle on the basin.",
+        "requiredObjectIds" : [
+          "ladle",
+          "water_basin"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "donation_box",
+          "type" : "tap"
+        },
+        "id" : "place_coin_in_donation_box",
+        "instruction" : "Place a coin in the donation box.",
+        "requiredObjectIds" : [
+          "donation_box"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "gesture" : "openPalm",
+          "type" : "gesture"
+        },
+        "id" : "bow_and_clap_to_pray",
+        "instruction" : "Bow and clap to pray.",
+        "requiredObjectIds" : [
+
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "priest_marker",
+          "type" : "tap"
+        },
+        "id" : "receive_amulet_from_priest",
+        "instruction" : "Receive an amulet from the priest.",
+        "requiredObjectIds" : [
+          "priest_marker",
+          "amulet_tray"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation" : {
+    "answeredCount" : 40,
+    "generatedObjectRatings" : [
+      {
+        "objectId" : "amulet_tray",
+        "rating" : "acceptable"
+      },
+      {
+        "objectId" : "donation_box",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "ladle",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "priest_marker",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "stone_surface",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "water_basin",
+        "rating" : "expected"
+      }
+    ],
+    "generatedTaskRatings" : [
+      {
+        "rating" : "invalid",
+        "taskId" : "bow_and_clap_to_pray"
+      },
+      {
+        "rating" : "invalid",
+        "taskId" : "bow_at_torii_gate"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "place_coin_in_donation_box"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "receive_amulet_from_priest"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "replace_ladle"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "rinse_hands"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "rinse_mouth"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "take_ladle"
+      }
+    ],
+    "scenarioFidelityRating" : "partiallyFaithful",
+    "scenarioLayoutRating" : "partiallyPlausible",
+    "taskMetricRatings" : [
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "bow_and_clap_to_pray"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "no",
+        "taskId" : "bow_and_clap_to_pray"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "no",
+        "taskId" : "bow_and_clap_to_pray"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "bow_and_clap_to_pray"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "bow_and_clap_to_pray"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "bow_at_torii_gate"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "no",
+        "taskId" : "bow_at_torii_gate"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "no",
+        "taskId" : "bow_at_torii_gate"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "bow_at_torii_gate"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "bow_at_torii_gate"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "partial",
+        "taskId" : "place_coin_in_donation_box"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "partial",
+        "taskId" : "place_coin_in_donation_box"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "partial",
+        "taskId" : "place_coin_in_donation_box"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "place_coin_in_donation_box"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "place_coin_in_donation_box"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "receive_amulet_from_priest"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "receive_amulet_from_priest"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "receive_amulet_from_priest"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "receive_amulet_from_priest"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "receive_amulet_from_priest"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "replace_ladle"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "replace_ladle"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "replace_ladle"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "replace_ladle"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "replace_ladle"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "partial",
+        "taskId" : "rinse_hands"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "rinse_hands"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "rinse_hands"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "rinse_hands"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "rinse_hands"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "partial",
+        "taskId" : "rinse_mouth"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "rinse_mouth"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "rinse_mouth"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "rinse_mouth"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "rinse_mouth"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "take_ladle"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "take_ladle"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "take_ladle"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "take_ladle"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "take_ladle"
+      }
+    ],
+    "totalCount" : 40,
+    "yesCount" : 23
+  },
+  "runtimeEvaluation" : {
+    "completedTasks" : 0,
+    "firstFailedTaskId" : "bow_at_torii_gate",
+    "handlerCoveragePassed" : 8,
+    "handlerCoverageTotal" : 8,
+    "objectCoveragePassed" : 6,
+    "objectCoverageTotal" : 6,
+    "totalTasks" : 8
+  },
+  "scenario" : {
+    "expectedObjectCategories" : [
+      "counter",
+      "container",
+      "smallObject",
+      "container",
+      "smallObject",
+      "npc_marker"
+    ],
+    "id" : "shrine_purification",
+    "learnerRole" : "visitor performing the purification ritual",
+    "localContext" : "A low stone surface holds a water basin with a ladle, a donation box, and a small tray of amulets; a priest marker stands nearby.",
+    "sceneGoal" : "Purify your hands, make an offering, and choose an amulet",
+    "setting" : "Shinto shrine purification area",
+    "targetInteractions" : [
+      "bow at the torii gate",
+      "take the ladle and rinse your hands",
+      "rinse your mouth",
+      "replace the ladle on the basin",
+      "place a coin in the donation box",
+      "bow and clap to pray",
+      "receive an amulet from the priest"
+    ]
+  }
+}

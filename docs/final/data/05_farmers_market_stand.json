@@ -1,0 +1,1346 @@
+{
+  "eventLog" : [
+    {
+      "eventDescription" : "place apple on shopping_bag",
+      "matched" : true,
+      "taskId" : "place_apple_in_bag",
+      "timestamp" : 802209090.290551
+    },
+    {
+      "eventDescription" : "drag apple",
+      "matched" : false,
+      "taskId" : "place_apple_in_bag",
+      "timestamp" : 802209089.290638
+    },
+    {
+      "eventDescription" : "select card_reader",
+      "matched" : true,
+      "taskId" : "tap_card_reader",
+      "timestamp" : 802209086.990641
+    },
+    {
+      "eventDescription" : "place apple on market_counter",
+      "matched" : true,
+      "taskId" : "place_apple_on_counter",
+      "timestamp" : 802209083.775717
+    },
+    {
+      "eventDescription" : "drag apple",
+      "matched" : false,
+      "taskId" : "place_apple_on_counter",
+      "timestamp" : 802209082.591663
+    },
+    {
+      "eventDescription" : "select apple",
+      "matched" : true,
+      "taskId" : "pick_up_apple",
+      "timestamp" : 802209082.059172
+    }
+  ],
+  "exportedAt" : 802209155.058298,
+  "generationEvaluation" : {
+    "attemptCount" : 1,
+    "scenarioId" : "farmers_market_stand",
+    "step1ObjectGeneration" : {
+      "succeeded" : true
+    },
+    "step3TaskGeneration" : {
+      "succeeded" : true
+    },
+    "step4Validation" : {
+      "succeeded" : true
+    },
+    "step6Runtime" : {
+      "completedTasks" : 4,
+      "totalTasks" : 5
+    },
+    "succeeded" : true,
+    "totalTimeSeconds" : 9.486706018447876
+  },
+  "generationResult" : {
+    "attempts" : [
+      {
+        "attemptNumber" : 1,
+        "durationSeconds" : 9.486699938774109,
+        "outcome" : {
+          "success" : {
+
+          }
+        },
+        "rawObjectsJSON" : "{\n  \"objects\": [\n    {\n      \"id\": \"market_counter\",\n      \"displayName\": \"Market Counter\",\n      \"description\": \"Wooden market counter for placing items\",\n      \"kind\": { \"type\": \"counter\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.7, -1.0],\n      \"size\": [1.2, 0.1, 0.6],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"apple\",\n      \"displayName\": \"Apple\",\n      \"description\": \"Red apple ready to be picked up\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [-0.2, 0.75, -0.8],\n      \"size\": [0.1, 0.1, 0.1],\n      \"color\": \"red\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"fruit_basket\",\n      \"displayName\": \"Fruit Basket\",\n      \"description\": \"Wicker basket containing various fruits\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"container\" },\n      \"position\": [-0.4, 0.7, -0.9],\n      \"size\": [0.4, 0.3, 0.4],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"shopping_bag\",\n      \"displayName\": \"Shopping Bag\",\n      \"description\": \"Reusable shopping bag for carrying items\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"container\" },\n      \"position\": [0.3, 0.7, -0.8],\n      \"size\": [0.3, 0.4, 0.2],\n      \"color\": \"green\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"card_reader\",\n      \"displayName\": \"Card Reader\",\n      \"description\": \"Electronic card reader for payment\",\n      \"kind\": { \"type\": \"cardReader\", \"category\": \"uprightObject\" },\n      \"position\": [0.0, 0.75, -0.6],\n      \"size\": [0.1, 0.15, 0.1],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"vendor_marker\",\n      \"displayName\": \"Vendor Marker\",\n      \"description\": \"Marker indicating the vendor's position\",\n      \"kind\": { \"type\": \"npcMarker\", \"category\": \"marker\" },\n      \"position\": [0.0, 0.0, -1.5],\n      \"size\": [0.2, 1.8, 0.2],\n      \"color\": \"blue\",\n      \"isInteractive\": false\n    }\n  ]\n}",
+        "rawTasksJSON" : "{\n  \"tasks\": [\n    {\n      \"id\": \"pick_up_apple\",\n      \"instruction\": \"Pick up the apple.\",\n      \"requiredObjectIds\": [\"apple\"],\n      \"expectedInteraction\": { \"type\": \"tap\", \"objectId\": \"apple\" }\n    },\n    {\n      \"id\": \"place_apple_on_counter\",\n      \"instruction\": \"Place the apple on the counter.\",\n      \"requiredObjectIds\": [\"apple\", \"market_counter\"],\n      \"expectedInteraction\": { \"type\": \"place\", \"objectId\": \"apple\", \"targetId\": \"market_counter\" }\n    },\n    {\n      \"id\": \"tap_card_reader\",\n      \"instruction\": \"Tap the card reader to pay.\",\n      \"requiredObjectIds\": [\"card_reader\"],\n      \"expectedInteraction\": { \"type\": \"tap\", \"objectId\": \"card_reader\" }\n    },\n    {\n      \"id\": \"place_apple_in_bag\",\n      \"instruction\": \"Place the apple in the shopping bag.\",\n      \"requiredObjectIds\": [\"apple\", \"shopping_bag\"],\n      \"expectedInteraction\": { \"type\": \"place\", \"objectId\": \"apple\", \"targetId\": \"shopping_bag\" }\n    },\n    {\n      \"id\": \"wave_goodbye_to_vendor\",\n      \"instruction\": \"Wave goodbye to the vendor.\",\n      \"requiredObjectIds\": [\"vendor_marker\"],\n      \"expectedInteraction\": { \"type\": \"gesture\", \"gesture\": \"wave\", \"targetId\": \"vendor_marker\" }\n    }\n  ]\n}",
+        "stage" : "fullPipeline"
+      }
+    ],
+    "layoutSummary" : {
+      "objectSummaries" : [
+        {
+          "displayName" : "Market Counter",
+          "finalPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize" : [
+            1.2,
+            0.1,
+            0.6
+          ],
+          "objectId" : "market_counter",
+          "rawPosition" : [
+            0,
+            0.7,
+            -1
+          ],
+          "rawSize" : [
+            1.2,
+            0.1,
+            0.6
+          ],
+          "role" : "surface"
+        },
+        {
+          "displayName" : "Apple",
+          "finalPosition" : [
+            -0.36,
+            0.735,
+            -0.735
+          ],
+          "finalSize" : [
+            0.1,
+            0.1,
+            0.1
+          ],
+          "objectId" : "apple",
+          "rawPosition" : [
+            -0.2,
+            0.75,
+            -0.8
+          ],
+          "rawSize" : [
+            0.1,
+            0.1,
+            0.1
+          ],
+          "role" : "sourceObject"
+        },
+        {
+          "displayName" : "Fruit Basket",
+          "finalPosition" : [
+            0.24,
+            0.795,
+            -0.835
+          ],
+          "finalSize" : [
+            0.34,
+            0.22,
+            0.3
+          ],
+          "objectId" : "fruit_basket",
+          "rawPosition" : [
+            -0.4,
+            0.7,
+            -0.9
+          ],
+          "rawSize" : [
+            0.4,
+            0.3,
+            0.4
+          ],
+          "role" : "targetContainer"
+        },
+        {
+          "displayName" : "Shopping Bag",
+          "finalPosition" : [
+            -0.08,
+            0.795,
+            -1.105
+          ],
+          "finalSize" : [
+            0.3,
+            0.22,
+            0.2
+          ],
+          "objectId" : "shopping_bag",
+          "rawPosition" : [
+            0.3,
+            0.7,
+            -0.8
+          ],
+          "rawSize" : [
+            0.3,
+            0.4,
+            0.2
+          ],
+          "role" : "targetContainer"
+        },
+        {
+          "displayName" : "Card Reader",
+          "finalPosition" : [
+            0.42,
+            0.745,
+            -1.165
+          ],
+          "finalSize" : [
+            0.14,
+            0.12,
+            0.1
+          ],
+          "objectId" : "card_reader",
+          "rawPosition" : [
+            0,
+            0.75,
+            -0.6
+          ],
+          "rawSize" : [
+            0.1,
+            0.15,
+            0.1
+          ],
+          "role" : "payment"
+        },
+        {
+          "displayName" : "Vendor Marker",
+          "finalPosition" : [
+            0,
+            1.05,
+            -1.46
+          ],
+          "finalSize" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "objectId" : "vendor_marker",
+          "rawPosition" : [
+            0,
+            0,
+            -1.5
+          ],
+          "rawSize" : [
+            0.2,
+            1.8,
+            0.2
+          ],
+          "role" : "personMarker"
+        }
+      ],
+      "relations" : [
+        {
+          "kind" : "on",
+          "objectId" : "market_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "apple"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "market_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "fruit_basket"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "market_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "shopping_bag"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "market_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "card_reader"
+        },
+        {
+          "kind" : "rightOf",
+          "objectId" : "market_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "card_reader"
+        },
+        {
+          "kind" : "behind",
+          "objectId" : "market_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "vendor_marker"
+        },
+        {
+          "kind" : "facing",
+          "objectId" : "market_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "vendor_marker"
+        },
+        {
+          "kind" : "rightOf",
+          "objectId" : "apple",
+          "source" : "task:place_apple_on_counter",
+          "subjectId" : "market_counter"
+        },
+        {
+          "kind" : "near",
+          "objectId" : "apple",
+          "source" : "task:place_apple_on_counter",
+          "subjectId" : "market_counter"
+        },
+        {
+          "kind" : "behind",
+          "objectId" : "market_counter",
+          "source" : "task:tap_card_reader",
+          "subjectId" : "card_reader"
+        },
+        {
+          "kind" : "rightOf",
+          "objectId" : "apple",
+          "source" : "task:place_apple_in_bag",
+          "subjectId" : "shopping_bag"
+        },
+        {
+          "kind" : "near",
+          "objectId" : "apple",
+          "source" : "task:place_apple_in_bag",
+          "subjectId" : "shopping_bag"
+        }
+      ],
+      "strategy" : "stage_relation_slots_v1"
+    },
+    "plan" : {
+      "id" : "farmers_market_stand_generated_attempt_1_stage_layout",
+      "objects" : [
+        {
+          "assetCard" : {
+            "assetKind" : "surface",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "surface",
+            "orientationHint" : "horizontalSurface",
+            "restingPolicy" : "centerAtPosition",
+            "targetSize" : [
+              1.2,
+              0.1,
+              0.6
+            ]
+          },
+          "color" : "brown",
+          "description" : "Wooden market counter for placing items",
+          "displayName" : "Market Counter",
+          "id" : "market_counter",
+          "isInteractive" : false,
+          "kind" : {
+            "type" : "counter"
+          },
+          "position" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size" : [
+            1.2,
+            0.1,
+            0.6
+          ]
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "sourceObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "market_counter",
+            "targetSize" : [
+              0.1,
+              0.1,
+              0.1
+            ]
+          },
+          "color" : "red",
+          "description" : "Red apple ready to be picked up",
+          "displayName" : "Apple",
+          "id" : "apple",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.36,
+            0.735,
+            -0.735
+          ],
+          "size" : [
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "container",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "targetContainer",
+            "orientationHint" : "openTopUpright",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "market_counter",
+            "targetSize" : [
+              0.34,
+              0.22,
+              0.3
+            ]
+          },
+          "color" : "brown",
+          "description" : "Wicker basket containing various fruits",
+          "displayName" : "Fruit Basket",
+          "id" : "fruit_basket",
+          "isInteractive" : false,
+          "kind" : {
+            "category" : "container",
+            "type" : "generic"
+          },
+          "position" : [
+            0.24,
+            0.795,
+            -0.835
+          ],
+          "size" : [
+            0.34,
+            0.22,
+            0.3
+          ]
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "container",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "targetContainer",
+            "orientationHint" : "openTopUpright",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "market_counter",
+            "targetSize" : [
+              0.3,
+              0.22,
+              0.2
+            ]
+          },
+          "color" : "green",
+          "description" : "Reusable shopping bag for carrying items",
+          "displayName" : "Shopping Bag",
+          "id" : "shopping_bag",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "container",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.08,
+            0.795,
+            -1.105
+          ],
+          "size" : [
+            0.3,
+            0.22,
+            0.2
+          ]
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "paymentDevice",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "payment",
+            "orientationHint" : "tabletopFlat",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "market_counter",
+            "targetSize" : [
+              0.16,
+              0.08,
+              0.12
+            ]
+          },
+          "color" : "gray",
+          "description" : "Electronic card reader for payment",
+          "displayName" : "Card Reader",
+          "id" : "card_reader",
+          "isInteractive" : true,
+          "kind" : {
+            "type" : "cardReader"
+          },
+          "position" : [
+            0.42,
+            0.745,
+            -1.165
+          ],
+          "size" : [
+            0.14,
+            0.12,
+            0.1
+          ]
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "personMarker",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "personMarker",
+            "orientationHint" : "uprightFacingLearner",
+            "restingPolicy" : "bottomOnSupport",
+            "targetSize" : [
+              0.18,
+              0.34,
+              0.18
+            ]
+          },
+          "color" : "blue",
+          "description" : "Marker indicating the vendor's position",
+          "displayName" : "Vendor Marker",
+          "id" : "vendor_marker",
+          "isInteractive" : false,
+          "kind" : {
+            "type" : "npcMarker"
+          },
+          "position" : [
+            0,
+            1.05,
+            -1.46
+          ],
+          "size" : [
+            0.18,
+            0.34,
+            0.18
+          ]
+        }
+      ],
+      "scenario" : {
+        "expectedObjectCategories" : [
+          "counter",
+          "fruit",
+          "fruit_basket",
+          "bag",
+          "card_reader",
+          "npc_marker"
+        ],
+        "id" : "farmers_market_stand",
+        "learnerRole" : "shopper",
+        "localContext" : "The learner is standing at a market stall with fruit baskets, a counter, a bagging area, a payment reader, and a vendor marker nearby.",
+        "sceneGoal" : "Choose fruit, pay, and leave with the bag",
+        "setting" : "Farmer's market stand",
+        "targetInteractions" : [
+          "pick up a fruit",
+          "place the fruit on the counter",
+          "tap the payment reader",
+          "place the fruit in a bag",
+          "wave goodbye to the vendor"
+        ]
+      },
+      "tasks" : [
+        {
+          "expectedInteraction" : {
+            "objectId" : "apple",
+            "type" : "tap"
+          },
+          "id" : "pick_up_apple",
+          "instruction" : "Pick up the apple.",
+          "requiredObjectIds" : [
+            "apple"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "apple",
+            "targetId" : "market_counter",
+            "type" : "place"
+          },
+          "id" : "place_apple_on_counter",
+          "instruction" : "Place the apple on the counter.",
+          "requiredObjectIds" : [
+            "apple",
+            "market_counter"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "card_reader",
+            "type" : "tap"
+          },
+          "id" : "tap_card_reader",
+          "instruction" : "Tap the card reader to pay.",
+          "requiredObjectIds" : [
+            "card_reader"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "apple",
+            "targetId" : "shopping_bag",
+            "type" : "place"
+          },
+          "id" : "place_apple_in_bag",
+          "instruction" : "Place the apple in the shopping bag.",
+          "requiredObjectIds" : [
+            "apple",
+            "shopping_bag"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "gesture" : "wave",
+            "targetId" : "vendor_marker",
+            "type" : "gesture"
+          },
+          "id" : "wave_goodbye_to_vendor",
+          "instruction" : "Wave goodbye to the vendor.",
+          "requiredObjectIds" : [
+            "vendor_marker"
+          ]
+        }
+      ]
+    },
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "fruit",
+        "fruit_basket",
+        "bag",
+        "card_reader",
+        "npc_marker"
+      ],
+      "id" : "farmers_market_stand",
+      "learnerRole" : "shopper",
+      "localContext" : "The learner is standing at a market stall with fruit baskets, a counter, a bagging area, a payment reader, and a vendor marker nearby.",
+      "sceneGoal" : "Choose fruit, pay, and leave with the bag",
+      "setting" : "Farmer's market stand",
+      "targetInteractions" : [
+        "pick up a fruit",
+        "place the fruit on the counter",
+        "tap the payment reader",
+        "place the fruit in a bag",
+        "wave goodbye to the vendor"
+      ]
+    },
+    "totalGenerationTimeSeconds" : 9.486706018447876
+  },
+  "layoutSummary" : {
+    "objectSummaries" : [
+      {
+        "displayName" : "Market Counter",
+        "finalPosition" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize" : [
+          1.2,
+          0.1,
+          0.6
+        ],
+        "objectId" : "market_counter",
+        "rawPosition" : [
+          0,
+          0.7,
+          -1
+        ],
+        "rawSize" : [
+          1.2,
+          0.1,
+          0.6
+        ],
+        "role" : "surface"
+      },
+      {
+        "displayName" : "Apple",
+        "finalPosition" : [
+          -0.36,
+          0.735,
+          -0.735
+        ],
+        "finalSize" : [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "objectId" : "apple",
+        "rawPosition" : [
+          -0.2,
+          0.75,
+          -0.8
+        ],
+        "rawSize" : [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "role" : "sourceObject"
+      },
+      {
+        "displayName" : "Fruit Basket",
+        "finalPosition" : [
+          0.24,
+          0.795,
+          -0.835
+        ],
+        "finalSize" : [
+          0.34,
+          0.22,
+          0.3
+        ],
+        "objectId" : "fruit_basket",
+        "rawPosition" : [
+          -0.4,
+          0.7,
+          -0.9
+        ],
+        "rawSize" : [
+          0.4,
+          0.3,
+          0.4
+        ],
+        "role" : "targetContainer"
+      },
+      {
+        "displayName" : "Shopping Bag",
+        "finalPosition" : [
+          -0.08,
+          0.795,
+          -1.105
+        ],
+        "finalSize" : [
+          0.3,
+          0.22,
+          0.2
+        ],
+        "objectId" : "shopping_bag",
+        "rawPosition" : [
+          0.3,
+          0.7,
+          -0.8
+        ],
+        "rawSize" : [
+          0.3,
+          0.4,
+          0.2
+        ],
+        "role" : "targetContainer"
+      },
+      {
+        "displayName" : "Card Reader",
+        "finalPosition" : [
+          0.42,
+          0.745,
+          -1.165
+        ],
+        "finalSize" : [
+          0.14,
+          0.12,
+          0.1
+        ],
+        "objectId" : "card_reader",
+        "rawPosition" : [
+          0,
+          0.75,
+          -0.6
+        ],
+        "rawSize" : [
+          0.1,
+          0.15,
+          0.1
+        ],
+        "role" : "payment"
+      },
+      {
+        "displayName" : "Vendor Marker",
+        "finalPosition" : [
+          0,
+          1.05,
+          -1.46
+        ],
+        "finalSize" : [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "objectId" : "vendor_marker",
+        "rawPosition" : [
+          0,
+          0,
+          -1.5
+        ],
+        "rawSize" : [
+          0.2,
+          1.8,
+          0.2
+        ],
+        "role" : "personMarker"
+      }
+    ],
+    "relations" : [
+      {
+        "kind" : "on",
+        "objectId" : "market_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "apple"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "market_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "fruit_basket"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "market_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "shopping_bag"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "market_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "card_reader"
+      },
+      {
+        "kind" : "rightOf",
+        "objectId" : "market_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "card_reader"
+      },
+      {
+        "kind" : "behind",
+        "objectId" : "market_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "vendor_marker"
+      },
+      {
+        "kind" : "facing",
+        "objectId" : "market_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "vendor_marker"
+      },
+      {
+        "kind" : "rightOf",
+        "objectId" : "apple",
+        "source" : "task:place_apple_on_counter",
+        "subjectId" : "market_counter"
+      },
+      {
+        "kind" : "near",
+        "objectId" : "apple",
+        "source" : "task:place_apple_on_counter",
+        "subjectId" : "market_counter"
+      },
+      {
+        "kind" : "behind",
+        "objectId" : "market_counter",
+        "source" : "task:tap_card_reader",
+        "subjectId" : "card_reader"
+      },
+      {
+        "kind" : "rightOf",
+        "objectId" : "apple",
+        "source" : "task:place_apple_in_bag",
+        "subjectId" : "shopping_bag"
+      },
+      {
+        "kind" : "near",
+        "objectId" : "apple",
+        "source" : "task:place_apple_in_bag",
+        "subjectId" : "shopping_bag"
+      }
+    ],
+    "strategy" : "stage_relation_slots_v1"
+  },
+  "loadedPlan" : {
+    "id" : "farmers_market_stand_generated_attempt_1_stage_layout",
+    "objects" : [
+      {
+        "assetCard" : {
+          "assetKind" : "surface",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "surface",
+          "orientationHint" : "horizontalSurface",
+          "restingPolicy" : "centerAtPosition",
+          "targetSize" : [
+            1.2,
+            0.1,
+            0.6
+          ]
+        },
+        "color" : "brown",
+        "description" : "Wooden market counter for placing items",
+        "displayName" : "Market Counter",
+        "id" : "market_counter",
+        "isInteractive" : false,
+        "kind" : {
+          "type" : "counter"
+        },
+        "position" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size" : [
+          1.2,
+          0.1,
+          0.6
+        ]
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "sourceObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "market_counter",
+          "targetSize" : [
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "color" : "red",
+        "description" : "Red apple ready to be picked up",
+        "displayName" : "Apple",
+        "id" : "apple",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.36,
+          0.735,
+          -0.735
+        ],
+        "size" : [
+          0.1,
+          0.1,
+          0.1
+        ]
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "container",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "targetContainer",
+          "orientationHint" : "openTopUpright",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "market_counter",
+          "targetSize" : [
+            0.34,
+            0.22,
+            0.3
+          ]
+        },
+        "color" : "brown",
+        "description" : "Wicker basket containing various fruits",
+        "displayName" : "Fruit Basket",
+        "id" : "fruit_basket",
+        "isInteractive" : false,
+        "kind" : {
+          "category" : "container",
+          "type" : "generic"
+        },
+        "position" : [
+          0.24,
+          0.795,
+          -0.835
+        ],
+        "size" : [
+          0.34,
+          0.22,
+          0.3
+        ]
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "container",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "targetContainer",
+          "orientationHint" : "openTopUpright",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "market_counter",
+          "targetSize" : [
+            0.3,
+            0.22,
+            0.2
+          ]
+        },
+        "color" : "green",
+        "description" : "Reusable shopping bag for carrying items",
+        "displayName" : "Shopping Bag",
+        "id" : "shopping_bag",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "container",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.08,
+          0.795,
+          -1.105
+        ],
+        "size" : [
+          0.3,
+          0.22,
+          0.2
+        ]
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "paymentDevice",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "payment",
+          "orientationHint" : "tabletopFlat",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "market_counter",
+          "targetSize" : [
+            0.16,
+            0.08,
+            0.12
+          ]
+        },
+        "color" : "gray",
+        "description" : "Electronic card reader for payment",
+        "displayName" : "Card Reader",
+        "id" : "card_reader",
+        "isInteractive" : true,
+        "kind" : {
+          "type" : "cardReader"
+        },
+        "position" : [
+          0.42,
+          0.745,
+          -1.165
+        ],
+        "size" : [
+          0.14,
+          0.12,
+          0.1
+        ]
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "personMarker",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "personMarker",
+          "orientationHint" : "uprightFacingLearner",
+          "restingPolicy" : "bottomOnSupport",
+          "targetSize" : [
+            0.18,
+            0.34,
+            0.18
+          ]
+        },
+        "color" : "blue",
+        "description" : "Marker indicating the vendor's position",
+        "displayName" : "Vendor Marker",
+        "id" : "vendor_marker",
+        "isInteractive" : false,
+        "kind" : {
+          "type" : "npcMarker"
+        },
+        "position" : [
+          0,
+          1.05,
+          -1.46
+        ],
+        "size" : [
+          0.18,
+          0.34,
+          0.18
+        ]
+      }
+    ],
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "fruit",
+        "fruit_basket",
+        "bag",
+        "card_reader",
+        "npc_marker"
+      ],
+      "id" : "farmers_market_stand",
+      "learnerRole" : "shopper",
+      "localContext" : "The learner is standing at a market stall with fruit baskets, a counter, a bagging area, a payment reader, and a vendor marker nearby.",
+      "sceneGoal" : "Choose fruit, pay, and leave with the bag",
+      "setting" : "Farmer's market stand",
+      "targetInteractions" : [
+        "pick up a fruit",
+        "place the fruit on the counter",
+        "tap the payment reader",
+        "place the fruit in a bag",
+        "wave goodbye to the vendor"
+      ]
+    },
+    "tasks" : [
+      {
+        "expectedInteraction" : {
+          "objectId" : "apple",
+          "type" : "tap"
+        },
+        "id" : "pick_up_apple",
+        "instruction" : "Pick up the apple.",
+        "requiredObjectIds" : [
+          "apple"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "apple",
+          "targetId" : "market_counter",
+          "type" : "place"
+        },
+        "id" : "place_apple_on_counter",
+        "instruction" : "Place the apple on the counter.",
+        "requiredObjectIds" : [
+          "apple",
+          "market_counter"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "card_reader",
+          "type" : "tap"
+        },
+        "id" : "tap_card_reader",
+        "instruction" : "Tap the card reader to pay.",
+        "requiredObjectIds" : [
+          "card_reader"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "apple",
+          "targetId" : "shopping_bag",
+          "type" : "place"
+        },
+        "id" : "place_apple_in_bag",
+        "instruction" : "Place the apple in the shopping bag.",
+        "requiredObjectIds" : [
+          "apple",
+          "shopping_bag"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "gesture" : "wave",
+          "targetId" : "vendor_marker",
+          "type" : "gesture"
+        },
+        "id" : "wave_goodbye_to_vendor",
+        "instruction" : "Wave goodbye to the vendor.",
+        "requiredObjectIds" : [
+          "vendor_marker"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation" : {
+    "answeredCount" : 25,
+    "generatedObjectRatings" : [
+      {
+        "objectId" : "apple",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "card_reader",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "fruit_basket",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "market_counter",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "shopping_bag",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "vendor_marker",
+        "rating" : "expected"
+      }
+    ],
+    "generatedTaskRatings" : [
+      {
+        "rating" : "faithful",
+        "taskId" : "pick_up_apple"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "place_apple_in_bag"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "place_apple_on_counter"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "wave_goodbye_to_vendor"
+      }
+    ],
+    "scenarioFidelityRating" : "faithful",
+    "scenarioLayoutRating" : "plausible",
+    "taskMetricRatings" : [
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "pick_up_apple"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "pick_up_apple"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "pick_up_apple"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "pick_up_apple"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "pick_up_apple"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "partial",
+        "taskId" : "place_apple_in_bag"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "place_apple_in_bag"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "place_apple_in_bag"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "place_apple_in_bag"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "partial",
+        "taskId" : "place_apple_in_bag"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "place_apple_on_counter"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "place_apple_on_counter"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "place_apple_on_counter"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "place_apple_on_counter"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "place_apple_on_counter"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "tap_card_reader"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "wave_goodbye_to_vendor"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "wave_goodbye_to_vendor"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "wave_goodbye_to_vendor"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "wave_goodbye_to_vendor"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "wave_goodbye_to_vendor"
+      }
+    ],
+    "totalCount" : 25,
+    "yesCount" : 23
+  },
+  "runtimeEvaluation" : {
+    "completedTasks" : 4,
+    "firstFailedTaskId" : "wave_goodbye_to_vendor",
+    "handlerCoveragePassed" : 5,
+    "handlerCoverageTotal" : 5,
+    "objectCoveragePassed" : 6,
+    "objectCoverageTotal" : 6,
+    "totalTasks" : 5
+  },
+  "scenario" : {
+    "expectedObjectCategories" : [
+      "counter",
+      "fruit",
+      "fruit_basket",
+      "bag",
+      "card_reader",
+      "npc_marker"
+    ],
+    "id" : "farmers_market_stand",
+    "learnerRole" : "shopper",
+    "localContext" : "The learner is standing at a market stall with fruit baskets, a counter, a bagging area, a payment reader, and a vendor marker nearby.",
+    "sceneGoal" : "Choose fruit, pay, and leave with the bag",
+    "setting" : "Farmer's market stand",
+    "targetInteractions" : [
+      "pick up a fruit",
+      "place the fruit on the counter",
+      "tap the payment reader",
+      "place the fruit in a bag",
+      "wave goodbye to the vendor"
+    ]
+  }
+}

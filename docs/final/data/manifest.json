@@ -1,0 +1,93 @@
+{
+  "createdAt": "2026-06-03T20:11:44.451Z",
+  "outputDirectory": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs",
+  "notes": [
+    "Files marked simulated are graph-projection placeholders, not real eval runs.",
+    "cafe_paying_check is copied but includeInTiming=false per user note: no objects realized.",
+    "Use includeInTiming to filter timing aggregate graphs."
+  ],
+  "files": [
+    {
+      "scenario": "shrine_purification",
+      "contains": "interaction_world_scene_shrine_purification_1780511342.json",
+      "simulated": false,
+      "includeInTiming": true,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_shrine_purification_1780511342.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/01_shrine_purification.json"
+    },
+    {
+      "scenario": "station_ticketing",
+      "contains": "interaction_world_scene_station_ticketing_1780512113.json",
+      "simulated": false,
+      "includeInTiming": true,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_station_ticketing_1780512113.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/02_station_ticketing.json"
+    },
+    {
+      "scenario": "clothing_trying_on",
+      "contains": "interaction_world_scene_clothing_trying_on_1780512822.json",
+      "simulated": false,
+      "includeInTiming": true,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_clothing_trying_on_1780512822.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/03_clothing_trying_on.json"
+    },
+    {
+      "scenario": "clothing_browse_compare",
+      "contains": "interaction_world_scene_clothing_browse_compare_1780513328.json",
+      "simulated": false,
+      "includeInTiming": true,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_clothing_browse_compare_1780513328.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/04_clothing_browse_compare.json"
+    },
+    {
+      "scenario": "farmers_market_stand",
+      "contains": "interaction_world_scene_farmers_market_stand_1780516355.json",
+      "simulated": false,
+      "includeInTiming": true,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_farmers_market_stand_1780516355.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/05_farmers_market_stand.json"
+    },
+    {
+      "scenario": "cafe_paying_check",
+      "contains": "interaction_world_scene_cafe_paying_check_1780516739.json",
+      "simulated": false,
+      "includeInTiming": false,
+      "note": "User requested not to count timing; no objects realized.",
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_cafe_paying_check_1780516739.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/06_cafe_paying_check.json"
+    },
+    {
+      "scenario": "japanese_convenience_store",
+      "contains": "interaction_world_scene_japanese_convenience_store_simulated_1780517415.json",
+      "simulated": true,
+      "includeInTiming": false,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_japanese_convenience_store_simulated_1780517415.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/07_japanese_convenience_store_simulated.json"
+    },
+    {
+      "scenario": "cafe_arrival_seating",
+      "contains": "interaction_world_scene_cafe_arrival_seating_simulated_1780517415.json",
+      "simulated": true,
+      "includeInTiming": false,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_cafe_arrival_seating_simulated_1780517415.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/08_cafe_arrival_seating_simulated.json"
+    },
+    {
+      "scenario": "cafe_ordering",
+      "contains": "interaction_world_scene_cafe_ordering_simulated_1780517415.json",
+      "simulated": true,
+      "includeInTiming": false,
+      "status": "copied",
+      "source": "/Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/D84CE913-C29F-41E5-B0EF-CDC97AD4CF16/Documents/InteractionWorldSavedScenes/interaction_world_scene_cafe_ordering_simulated_1780517415.json",
+      "copiedTo": "/Users/dlonzell/Desktop/roleplar_eval_graph_inputs/09_cafe_ordering_simulated.json"
+    }
+  ]
+}

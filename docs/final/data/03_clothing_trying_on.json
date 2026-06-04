@@ -1,0 +1,1291 @@
+{
+  "eventLog" : [
+    {
+      "eventDescription" : "select upright_mirror",
+      "matched" : false,
+      "taskId" : "pick_up_jacket",
+      "timestamp" : 802205415.99866
+    },
+    {
+      "eventDescription" : "select upright_mirror",
+      "matched" : false,
+      "taskId" : "pick_up_jacket",
+      "timestamp" : 802205415.145426
+    }
+  ],
+  "exportedAt" : 802205622.817172,
+  "generationEvaluation" : {
+    "attemptCount" : 1,
+    "scenarioId" : "clothing_trying_on",
+    "step1ObjectGeneration" : {
+      "succeeded" : true
+    },
+    "step3TaskGeneration" : {
+      "succeeded" : true
+    },
+    "step4Validation" : {
+      "succeeded" : true
+    },
+    "step6Runtime" : {
+      "completedTasks" : 0,
+      "totalTasks" : 4
+    },
+    "succeeded" : true,
+    "totalTimeSeconds" : 9.204936027526855
+  },
+  "generationResult" : {
+    "attempts" : [
+      {
+        "attemptNumber" : 1,
+        "durationSeconds" : 9.20492708683014,
+        "outcome" : {
+          "success" : {
+
+          }
+        },
+        "rawObjectsJSON" : "{\n  \"objects\": [\n    {\n      \"id\": \"fitting_table\",\n      \"displayName\": \"Fitting Table\",\n      \"description\": \"A small wooden table for placing clothes\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.7, -1.0],\n      \"size\": [0.8, 0.1, 0.5],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"jacket\",\n      \"displayName\": \"Jacket\",\n      \"description\": \"A stylish jacket ready to be tried on\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [0.0, 0.8, -1.0],\n      \"size\": [0.5, 0.3, 0.1],\n      \"color\": \"blue\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"fitting_hook\",\n      \"displayName\": \"Fitting Hook\",\n      \"description\": \"A hook for hanging clothes\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"uprightObject\" },\n      \"position\": [0.5, 1.5, -1.0],\n      \"size\": [0.05, 0.2, 0.05],\n      \"color\": \"gray\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"upright_mirror\",\n      \"displayName\": \"Upright Mirror\",\n      \"description\": \"A full-length mirror for checking outfit fit\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"uprightObject\" },\n      \"position\": [-0.5, 0.0, -1.5],\n      \"size\": [0.5, 1.5, 0.05],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"clerk_marker\",\n      \"displayName\": \"Clerk Marker\",\n      \"description\": \"A marker indicating where the store clerk stands\",\n      \"kind\": { \"type\": \"npcMarker\", \"category\": \"marker\" },\n      \"position\": [1.0, 0.0, -1.5],\n      \"size\": [0.2, 0.2, 0.2],\n      \"color\": \"purple\",\n      \"isInteractive\": false\n    }\n  ]\n}",
+        "rawTasksJSON" : "{\"tasks\":[{\"id\":\"pick_up_jacket\",\"instruction\":\"Pick up the jacket from the table.\",\"requiredObjectIds\":[\"jacket\",\"fitting_table\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"jacket\"}},{\"id\":\"carry_jacket_to_fitting_room\",\"instruction\":\"Carry the jacket to the fitting room.\",\"requiredObjectIds\":[\"jacket\"],\"expectedInteraction\":{\"type\":\"drag\",\"objectId\":\"jacket\"}},{\"id\":\"try_jacket_on\",\"instruction\":\"Try the jacket on.\",\"requiredObjectIds\":[\"jacket\"],\"expectedInteraction\":{\"type\":\"gesture\",\"gesture\":\"openPalm\"}},{\"id\":\"check_fit_in_mirror\",\"instruction\":\"Check the fit in the mirror.\",\"requiredObjectIds\":[\"upright_mirror\"],\"expectedInteraction\":{\"type\":\"indicate\",\"objectId\":\"upright_mirror\"}}]}",
+        "stage" : "fullPipeline"
+      }
+    ],
+    "layoutSummary" : {
+      "objectSummaries" : [
+        {
+          "displayName" : "Fitting Table",
+          "finalPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "objectId" : "fitting_table",
+          "rawPosition" : [
+            0,
+            0.7,
+            -1
+          ],
+          "rawSize" : [
+            0.8,
+            0.1,
+            0.5
+          ],
+          "role" : "surface"
+        },
+        {
+          "displayName" : "Jacket",
+          "finalPosition" : [
+            -0.36,
+            0.775,
+            -0.775
+          ],
+          "finalSize" : [
+            0.2,
+            0.18,
+            0.1
+          ],
+          "objectId" : "jacket",
+          "rawPosition" : [
+            0,
+            0.8,
+            -1
+          ],
+          "rawSize" : [
+            0.5,
+            0.3,
+            0.1
+          ],
+          "role" : "sourceObject"
+        },
+        {
+          "displayName" : "Fitting Hook",
+          "finalPosition" : [
+            0,
+            0.785,
+            -0.86
+          ],
+          "finalSize" : [
+            0.12,
+            0.2,
+            0.1
+          ],
+          "objectId" : "fitting_hook",
+          "rawPosition" : [
+            0.5,
+            1.5,
+            -1
+          ],
+          "rawSize" : [
+            0.05,
+            0.2,
+            0.05
+          ],
+          "role" : "contextObject"
+        },
+        {
+          "displayName" : "Upright Mirror",
+          "finalPosition" : [
+            -0.34999996,
+            0.805,
+            -1.08
+          ],
+          "finalSize" : [
+            0.28,
+            0.24,
+            0.1
+          ],
+          "objectId" : "upright_mirror",
+          "rawPosition" : [
+            -0.5,
+            0,
+            -1.5
+          ],
+          "rawSize" : [
+            0.5,
+            1.5,
+            0.05
+          ],
+          "role" : "contextObject"
+        },
+        {
+          "displayName" : "Clerk Marker",
+          "finalPosition" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "finalSize" : [
+            0.18,
+            0.2,
+            0.18
+          ],
+          "objectId" : "clerk_marker",
+          "rawPosition" : [
+            1,
+            0,
+            -1.5
+          ],
+          "rawSize" : [
+            0.2,
+            0.2,
+            0.2
+          ],
+          "role" : "personMarker"
+        }
+      ],
+      "relations" : [
+        {
+          "kind" : "on",
+          "objectId" : "fitting_table",
+          "source" : "roleDefaults",
+          "subjectId" : "jacket"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "fitting_table",
+          "source" : "roleDefaults",
+          "subjectId" : "fitting_hook"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "fitting_table",
+          "source" : "roleDefaults",
+          "subjectId" : "upright_mirror"
+        },
+        {
+          "kind" : "behind",
+          "objectId" : "fitting_table",
+          "source" : "roleDefaults",
+          "subjectId" : "clerk_marker"
+        },
+        {
+          "kind" : "facing",
+          "objectId" : "fitting_table",
+          "source" : "roleDefaults",
+          "subjectId" : "clerk_marker"
+        }
+      ],
+      "strategy" : "stage_relation_slots_v1"
+    },
+    "plan" : {
+      "id" : "clothing_trying_on_generated_attempt_1_stage_layout_sam3d_realized",
+      "objects" : [
+        {
+          "assetCard" : {
+            "assetKind" : "surface",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "surface",
+            "orientationHint" : "horizontalSurface",
+            "restingPolicy" : "centerAtPosition",
+            "targetSize" : [
+              1.05,
+              0.1,
+              0.52
+            ]
+          },
+          "color" : "brown",
+          "description" : "A small wooden table for placing clothes",
+          "displayName" : "Fitting Table",
+          "id" : "fitting_table",
+          "isInteractive" : false,
+          "kind" : {
+            "category" : "flatSurface",
+            "type" : "generic"
+          },
+          "position" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[jacket, upright_mirror, fitting_hook], maxObjects=0.",
+            "realizedPosition" : [
+              0,
+              0.62,
+              -0.95
+            ],
+            "realizedSize" : [
+              1.05,
+              0.1,
+              0.52
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "sourceObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "fitting_table",
+            "targetSize" : [
+              0.2,
+              0.18,
+              0.1
+            ]
+          },
+          "color" : "blue",
+          "description" : "A stylish jacket ready to be tried on",
+          "displayName" : "Jacket",
+          "id" : "jacket",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.36,
+            0.775,
+            -0.775
+          ],
+          "size" : [
+            0.2,
+            0.18,
+            0.1
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-X",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/jacket\/jacket_pose_candidates.png",
+              "confidence" : 0.9,
+              "frontAxis" : "-Z",
+              "reason" : "The jacket naturally rests upright on the -X axis with +X as UP, resembling how it would hang or be worn; front inferred as -Z where the opening is visible.",
+              "restingPose" : "standing upright",
+              "selectedCandidate" : "A",
+              "upAxis" : "+X"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/jacket_5304993403455202211.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/jacket_preview_3128241260487469656.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/jacket\/jacket_reference.png",
+            "realizedPosition" : [
+              -0.36,
+              0.775,
+              -0.775
+            ],
+            "realizedSize" : [
+              0.2,
+              0.18,
+              0.1
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/jacket\/jacket.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "contextObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "fitting_table",
+            "targetSize" : [
+              0.12,
+              0.18,
+              0.1
+            ]
+          },
+          "color" : "gray",
+          "description" : "A hook for hanging clothes",
+          "displayName" : "Fitting Hook",
+          "id" : "fitting_hook",
+          "isInteractive" : false,
+          "kind" : {
+            "category" : "uprightObject",
+            "type" : "generic"
+          },
+          "position" : [
+            0,
+            0.785,
+            -0.86
+          ],
+          "size" : [
+            0.12,
+            0.2,
+            0.1
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Y",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/fitting_hook\/fitting_hook_pose_candidates.png",
+              "confidence" : 0.9,
+              "frontAxis" : "-Z",
+              "reason" : "The fitting hook naturally rests upright on its base with +Y up and -Y bottom. The front is -Z as the hook curves forward in that direction, matching expected orientation for hanging clothes.",
+              "restingPose" : "hook upright",
+              "selectedCandidate" : "C",
+              "upAxis" : "+Y"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/fitting_hook_7237460906429478278.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/fitting_hook_preview_4227523175685057754.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/fitting_hook\/fitting_hook_reference.png",
+            "realizedPosition" : [
+              0,
+              0.785,
+              -0.86
+            ],
+            "realizedSize" : [
+              0.12,
+              0.2,
+              0.1
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/fitting_hook\/fitting_hook.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "contextObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "fitting_table",
+            "targetSize" : [
+              0.2,
+              0.18,
+              0.1
+            ]
+          },
+          "color" : "gray",
+          "description" : "A full-length mirror for checking outfit fit",
+          "displayName" : "Upright Mirror",
+          "id" : "upright_mirror",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "uprightObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.34999996,
+            0.805,
+            -1.08
+          ],
+          "size" : [
+            0.28,
+            0.24,
+            0.1
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Y",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/upright_mirror\/upright_mirror_pose_candidates.png",
+              "confidence" : 0.95,
+              "reason" : "Candidate E shows the mirror standing on its base with the frame vertical, matching expected upright mirror orientation for use on a surface.",
+              "restingPose" : "standing upright",
+              "selectedCandidate" : "E",
+              "upAxis" : "+Z"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/upright_mirror_4517344974556749404.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/upright_mirror_preview_8151944715884274579.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/upright_mirror\/upright_mirror_reference.png",
+            "realizedPosition" : [
+              -0.34999996,
+              0.805,
+              -1.08
+            ],
+            "realizedSize" : [
+              0.28,
+              0.24,
+              0.1
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/upright_mirror\/upright_mirror.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "personMarker",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "personMarker",
+            "orientationHint" : "uprightFacingLearner",
+            "restingPolicy" : "bottomOnSupport",
+            "targetSize" : [
+              0.18,
+              0.22,
+              0.18
+            ]
+          },
+          "color" : "purple",
+          "description" : "A marker indicating where the store clerk stands",
+          "displayName" : "Clerk Marker",
+          "id" : "clerk_marker",
+          "isInteractive" : false,
+          "kind" : {
+            "type" : "npcMarker"
+          },
+          "position" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "size" : [
+            0.18,
+            0.2,
+            0.18
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[jacket, upright_mirror, fitting_hook], maxObjects=0.",
+            "realizedPosition" : [
+              0,
+              1.05,
+              -1.42
+            ],
+            "realizedSize" : [
+              0.18,
+              0.2,
+              0.18
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        }
+      ],
+      "scenario" : {
+        "expectedObjectCategories" : [
+          "counter",
+          "uprightObject",
+          "container",
+          "uprightObject"
+        ],
+        "id" : "clothing_trying_on",
+        "learnerRole" : "shopper trying on a jacket",
+        "localContext" : "A jacket rests on a table next to a fitting hook and a small upright mirror; a clerk marker is nearby.",
+        "sceneGoal" : "Try on a jacket and check the fit",
+        "setting" : "Clothing store fitting area",
+        "targetInteractions" : [
+          "pick up the jacket",
+          "carry it to the fitting room",
+          "try the jacket on",
+          "check the fit in the mirror"
+        ]
+      },
+      "tasks" : [
+        {
+          "expectedInteraction" : {
+            "objectId" : "jacket",
+            "type" : "tap"
+          },
+          "id" : "pick_up_jacket",
+          "instruction" : "Pick up the jacket from the table.",
+          "requiredObjectIds" : [
+            "jacket",
+            "fitting_table"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "jacket",
+            "type" : "drag"
+          },
+          "id" : "carry_jacket_to_fitting_room",
+          "instruction" : "Carry the jacket to the fitting room.",
+          "requiredObjectIds" : [
+            "jacket"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "gesture" : "openPalm",
+            "type" : "gesture"
+          },
+          "id" : "try_jacket_on",
+          "instruction" : "Try the jacket on.",
+          "requiredObjectIds" : [
+            "jacket"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "upright_mirror",
+            "type" : "indicate"
+          },
+          "id" : "check_fit_in_mirror",
+          "instruction" : "Check the fit in the mirror.",
+          "requiredObjectIds" : [
+            "upright_mirror"
+          ]
+        }
+      ]
+    },
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "uprightObject",
+        "container",
+        "uprightObject"
+      ],
+      "id" : "clothing_trying_on",
+      "learnerRole" : "shopper trying on a jacket",
+      "localContext" : "A jacket rests on a table next to a fitting hook and a small upright mirror; a clerk marker is nearby.",
+      "sceneGoal" : "Try on a jacket and check the fit",
+      "setting" : "Clothing store fitting area",
+      "targetInteractions" : [
+        "pick up the jacket",
+        "carry it to the fitting room",
+        "try the jacket on",
+        "check the fit in the mirror"
+      ]
+    },
+    "totalGenerationTimeSeconds" : 9.204936027526855
+  },
+  "layoutSummary" : {
+    "objectSummaries" : [
+      {
+        "displayName" : "Fitting Table",
+        "finalPosition" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize" : [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "objectId" : "fitting_table",
+        "rawPosition" : [
+          0,
+          0.7,
+          -1
+        ],
+        "rawSize" : [
+          0.8,
+          0.1,
+          0.5
+        ],
+        "role" : "surface"
+      },
+      {
+        "displayName" : "Jacket",
+        "finalPosition" : [
+          -0.36,
+          0.775,
+          -0.775
+        ],
+        "finalSize" : [
+          0.2,
+          0.18,
+          0.1
+        ],
+        "objectId" : "jacket",
+        "rawPosition" : [
+          0,
+          0.8,
+          -1
+        ],
+        "rawSize" : [
+          0.5,
+          0.3,
+          0.1
+        ],
+        "role" : "sourceObject"
+      },
+      {
+        "displayName" : "Fitting Hook",
+        "finalPosition" : [
+          0,
+          0.785,
+          -0.86
+        ],
+        "finalSize" : [
+          0.12,
+          0.2,
+          0.1
+        ],
+        "objectId" : "fitting_hook",
+        "rawPosition" : [
+          0.5,
+          1.5,
+          -1
+        ],
+        "rawSize" : [
+          0.05,
+          0.2,
+          0.05
+        ],
+        "role" : "contextObject"
+      },
+      {
+        "displayName" : "Upright Mirror",
+        "finalPosition" : [
+          -0.34999996,
+          0.805,
+          -1.08
+        ],
+        "finalSize" : [
+          0.28,
+          0.24,
+          0.1
+        ],
+        "objectId" : "upright_mirror",
+        "rawPosition" : [
+          -0.5,
+          0,
+          -1.5
+        ],
+        "rawSize" : [
+          0.5,
+          1.5,
+          0.05
+        ],
+        "role" : "contextObject"
+      },
+      {
+        "displayName" : "Clerk Marker",
+        "finalPosition" : [
+          0,
+          1.05,
+          -1.42
+        ],
+        "finalSize" : [
+          0.18,
+          0.2,
+          0.18
+        ],
+        "objectId" : "clerk_marker",
+        "rawPosition" : [
+          1,
+          0,
+          -1.5
+        ],
+        "rawSize" : [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "role" : "personMarker"
+      }
+    ],
+    "relations" : [
+      {
+        "kind" : "on",
+        "objectId" : "fitting_table",
+        "source" : "roleDefaults",
+        "subjectId" : "jacket"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "fitting_table",
+        "source" : "roleDefaults",
+        "subjectId" : "fitting_hook"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "fitting_table",
+        "source" : "roleDefaults",
+        "subjectId" : "upright_mirror"
+      },
+      {
+        "kind" : "behind",
+        "objectId" : "fitting_table",
+        "source" : "roleDefaults",
+        "subjectId" : "clerk_marker"
+      },
+      {
+        "kind" : "facing",
+        "objectId" : "fitting_table",
+        "source" : "roleDefaults",
+        "subjectId" : "clerk_marker"
+      }
+    ],
+    "strategy" : "stage_relation_slots_v1"
+  },
+  "loadedPlan" : {
+    "id" : "clothing_trying_on_generated_attempt_1_stage_layout_sam3d_realized",
+    "objects" : [
+      {
+        "assetCard" : {
+          "assetKind" : "surface",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "surface",
+          "orientationHint" : "horizontalSurface",
+          "restingPolicy" : "centerAtPosition",
+          "targetSize" : [
+            1.05,
+            0.1,
+            0.52
+          ]
+        },
+        "color" : "brown",
+        "description" : "A small wooden table for placing clothes",
+        "displayName" : "Fitting Table",
+        "id" : "fitting_table",
+        "isInteractive" : false,
+        "kind" : {
+          "category" : "flatSurface",
+          "type" : "generic"
+        },
+        "position" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size" : [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[jacket, upright_mirror, fitting_hook], maxObjects=0.",
+          "realizedPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "realizedSize" : [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "sourceObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "fitting_table",
+          "targetSize" : [
+            0.2,
+            0.18,
+            0.1
+          ]
+        },
+        "color" : "blue",
+        "description" : "A stylish jacket ready to be tried on",
+        "displayName" : "Jacket",
+        "id" : "jacket",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.36,
+          0.775,
+          -0.775
+        ],
+        "size" : [
+          0.2,
+          0.18,
+          0.1
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-X",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/jacket\/jacket_pose_candidates.png",
+            "confidence" : 0.9,
+            "frontAxis" : "-Z",
+            "reason" : "The jacket naturally rests upright on the -X axis with +X as UP, resembling how it would hang or be worn; front inferred as -Z where the opening is visible.",
+            "restingPose" : "standing upright",
+            "selectedCandidate" : "A",
+            "upAxis" : "+X"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/jacket_5304993403455202211.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/jacket_preview_3128241260487469656.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/jacket\/jacket_reference.png",
+          "realizedPosition" : [
+            -0.36,
+            0.775,
+            -0.775
+          ],
+          "realizedSize" : [
+            0.2,
+            0.18,
+            0.1
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/jacket\/jacket.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "contextObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "fitting_table",
+          "targetSize" : [
+            0.12,
+            0.18,
+            0.1
+          ]
+        },
+        "color" : "gray",
+        "description" : "A hook for hanging clothes",
+        "displayName" : "Fitting Hook",
+        "id" : "fitting_hook",
+        "isInteractive" : false,
+        "kind" : {
+          "category" : "uprightObject",
+          "type" : "generic"
+        },
+        "position" : [
+          0,
+          0.785,
+          -0.86
+        ],
+        "size" : [
+          0.12,
+          0.2,
+          0.1
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Y",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/fitting_hook\/fitting_hook_pose_candidates.png",
+            "confidence" : 0.9,
+            "frontAxis" : "-Z",
+            "reason" : "The fitting hook naturally rests upright on its base with +Y up and -Y bottom. The front is -Z as the hook curves forward in that direction, matching expected orientation for hanging clothes.",
+            "restingPose" : "hook upright",
+            "selectedCandidate" : "C",
+            "upAxis" : "+Y"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/fitting_hook_7237460906429478278.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/fitting_hook_preview_4227523175685057754.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/fitting_hook\/fitting_hook_reference.png",
+          "realizedPosition" : [
+            0,
+            0.785,
+            -0.86
+          ],
+          "realizedSize" : [
+            0.12,
+            0.2,
+            0.1
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/fitting_hook\/fitting_hook.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "contextObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "fitting_table",
+          "targetSize" : [
+            0.2,
+            0.18,
+            0.1
+          ]
+        },
+        "color" : "gray",
+        "description" : "A full-length mirror for checking outfit fit",
+        "displayName" : "Upright Mirror",
+        "id" : "upright_mirror",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "uprightObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.34999996,
+          0.805,
+          -1.08
+        ],
+        "size" : [
+          0.28,
+          0.24,
+          0.1
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Y",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/upright_mirror\/upright_mirror_pose_candidates.png",
+            "confidence" : 0.95,
+            "reason" : "Candidate E shows the mirror standing on its base with the frame vertical, matching expected upright mirror orientation for use on a surface.",
+            "restingPose" : "standing upright",
+            "selectedCandidate" : "E",
+            "upAxis" : "+Z"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/upright_mirror_4517344974556749404.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/upright_mirror_preview_8151944715884274579.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/upright_mirror\/upright_mirror_reference.png",
+          "realizedPosition" : [
+            -0.34999996,
+            0.805,
+            -1.08
+          ],
+          "realizedSize" : [
+            0.28,
+            0.24,
+            0.1
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/27a84a28-fd3b-4d82-8873-4d28c9dae1e9\/upright_mirror\/upright_mirror.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "personMarker",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "personMarker",
+          "orientationHint" : "uprightFacingLearner",
+          "restingPolicy" : "bottomOnSupport",
+          "targetSize" : [
+            0.18,
+            0.22,
+            0.18
+          ]
+        },
+        "color" : "purple",
+        "description" : "A marker indicating where the store clerk stands",
+        "displayName" : "Clerk Marker",
+        "id" : "clerk_marker",
+        "isInteractive" : false,
+        "kind" : {
+          "type" : "npcMarker"
+        },
+        "position" : [
+          0,
+          1.05,
+          -1.42
+        ],
+        "size" : [
+          0.18,
+          0.2,
+          0.18
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[jacket, upright_mirror, fitting_hook], maxObjects=0.",
+          "realizedPosition" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "realizedSize" : [
+            0.18,
+            0.2,
+            0.18
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      }
+    ],
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "uprightObject",
+        "container",
+        "uprightObject"
+      ],
+      "id" : "clothing_trying_on",
+      "learnerRole" : "shopper trying on a jacket",
+      "localContext" : "A jacket rests on a table next to a fitting hook and a small upright mirror; a clerk marker is nearby.",
+      "sceneGoal" : "Try on a jacket and check the fit",
+      "setting" : "Clothing store fitting area",
+      "targetInteractions" : [
+        "pick up the jacket",
+        "carry it to the fitting room",
+        "try the jacket on",
+        "check the fit in the mirror"
+      ]
+    },
+    "tasks" : [
+      {
+        "expectedInteraction" : {
+          "objectId" : "jacket",
+          "type" : "tap"
+        },
+        "id" : "pick_up_jacket",
+        "instruction" : "Pick up the jacket from the table.",
+        "requiredObjectIds" : [
+          "jacket",
+          "fitting_table"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "jacket",
+          "type" : "drag"
+        },
+        "id" : "carry_jacket_to_fitting_room",
+        "instruction" : "Carry the jacket to the fitting room.",
+        "requiredObjectIds" : [
+          "jacket"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "gesture" : "openPalm",
+          "type" : "gesture"
+        },
+        "id" : "try_jacket_on",
+        "instruction" : "Try the jacket on.",
+        "requiredObjectIds" : [
+          "jacket"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "upright_mirror",
+          "type" : "indicate"
+        },
+        "id" : "check_fit_in_mirror",
+        "instruction" : "Check the fit in the mirror.",
+        "requiredObjectIds" : [
+          "upright_mirror"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation" : {
+    "answeredCount" : 20,
+    "generatedObjectRatings" : [
+      {
+        "objectId" : "clerk_marker",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "fitting_hook",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "fitting_table",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "jacket",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "upright_mirror",
+        "rating" : "expected"
+      }
+    ],
+    "generatedTaskRatings" : [
+      {
+        "rating" : "faithful",
+        "taskId" : "carry_jacket_to_fitting_room"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "check_fit_in_mirror"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "pick_up_jacket"
+      },
+      {
+        "rating" : "invalid",
+        "taskId" : "try_jacket_on"
+      }
+    ],
+    "scenarioFidelityRating" : "notFaithful",
+    "scenarioLayoutRating" : "implausible",
+    "taskMetricRatings" : [
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "partial",
+        "taskId" : "carry_jacket_to_fitting_room"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "no",
+        "taskId" : "carry_jacket_to_fitting_room"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "carry_jacket_to_fitting_room"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "carry_jacket_to_fitting_room"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "partial",
+        "taskId" : "carry_jacket_to_fitting_room"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "partial",
+        "taskId" : "check_fit_in_mirror"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "check_fit_in_mirror"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "check_fit_in_mirror"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "check_fit_in_mirror"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "partial",
+        "taskId" : "check_fit_in_mirror"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "pick_up_jacket"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "pick_up_jacket"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "partial",
+        "taskId" : "pick_up_jacket"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "pick_up_jacket"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "pick_up_jacket"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "try_jacket_on"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "try_jacket_on"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "try_jacket_on"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "try_jacket_on"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "try_jacket_on"
+      }
+    ],
+    "totalCount" : 20,
+    "yesCount" : 12
+  },
+  "runtimeEvaluation" : {
+    "completedTasks" : 0,
+    "firstFailedTaskId" : "pick_up_jacket",
+    "handlerCoveragePassed" : 4,
+    "handlerCoverageTotal" : 4,
+    "objectCoveragePassed" : 5,
+    "objectCoverageTotal" : 5,
+    "totalTasks" : 4
+  },
+  "scenario" : {
+    "expectedObjectCategories" : [
+      "counter",
+      "uprightObject",
+      "container",
+      "uprightObject"
+    ],
+    "id" : "clothing_trying_on",
+    "learnerRole" : "shopper trying on a jacket",
+    "localContext" : "A jacket rests on a table next to a fitting hook and a small upright mirror; a clerk marker is nearby.",
+    "sceneGoal" : "Try on a jacket and check the fit",
+    "setting" : "Clothing store fitting area",
+    "targetInteractions" : [
+      "pick up the jacket",
+      "carry it to the fitting room",
+      "try the jacket on",
+      "check the fit in the mirror"
+    ]
+  }
+}

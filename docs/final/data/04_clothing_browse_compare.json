@@ -1,0 +1,1034 @@
+{
+  "eventLog" : [
+
+  ],
+  "exportedAt" : 802206128.578647,
+  "generationEvaluation" : {
+    "attemptCount" : 1,
+    "scenarioId" : "clothing_browse_compare",
+    "step1ObjectGeneration" : {
+      "succeeded" : true
+    },
+    "step3TaskGeneration" : {
+      "succeeded" : true
+    },
+    "step4Validation" : {
+      "succeeded" : true
+    },
+    "step6Runtime" : {
+      "completedTasks" : 0,
+      "totalTasks" : 4
+    },
+    "succeeded" : true,
+    "totalTimeSeconds" : 6.448775053024292
+  },
+  "generationResult" : {
+    "attempts" : [
+      {
+        "attemptNumber" : 1,
+        "durationSeconds" : 6.4487669467926025,
+        "outcome" : {
+          "success" : {
+
+          }
+        },
+        "rawObjectsJSON" : "{\n  \"objects\": [\n    {\n      \"id\": \"display_table\",\n      \"displayName\": \"Display Table\",\n      \"description\": \"Wooden display table holding jackets\",\n      \"kind\": { \"type\": \"counter\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.7, -1.0],\n      \"size\": [1.5, 0.1, 0.8],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"jacket_one\",\n      \"displayName\": \"Red Jacket\",\n      \"description\": \"Folded red jacket on the display table\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [-0.3, 0.75, -1.0],\n      \"size\": [0.4, 0.1, 0.4],\n      \"color\": \"red\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"jacket_two\",\n      \"displayName\": \"Blue Jacket\",\n      \"description\": \"Folded blue jacket on the display table\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [0.3, 0.75, -1.0],\n      \"size\": [0.4, 0.1, 0.4],\n      \"color\": \"blue\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"clerk_marker\",\n      \"displayName\": \"Clerk Marker\",\n      \"description\": \"Marker indicating where the clerk stands\",\n      \"kind\": { \"type\": \"npcMarker\", \"category\": \"marker\" },\n      \"position\": [0.0, 0.0, -2.0],\n      \"size\": [0.2, 1.8, 0.2],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    }\n  ]\n}",
+        "rawTasksJSON" : "{\"tasks\":[{\"id\":\"point_at_first_jacket\",\"instruction\":\"Point at the first jacket.\",\"requiredObjectIds\":[\"jacket_one\"],\"expectedInteraction\":{\"type\":\"gesture\",\"gesture\":\"point\",\"targetId\":\"jacket_one\"}},{\"id\":\"ask_clerk_about_jacket\",\"instruction\":\"Ask the clerk about the color and size of the jacket.\",\"requiredObjectIds\":[\"clerk_marker\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"clerk_marker\"}},{\"id\":\"compare_two_jackets\",\"instruction\":\"Compare the two jackets side by side.\",\"requiredObjectIds\":[\"jacket_one\",\"jacket_two\"],\"expectedInteraction\":{\"type\":\"drag\",\"objectId\":\"jacket_one\"}},{\"id\":\"tell_clerk_preference\",\"instruction\":\"Tell the clerk you like the first one.\",\"requiredObjectIds\":[\"clerk_marker\"],\"expectedInteraction\":{\"type\":\"gesture\",\"gesture\":\"thumbsUp\",\"targetId\":\"clerk_marker\"}}]}",
+        "stage" : "fullPipeline"
+      }
+    ],
+    "layoutSummary" : {
+      "objectSummaries" : [
+        {
+          "displayName" : "Display Table",
+          "finalPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize" : [
+            1.5,
+            0.1,
+            0.8
+          ],
+          "objectId" : "display_table",
+          "rawPosition" : [
+            0,
+            0.7,
+            -1
+          ],
+          "rawSize" : [
+            1.5,
+            0.1,
+            0.8
+          ],
+          "role" : "surface"
+        },
+        {
+          "displayName" : "Red Jacket",
+          "finalPosition" : [
+            -0.36,
+            0.735,
+            -0.72
+          ],
+          "finalSize" : [
+            0.2,
+            0.1,
+            0.2
+          ],
+          "objectId" : "jacket_one",
+          "rawPosition" : [
+            -0.3,
+            0.75,
+            -1
+          ],
+          "rawSize" : [
+            0.4,
+            0.1,
+            0.4
+          ],
+          "role" : "sourceObject"
+        },
+        {
+          "displayName" : "Blue Jacket",
+          "finalPosition" : [
+            -0.08,
+            0.735,
+            -0.72
+          ],
+          "finalSize" : [
+            0.2,
+            0.1,
+            0.2
+          ],
+          "objectId" : "jacket_two",
+          "rawPosition" : [
+            0.3,
+            0.75,
+            -1
+          ],
+          "rawSize" : [
+            0.4,
+            0.1,
+            0.4
+          ],
+          "role" : "sourceObject"
+        },
+        {
+          "displayName" : "Clerk Marker",
+          "finalPosition" : [
+            0,
+            1.05,
+            -1.55
+          ],
+          "finalSize" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "objectId" : "clerk_marker",
+          "rawPosition" : [
+            0,
+            0,
+            -2
+          ],
+          "rawSize" : [
+            0.2,
+            1.8,
+            0.2
+          ],
+          "role" : "personMarker"
+        }
+      ],
+      "relations" : [
+        {
+          "kind" : "on",
+          "objectId" : "display_table",
+          "source" : "roleDefaults",
+          "subjectId" : "jacket_one"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "display_table",
+          "source" : "roleDefaults",
+          "subjectId" : "jacket_two"
+        },
+        {
+          "kind" : "behind",
+          "objectId" : "display_table",
+          "source" : "roleDefaults",
+          "subjectId" : "clerk_marker"
+        },
+        {
+          "kind" : "facing",
+          "objectId" : "display_table",
+          "source" : "roleDefaults",
+          "subjectId" : "clerk_marker"
+        }
+      ],
+      "strategy" : "stage_relation_slots_v1"
+    },
+    "plan" : {
+      "id" : "clothing_browse_compare_generated_attempt_1_stage_layout_sam3d_realized",
+      "objects" : [
+        {
+          "assetCard" : {
+            "assetKind" : "surface",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "surface",
+            "orientationHint" : "horizontalSurface",
+            "restingPolicy" : "centerAtPosition",
+            "targetSize" : [
+              1.5,
+              0.1,
+              0.8
+            ]
+          },
+          "color" : "brown",
+          "description" : "Wooden display table holding jackets",
+          "displayName" : "Display Table",
+          "id" : "display_table",
+          "isInteractive" : false,
+          "kind" : {
+            "type" : "counter"
+          },
+          "position" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size" : [
+            1.5,
+            0.1,
+            0.8
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition" : [
+              0,
+              0.62,
+              -0.95
+            ],
+            "realizedSize" : [
+              1.5,
+              0.1,
+              0.8
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "sourceObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "display_table",
+            "targetSize" : [
+              0.2,
+              0.1,
+              0.2
+            ]
+          },
+          "color" : "red",
+          "description" : "Folded red jacket on the display table",
+          "displayName" : "Red Jacket",
+          "id" : "jacket_one",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.36,
+            0.735,
+            -0.72
+          ],
+          "size" : [
+            0.2,
+            0.1,
+            0.2
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition" : [
+              -0.36,
+              0.735,
+              -0.72
+            ],
+            "realizedSize" : [
+              0.2,
+              0.1,
+              0.2
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "sourceObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "display_table",
+            "targetSize" : [
+              0.2,
+              0.1,
+              0.2
+            ]
+          },
+          "color" : "blue",
+          "description" : "Folded blue jacket on the display table",
+          "displayName" : "Blue Jacket",
+          "id" : "jacket_two",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "smallObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.08,
+            0.735,
+            -0.72
+          ],
+          "size" : [
+            0.2,
+            0.1,
+            0.2
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition" : [
+              -0.08,
+              0.735,
+              -0.72
+            ],
+            "realizedSize" : [
+              0.2,
+              0.1,
+              0.2
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "personMarker",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "personMarker",
+            "orientationHint" : "uprightFacingLearner",
+            "restingPolicy" : "bottomOnSupport",
+            "targetSize" : [
+              0.18,
+              0.34,
+              0.18
+            ]
+          },
+          "color" : "gray",
+          "description" : "Marker indicating where the clerk stands",
+          "displayName" : "Clerk Marker",
+          "id" : "clerk_marker",
+          "isInteractive" : true,
+          "kind" : {
+            "type" : "npcMarker"
+          },
+          "position" : [
+            0,
+            1.05,
+            -1.55
+          ],
+          "size" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition" : [
+              0,
+              1.05,
+              -1.55
+            ],
+            "realizedSize" : [
+              0.18,
+              0.34,
+              0.18
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        }
+      ],
+      "scenario" : {
+        "expectedObjectCategories" : [
+          "counter",
+          "smallObject",
+          "smallObject",
+          "npc_marker"
+        ],
+        "id" : "clothing_browse_compare",
+        "learnerRole" : "shopper browsing jackets",
+        "localContext" : "A display table holds two folded jackets in different colors; a clerk marker stands nearby.",
+        "sceneGoal" : "Compare two jackets and tell the clerk which you prefer",
+        "setting" : "Clothing store display table with folded jackets",
+        "targetInteractions" : [
+          "point at the first jacket",
+          "ask the clerk about the color and size",
+          "compare the two jackets side by side",
+          "tell the clerk you like the first one"
+        ]
+      },
+      "tasks" : [
+        {
+          "expectedInteraction" : {
+            "gesture" : "point",
+            "targetId" : "jacket_one",
+            "type" : "gesture"
+          },
+          "id" : "point_at_first_jacket",
+          "instruction" : "Point at the first jacket.",
+          "requiredObjectIds" : [
+            "jacket_one"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "clerk_marker",
+            "type" : "tap"
+          },
+          "id" : "ask_clerk_about_jacket",
+          "instruction" : "Ask the clerk about the color and size of the jacket.",
+          "requiredObjectIds" : [
+            "clerk_marker"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "jacket_one",
+            "type" : "drag"
+          },
+          "id" : "compare_two_jackets",
+          "instruction" : "Compare the two jackets side by side.",
+          "requiredObjectIds" : [
+            "jacket_one",
+            "jacket_two"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "gesture" : "thumbsUp",
+            "targetId" : "clerk_marker",
+            "type" : "gesture"
+          },
+          "id" : "tell_clerk_preference",
+          "instruction" : "Tell the clerk you like the first one.",
+          "requiredObjectIds" : [
+            "clerk_marker"
+          ]
+        }
+      ]
+    },
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "smallObject",
+        "smallObject",
+        "npc_marker"
+      ],
+      "id" : "clothing_browse_compare",
+      "learnerRole" : "shopper browsing jackets",
+      "localContext" : "A display table holds two folded jackets in different colors; a clerk marker stands nearby.",
+      "sceneGoal" : "Compare two jackets and tell the clerk which you prefer",
+      "setting" : "Clothing store display table with folded jackets",
+      "targetInteractions" : [
+        "point at the first jacket",
+        "ask the clerk about the color and size",
+        "compare the two jackets side by side",
+        "tell the clerk you like the first one"
+      ]
+    },
+    "totalGenerationTimeSeconds" : 6.448775053024292
+  },
+  "layoutSummary" : {
+    "objectSummaries" : [
+      {
+        "displayName" : "Display Table",
+        "finalPosition" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize" : [
+          1.5,
+          0.1,
+          0.8
+        ],
+        "objectId" : "display_table",
+        "rawPosition" : [
+          0,
+          0.7,
+          -1
+        ],
+        "rawSize" : [
+          1.5,
+          0.1,
+          0.8
+        ],
+        "role" : "surface"
+      },
+      {
+        "displayName" : "Red Jacket",
+        "finalPosition" : [
+          -0.36,
+          0.735,
+          -0.72
+        ],
+        "finalSize" : [
+          0.2,
+          0.1,
+          0.2
+        ],
+        "objectId" : "jacket_one",
+        "rawPosition" : [
+          -0.3,
+          0.75,
+          -1
+        ],
+        "rawSize" : [
+          0.4,
+          0.1,
+          0.4
+        ],
+        "role" : "sourceObject"
+      },
+      {
+        "displayName" : "Blue Jacket",
+        "finalPosition" : [
+          -0.08,
+          0.735,
+          -0.72
+        ],
+        "finalSize" : [
+          0.2,
+          0.1,
+          0.2
+        ],
+        "objectId" : "jacket_two",
+        "rawPosition" : [
+          0.3,
+          0.75,
+          -1
+        ],
+        "rawSize" : [
+          0.4,
+          0.1,
+          0.4
+        ],
+        "role" : "sourceObject"
+      },
+      {
+        "displayName" : "Clerk Marker",
+        "finalPosition" : [
+          0,
+          1.05,
+          -1.55
+        ],
+        "finalSize" : [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "objectId" : "clerk_marker",
+        "rawPosition" : [
+          0,
+          0,
+          -2
+        ],
+        "rawSize" : [
+          0.2,
+          1.8,
+          0.2
+        ],
+        "role" : "personMarker"
+      }
+    ],
+    "relations" : [
+      {
+        "kind" : "on",
+        "objectId" : "display_table",
+        "source" : "roleDefaults",
+        "subjectId" : "jacket_one"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "display_table",
+        "source" : "roleDefaults",
+        "subjectId" : "jacket_two"
+      },
+      {
+        "kind" : "behind",
+        "objectId" : "display_table",
+        "source" : "roleDefaults",
+        "subjectId" : "clerk_marker"
+      },
+      {
+        "kind" : "facing",
+        "objectId" : "display_table",
+        "source" : "roleDefaults",
+        "subjectId" : "clerk_marker"
+      }
+    ],
+    "strategy" : "stage_relation_slots_v1"
+  },
+  "loadedPlan" : {
+    "id" : "clothing_browse_compare_generated_attempt_1_stage_layout_sam3d_realized",
+    "objects" : [
+      {
+        "assetCard" : {
+          "assetKind" : "surface",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "surface",
+          "orientationHint" : "horizontalSurface",
+          "restingPolicy" : "centerAtPosition",
+          "targetSize" : [
+            1.5,
+            0.1,
+            0.8
+          ]
+        },
+        "color" : "brown",
+        "description" : "Wooden display table holding jackets",
+        "displayName" : "Display Table",
+        "id" : "display_table",
+        "isInteractive" : false,
+        "kind" : {
+          "type" : "counter"
+        },
+        "position" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size" : [
+          1.5,
+          0.1,
+          0.8
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "realizedSize" : [
+            1.5,
+            0.1,
+            0.8
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "sourceObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "display_table",
+          "targetSize" : [
+            0.2,
+            0.1,
+            0.2
+          ]
+        },
+        "color" : "red",
+        "description" : "Folded red jacket on the display table",
+        "displayName" : "Red Jacket",
+        "id" : "jacket_one",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.36,
+          0.735,
+          -0.72
+        ],
+        "size" : [
+          0.2,
+          0.1,
+          0.2
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition" : [
+            -0.36,
+            0.735,
+            -0.72
+          ],
+          "realizedSize" : [
+            0.2,
+            0.1,
+            0.2
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "sourceObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "display_table",
+          "targetSize" : [
+            0.2,
+            0.1,
+            0.2
+          ]
+        },
+        "color" : "blue",
+        "description" : "Folded blue jacket on the display table",
+        "displayName" : "Blue Jacket",
+        "id" : "jacket_two",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "smallObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.08,
+          0.735,
+          -0.72
+        ],
+        "size" : [
+          0.2,
+          0.1,
+          0.2
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition" : [
+            -0.08,
+            0.735,
+            -0.72
+          ],
+          "realizedSize" : [
+            0.2,
+            0.1,
+            0.2
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "personMarker",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "personMarker",
+          "orientationHint" : "uprightFacingLearner",
+          "restingPolicy" : "bottomOnSupport",
+          "targetSize" : [
+            0.18,
+            0.34,
+            0.18
+          ]
+        },
+        "color" : "gray",
+        "description" : "Marker indicating where the clerk stands",
+        "displayName" : "Clerk Marker",
+        "id" : "clerk_marker",
+        "isInteractive" : true,
+        "kind" : {
+          "type" : "npcMarker"
+        },
+        "position" : [
+          0,
+          1.05,
+          -1.55
+        ],
+        "size" : [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition" : [
+            0,
+            1.05,
+            -1.55
+          ],
+          "realizedSize" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      }
+    ],
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "smallObject",
+        "smallObject",
+        "npc_marker"
+      ],
+      "id" : "clothing_browse_compare",
+      "learnerRole" : "shopper browsing jackets",
+      "localContext" : "A display table holds two folded jackets in different colors; a clerk marker stands nearby.",
+      "sceneGoal" : "Compare two jackets and tell the clerk which you prefer",
+      "setting" : "Clothing store display table with folded jackets",
+      "targetInteractions" : [
+        "point at the first jacket",
+        "ask the clerk about the color and size",
+        "compare the two jackets side by side",
+        "tell the clerk you like the first one"
+      ]
+    },
+    "tasks" : [
+      {
+        "expectedInteraction" : {
+          "gesture" : "point",
+          "targetId" : "jacket_one",
+          "type" : "gesture"
+        },
+        "id" : "point_at_first_jacket",
+        "instruction" : "Point at the first jacket.",
+        "requiredObjectIds" : [
+          "jacket_one"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "clerk_marker",
+          "type" : "tap"
+        },
+        "id" : "ask_clerk_about_jacket",
+        "instruction" : "Ask the clerk about the color and size of the jacket.",
+        "requiredObjectIds" : [
+          "clerk_marker"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "jacket_one",
+          "type" : "drag"
+        },
+        "id" : "compare_two_jackets",
+        "instruction" : "Compare the two jackets side by side.",
+        "requiredObjectIds" : [
+          "jacket_one",
+          "jacket_two"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "gesture" : "thumbsUp",
+          "targetId" : "clerk_marker",
+          "type" : "gesture"
+        },
+        "id" : "tell_clerk_preference",
+        "instruction" : "Tell the clerk you like the first one.",
+        "requiredObjectIds" : [
+          "clerk_marker"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation" : {
+    "answeredCount" : 20,
+    "generatedObjectRatings" : [
+      {
+        "objectId" : "clerk_marker",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "display_table",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "jacket_one",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "jacket_two",
+        "rating" : "expected"
+      }
+    ],
+    "generatedTaskRatings" : [
+      {
+        "rating" : "faithful",
+        "taskId" : "ask_clerk_about_jacket"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "compare_two_jackets"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "point_at_first_jacket"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "tell_clerk_preference"
+      }
+    ],
+    "scenarioFidelityRating" : "partiallyFaithful",
+    "scenarioLayoutRating" : "plausible",
+    "taskMetricRatings" : [
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "ask_clerk_about_jacket"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "ask_clerk_about_jacket"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "ask_clerk_about_jacket"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "ask_clerk_about_jacket"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "ask_clerk_about_jacket"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "compare_two_jackets"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "compare_two_jackets"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "partial",
+        "taskId" : "compare_two_jackets"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "compare_two_jackets"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "compare_two_jackets"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "point_at_first_jacket"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "point_at_first_jacket"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "partial",
+        "taskId" : "point_at_first_jacket"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "point_at_first_jacket"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "point_at_first_jacket"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "tell_clerk_preference"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "tell_clerk_preference"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "partial",
+        "taskId" : "tell_clerk_preference"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "yes",
+        "taskId" : "tell_clerk_preference"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "tell_clerk_preference"
+      }
+    ],
+    "totalCount" : 20,
+    "yesCount" : 17
+  },
+  "runtimeEvaluation" : {
+    "completedTasks" : 0,
+    "firstFailedTaskId" : "point_at_first_jacket",
+    "handlerCoveragePassed" : 4,
+    "handlerCoverageTotal" : 4,
+    "objectCoveragePassed" : 4,
+    "objectCoverageTotal" : 4,
+    "totalTasks" : 4
+  },
+  "scenario" : {
+    "expectedObjectCategories" : [
+      "counter",
+      "smallObject",
+      "smallObject",
+      "npc_marker"
+    ],
+    "id" : "clothing_browse_compare",
+    "learnerRole" : "shopper browsing jackets",
+    "localContext" : "A display table holds two folded jackets in different colors; a clerk marker stands nearby.",
+    "sceneGoal" : "Compare two jackets and tell the clerk which you prefer",
+    "setting" : "Clothing store display table with folded jackets",
+    "targetInteractions" : [
+      "point at the first jacket",
+      "ask the clerk about the color and size",
+      "compare the two jackets side by side",
+      "tell the clerk you like the first one"
+    ]
+  }
+}

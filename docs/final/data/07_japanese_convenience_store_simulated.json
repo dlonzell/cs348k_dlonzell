@@ -1,0 +1,1627 @@
+{
+  "eventLog": [],
+  "exportedAt": 802210215.45,
+  "generationEvaluation": {
+    "attemptCount": 1,
+    "scenarioId": "japanese_convenience_store",
+    "step1ObjectGeneration": {
+      "succeeded": true
+    },
+    "step3TaskGeneration": {
+      "succeeded": true
+    },
+    "step4Validation": {
+      "succeeded": true
+    },
+    "step6Runtime": {
+      "completedTasks": 3,
+      "totalTasks": 5,
+      "manualNotes": "SIMULATED for graph projection from screenshot: cashier marker, store counter, shopping basket, chips/snack bag, and payment object visible; mixed object realization with proxy counter."
+    },
+    "succeeded": true,
+    "totalTimeSeconds": 11.045662999153137
+  },
+  "generationResult": {
+    "attempts": [
+      {
+        "attemptNumber": 1,
+        "durationSeconds": 11.045655012130737,
+        "outcome": {
+          "success": {}
+        },
+        "rawObjectsJSON": "{\n  \"objects\": [\n    {\n      \"id\": \"convenience_store_counter\",\n      \"displayName\": \"Convenience Store Counter\",\n      \"description\": \"Compact counter with snacks and a payment terminal\",\n      \"kind\": { \"type\": \"counter\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.7, -1.0],\n      \"size\": [1.0, 0.1, 0.5],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"bag_of_chips\",\n      \"displayName\": \"Bag of Chips\",\n      \"description\": \"A small bag of potato chips\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [-0.2, 0.8, -0.8],\n      \"size\": [0.1, 0.15, 0.05],\n      \"color\": \"yellow\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"shopping_basket\",\n      \"displayName\": \"Shopping Basket\",\n      \"description\": \"A plastic shopping basket for carrying items\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"container\" },\n      \"position\": [0.2, 0.7, -0.8],\n      \"size\": [0.4, 0.2, 0.3],\n      \"color\": \"red\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"wallet\",\n      \"displayName\": \"Wallet\",\n      \"description\": \"A leather wallet for holding money and cards\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"smallObject\" },\n      \"position\": [-0.1, 0.75, -0.9],\n      \"size\": [0.15, 0.05, 0.1],\n      \"color\": \"brown\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"payment_terminal\",\n      \"displayName\": \"Payment Terminal\",\n      \"description\": \"Electronic card reader for processing payments\",\n      \"kind\": { \"type\": \"cardReader\", \"category\": \"uprightObject\" },\n      \"position\": [0.0, 0.8, -0.95],\n      \"size\": [0.1, 0.2, 0.1],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"cashier_marker\",\n      \"displayName\": \"Cashier Marker\",\n      \"description\": \"Marker indicating the cashier's position\",\n      \"kind\": { \"type\": \"npcMarker\", \"category\": \"marker\" },\n      \"position\": [0.0, 0.0, -1.5],\n      \"size\": [0.2, 0.2, 0.2],\n      \"color\": \"blue\",\n      \"isInteractive\": false\n    }\n  ]\n}",
+        "rawTasksJSON": "{\n  \"tasks\": [\n    {\n      \"id\": \"pick_up_snack\",\n      \"instruction\": \"Pick up the bag of chips.\",\n      \"requiredObjectIds\": [\"bag_of_chips\"],\n      \"expectedInteraction\": { \"type\": \"drag\", \"objectId\": \"bag_of_chips\" }\n    },\n    {\n      \"id\": \"place_snack_in_basket\",\n      \"instruction\": \"Place the bag of chips in the shopping basket.\",\n      \"requiredObjectIds\": [\"bag_of_chips\", \"shopping_basket\"],\n      \"expectedInteraction\": { \"type\": \"place\", \"objectId\": \"bag_of_chips\", \"targetId\": \"shopping_basket\" }\n    },\n    {\n      \"id\": \"indicate_payment_terminal\",\n      \"instruction\": \"Indicate the payment terminal.\",\n      \"requiredObjectIds\": [\"payment_terminal\"],\n      \"expectedInteraction\": { \"type\": \"indicate\", \"objectId\": \"payment_terminal\" }\n    },\n    {\n      \"id\": \"tap_payment_terminal\",\n      \"instruction\": \"Tap the payment terminal to pay.\",\n      \"requiredObjectIds\": [\"payment_terminal\"],\n      \"expectedInteraction\": { \"type\": \"tap\", \"objectId\": \"payment_terminal\" }\n    },\n    {\n      \"id\": \"wave_goodbye_to_cashier\",\n      \"instruction\": \"Wave goodbye to the cashier.\",\n      \"requiredObjectIds\": [\"cashier_marker\"],\n      \"expectedInteraction\": { \"type\": \"gesture\", \"gesture\": \"wave\", \"targetId\": \"cashier_marker\" }\n    }\n  ]\n}",
+        "stage": "fullPipeline"
+      }
+    ],
+    "layoutSummary": {
+      "objectSummaries": [
+        {
+          "displayName": "Convenience Store Counter",
+          "finalPosition": [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize": [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "objectId": "convenience_store_counter",
+          "rawPosition": [
+            0,
+            0.7,
+            -1
+          ],
+          "rawSize": [
+            1,
+            0.1,
+            0.5
+          ],
+          "role": "surface"
+        },
+        {
+          "displayName": "Bag of Chips",
+          "finalPosition": [
+            -0.36,
+            0.76,
+            -0.765
+          ],
+          "finalSize": [
+            0.1,
+            0.15,
+            0.08
+          ],
+          "objectId": "bag_of_chips",
+          "rawPosition": [
+            -0.2,
+            0.8,
+            -0.8
+          ],
+          "rawSize": [
+            0.1,
+            0.15,
+            0.05
+          ],
+          "role": "sourceObject"
+        },
+        {
+          "displayName": "Shopping Basket",
+          "finalPosition": [
+            -0.060000002,
+            0.785,
+            -0.875
+          ],
+          "finalSize": [
+            0.34,
+            0.2,
+            0.3
+          ],
+          "objectId": "shopping_basket",
+          "rawPosition": [
+            0.2,
+            0.7,
+            -0.8
+          ],
+          "rawSize": [
+            0.4,
+            0.2,
+            0.3
+          ],
+          "role": "targetContainer"
+        },
+        {
+          "displayName": "Wallet",
+          "finalPosition": [
+            0.415,
+            0.71,
+            -1.08
+          ],
+          "finalSize": [
+            0.15,
+            0.05,
+            0.1
+          ],
+          "objectId": "wallet",
+          "rawPosition": [
+            -0.1,
+            0.75,
+            -0.9
+          ],
+          "rawSize": [
+            0.15,
+            0.05,
+            0.1
+          ],
+          "role": "payment"
+        },
+        {
+          "displayName": "Payment Terminal",
+          "finalPosition": [
+            0.3,
+            0.745,
+            -1.125
+          ],
+          "finalSize": [
+            0.14,
+            0.12,
+            0.1
+          ],
+          "objectId": "payment_terminal",
+          "rawPosition": [
+            0,
+            0.8,
+            -0.95
+          ],
+          "rawSize": [
+            0.1,
+            0.2,
+            0.1
+          ],
+          "role": "payment"
+        },
+        {
+          "displayName": "Cashier Marker",
+          "finalPosition": [
+            0,
+            1.05,
+            -1.42
+          ],
+          "finalSize": [
+            0.18,
+            0.2,
+            0.18
+          ],
+          "objectId": "cashier_marker",
+          "rawPosition": [
+            0,
+            0,
+            -1.5
+          ],
+          "rawSize": [
+            0.2,
+            0.2,
+            0.2
+          ],
+          "role": "personMarker"
+        }
+      ],
+      "relations": [
+        {
+          "kind": "on",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "bag_of_chips"
+        },
+        {
+          "kind": "on",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "shopping_basket"
+        },
+        {
+          "kind": "on",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "wallet"
+        },
+        {
+          "kind": "rightOf",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "wallet"
+        },
+        {
+          "kind": "on",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "payment_terminal"
+        },
+        {
+          "kind": "rightOf",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "payment_terminal"
+        },
+        {
+          "kind": "behind",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "cashier_marker"
+        },
+        {
+          "kind": "facing",
+          "objectId": "convenience_store_counter",
+          "source": "roleDefaults",
+          "subjectId": "cashier_marker"
+        },
+        {
+          "kind": "rightOf",
+          "objectId": "bag_of_chips",
+          "source": "task:place_snack_in_basket",
+          "subjectId": "shopping_basket"
+        },
+        {
+          "kind": "near",
+          "objectId": "bag_of_chips",
+          "source": "task:place_snack_in_basket",
+          "subjectId": "shopping_basket"
+        },
+        {
+          "kind": "behind",
+          "objectId": "convenience_store_counter",
+          "source": "task:tap_payment_terminal",
+          "subjectId": "payment_terminal"
+        }
+      ],
+      "strategy": "stage_relation_slots_v1"
+    },
+    "plan": {
+      "id": "japanese_convenience_store_generated_attempt_1_stage_layout_sam3d_realized",
+      "objects": [
+        {
+          "assetCard": {
+            "assetKind": "surface",
+            "frontHint": "unconstrained",
+            "layoutRole": "surface",
+            "orientationHint": "horizontalSurface",
+            "restingPolicy": "centerAtPosition",
+            "targetSize": [
+              1.05,
+              0.1,
+              0.52
+            ]
+          },
+          "color": "brown",
+          "description": "Compact counter with snacks and a payment terminal",
+          "displayName": "Convenience Store Counter",
+          "id": "convenience_store_counter",
+          "isInteractive": false,
+          "kind": {
+            "type": "counter"
+          },
+          "position": [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size": [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "visualAsset": {
+            "format": "primitiveProxy",
+            "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[bag_of_chips, shopping_basket, payment_terminal, cashier_marker, wallet], maxObjects=0.",
+            "realizedPosition": [
+              0,
+              0.62,
+              -0.95
+            ],
+            "realizedSize": [
+              1.05,
+              0.1,
+              0.52
+            ],
+            "source": "sam3D",
+            "status": "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "smallObject",
+            "frontHint": "unconstrained",
+            "layoutRole": "sourceObject",
+            "orientationHint": "compact",
+            "restingPolicy": "bottomOnSupport",
+            "supportSurfaceId": "convenience_store_counter",
+            "targetSize": [
+              0.1,
+              0.15,
+              0.08
+            ]
+          },
+          "color": "yellow",
+          "description": "A small bag of potato chips",
+          "displayName": "Bag of Chips",
+          "id": "bag_of_chips",
+          "isInteractive": true,
+          "kind": {
+            "category": "smallObject",
+            "type": "generic"
+          },
+          "position": [
+            -0.36,
+            0.76,
+            -0.765
+          ],
+          "size": [
+            0.1,
+            0.15,
+            0.08
+          ],
+          "visualAsset": {
+            "canonicalPose": {
+              "bottomAxis": "-Y",
+              "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/bag_of_chips/bag_of_chips_pose_candidates.png",
+              "confidence": 0.9,
+              "reason": "The bag naturally rests flat on its bottom with the Y axis as up, matching how a chip bag would sit on a counter; no clear front axis.",
+              "restingPose": "standing upright",
+              "selectedCandidate": "C",
+              "upAxis": "+Y"
+            },
+            "format": "usd",
+            "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/bag_of_chips_8916285834514989815.usda",
+            "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+            "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/bag_of_chips_preview_8354241292429319394.png",
+            "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/bag_of_chips/bag_of_chips_reference.png",
+            "realizedPosition": [
+              -0.36,
+              0.76,
+              -0.765
+            ],
+            "realizedSize": [
+              0.1,
+              0.15,
+              0.08
+            ],
+            "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/bag_of_chips/bag_of_chips.usda",
+            "source": "sam3D",
+            "status": "realized"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "container",
+            "frontHint": "unconstrained",
+            "layoutRole": "targetContainer",
+            "orientationHint": "openTopUpright",
+            "restingPolicy": "bottomOnSupport",
+            "supportSurfaceId": "convenience_store_counter",
+            "targetSize": [
+              0.34,
+              0.2,
+              0.3
+            ]
+          },
+          "color": "red",
+          "description": "A plastic shopping basket for carrying items",
+          "displayName": "Shopping Basket",
+          "id": "shopping_basket",
+          "isInteractive": true,
+          "kind": {
+            "category": "container",
+            "type": "generic"
+          },
+          "position": [
+            -0.060000002,
+            0.785,
+            -0.875
+          ],
+          "size": [
+            0.34,
+            0.2,
+            0.3
+          ],
+          "visualAsset": {
+            "canonicalPose": {
+              "bottomAxis": "-Z",
+              "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/shopping_basket/shopping_basket_pose_candidates.png",
+              "confidence": 1,
+              "reason": "The basket naturally rests on its bottom with the open top facing upward, as shown in candidate E. Handles are upright, matching expected human interaction orientation.",
+              "restingPose": "upright",
+              "selectedCandidate": "E",
+              "upAxis": "+Z"
+            },
+            "format": "usd",
+            "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/shopping_basket_8980082447452822364.usda",
+            "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+            "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/shopping_basket_preview_3374759598800652957.png",
+            "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/shopping_basket/shopping_basket_reference.png",
+            "realizedPosition": [
+              -0.060000002,
+              0.785,
+              -0.875
+            ],
+            "realizedSize": [
+              0.34,
+              0.2,
+              0.3
+            ],
+            "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/shopping_basket/shopping_basket.usda",
+            "source": "sam3D",
+            "status": "realized"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "paymentDevice",
+            "frontHint": "facesLearner",
+            "layoutRole": "payment",
+            "orientationHint": "tabletopFlat",
+            "restingPolicy": "bottomOnSupport",
+            "supportSurfaceId": "convenience_store_counter",
+            "targetSize": [
+              0.16,
+              0.05,
+              0.12
+            ]
+          },
+          "color": "brown",
+          "description": "A leather wallet for holding money and cards",
+          "displayName": "Wallet",
+          "id": "wallet",
+          "isInteractive": true,
+          "kind": {
+            "category": "smallObject",
+            "type": "generic"
+          },
+          "position": [
+            0.415,
+            0.71,
+            -1.08
+          ],
+          "size": [
+            0.15,
+            0.05,
+            0.1
+          ],
+          "visualAsset": {
+            "canonicalPose": {
+              "bottomAxis": "-Y",
+              "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/wallet/wallet_pose_candidates.png",
+              "confidence": 0.9,
+              "frontAxis": "+X",
+              "reason": "Local +Y up aligns the wallet laying flat on a surface, matching typical usage on a tabletop; front is +X towards the wallet opening for natural interaction.",
+              "restingPose": "wallet lying flat, natural opening to the side",
+              "selectedCandidate": "C",
+              "upAxis": "+Y"
+            },
+            "format": "usd",
+            "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/wallet_6493973137891206797.usda",
+            "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+            "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/wallet_preview_4701937990745306014.png",
+            "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/wallet/wallet_reference.png",
+            "realizedPosition": [
+              0.415,
+              0.71,
+              -1.08
+            ],
+            "realizedSize": [
+              0.15,
+              0.05,
+              0.1
+            ],
+            "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/wallet/wallet.usda",
+            "source": "sam3D",
+            "status": "realized"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "paymentDevice",
+            "frontHint": "facesLearner",
+            "layoutRole": "payment",
+            "orientationHint": "tabletopFlat",
+            "restingPolicy": "bottomOnSupport",
+            "supportSurfaceId": "convenience_store_counter",
+            "targetSize": [
+              0.16,
+              0.08,
+              0.12
+            ]
+          },
+          "color": "gray",
+          "description": "Electronic card reader for processing payments",
+          "displayName": "Payment Terminal",
+          "id": "payment_terminal",
+          "isInteractive": true,
+          "kind": {
+            "type": "cardReader"
+          },
+          "position": [
+            0.3,
+            0.745,
+            -1.125
+          ],
+          "size": [
+            0.14,
+            0.12,
+            0.1
+          ],
+          "visualAsset": {
+            "canonicalPose": {
+              "bottomAxis": "-Y",
+              "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/payment_terminal/payment_terminal_pose_candidates.png",
+              "confidence": 0.9,
+              "frontAxis": "+Z",
+              "reason": "The terminal rests naturally on its bottom face with +Y up, matching a typical tabletop orientation. The front with display and keypad faces +Z, as expected for user interaction.",
+              "restingPose": "upright on base",
+              "selectedCandidate": "C",
+              "upAxis": "+Y"
+            },
+            "format": "usd",
+            "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/payment_terminal_36070417884732071.usda",
+            "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+            "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/payment_terminal_preview_8459282667568249726.png",
+            "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/payment_terminal/payment_terminal_reference.png",
+            "realizedPosition": [
+              0.3,
+              0.745,
+              -1.125
+            ],
+            "realizedSize": [
+              0.14,
+              0.12,
+              0.1
+            ],
+            "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/payment_terminal/payment_terminal.usda",
+            "source": "sam3D",
+            "status": "realized"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "personMarker",
+            "frontHint": "facesLearner",
+            "layoutRole": "personMarker",
+            "orientationHint": "uprightFacingLearner",
+            "restingPolicy": "bottomOnSupport",
+            "targetSize": [
+              0.18,
+              0.22,
+              0.18
+            ]
+          },
+          "color": "blue",
+          "description": "Marker indicating the cashier's position",
+          "displayName": "Cashier Marker",
+          "id": "cashier_marker",
+          "isInteractive": false,
+          "kind": {
+            "type": "npcMarker"
+          },
+          "position": [
+            0,
+            1.05,
+            -1.42
+          ],
+          "size": [
+            0.18,
+            0.2,
+            0.18
+          ],
+          "visualAsset": {
+            "canonicalPose": {
+              "bottomAxis": "-Z",
+              "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/cashier_marker/cashier_marker_pose_candidates.png",
+              "confidence": 1,
+              "frontAxis": "+Y",
+              "reason": "Candidate E shows the figure standing upright on its base, which is the natural resting pose for a person marker. The front clearly faces forward (+Y) as indicated by the frontHint and orientationHint.",
+              "restingPose": "standing upright on base",
+              "selectedCandidate": "E",
+              "upAxis": "+Z"
+            },
+            "format": "usd",
+            "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/cashier_marker_8694321226630787840.usda",
+            "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+            "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/cashier_marker_preview_7813229547411301101.png",
+            "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/cashier_marker/cashier_marker_reference.png",
+            "realizedPosition": [
+              0,
+              1.05,
+              -1.42
+            ],
+            "realizedSize": [
+              0.18,
+              0.2,
+              0.18
+            ],
+            "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/cashier_marker/cashier_marker.usda",
+            "source": "sam3D",
+            "status": "realized"
+          }
+        }
+      ],
+      "scenario": {
+        "expectedObjectCategories": [
+          "counter",
+          "snack",
+          "basket",
+          "wallet",
+          "card_reader",
+          "npc_marker"
+        ],
+        "id": "japanese_convenience_store",
+        "learnerRole": "customer",
+        "localContext": "The learner is standing near a compact counter with snacks, a shopping basket, a wallet, a payment terminal, and a cashier marker in reach.",
+        "sceneGoal": "Buy a snack and pay at the register",
+        "setting": "Japanese convenience store",
+        "targetInteractions": [
+          "pick up a snack",
+          "place the snack in the shopping basket",
+          "indicate the payment terminal",
+          "tap the payment terminal",
+          "wave goodbye to the cashier"
+        ]
+      },
+      "tasks": [
+        {
+          "expectedInteraction": {
+            "objectId": "bag_of_chips",
+            "type": "drag"
+          },
+          "id": "pick_up_snack",
+          "instruction": "Pick up the bag of chips.",
+          "requiredObjectIds": [
+            "bag_of_chips"
+          ]
+        },
+        {
+          "expectedInteraction": {
+            "objectId": "bag_of_chips",
+            "targetId": "shopping_basket",
+            "type": "place"
+          },
+          "id": "place_snack_in_basket",
+          "instruction": "Place the bag of chips in the shopping basket.",
+          "requiredObjectIds": [
+            "bag_of_chips",
+            "shopping_basket"
+          ]
+        },
+        {
+          "expectedInteraction": {
+            "objectId": "payment_terminal",
+            "type": "indicate"
+          },
+          "id": "indicate_payment_terminal",
+          "instruction": "Indicate the payment terminal.",
+          "requiredObjectIds": [
+            "payment_terminal"
+          ]
+        },
+        {
+          "expectedInteraction": {
+            "objectId": "payment_terminal",
+            "type": "tap"
+          },
+          "id": "tap_payment_terminal",
+          "instruction": "Tap the payment terminal to pay.",
+          "requiredObjectIds": [
+            "payment_terminal"
+          ]
+        },
+        {
+          "expectedInteraction": {
+            "gesture": "wave",
+            "targetId": "cashier_marker",
+            "type": "gesture"
+          },
+          "id": "wave_goodbye_to_cashier",
+          "instruction": "Wave goodbye to the cashier.",
+          "requiredObjectIds": [
+            "cashier_marker"
+          ]
+        }
+      ]
+    },
+    "scenario": {
+      "expectedObjectCategories": [
+        "counter",
+        "snack",
+        "basket",
+        "wallet",
+        "card_reader",
+        "npc_marker"
+      ],
+      "id": "japanese_convenience_store",
+      "learnerRole": "customer",
+      "localContext": "The learner is standing near a compact counter with snacks, a shopping basket, a wallet, a payment terminal, and a cashier marker in reach.",
+      "sceneGoal": "Buy a snack and pay at the register",
+      "setting": "Japanese convenience store",
+      "targetInteractions": [
+        "pick up a snack",
+        "place the snack in the shopping basket",
+        "indicate the payment terminal",
+        "tap the payment terminal",
+        "wave goodbye to the cashier"
+      ]
+    },
+    "totalGenerationTimeSeconds": 11.045662999153137
+  },
+  "layoutSummary": {
+    "objectSummaries": [
+      {
+        "displayName": "Convenience Store Counter",
+        "finalPosition": [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize": [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "objectId": "convenience_store_counter",
+        "rawPosition": [
+          0,
+          0.7,
+          -1
+        ],
+        "rawSize": [
+          1,
+          0.1,
+          0.5
+        ],
+        "role": "surface"
+      },
+      {
+        "displayName": "Bag of Chips",
+        "finalPosition": [
+          -0.36,
+          0.76,
+          -0.765
+        ],
+        "finalSize": [
+          0.1,
+          0.15,
+          0.08
+        ],
+        "objectId": "bag_of_chips",
+        "rawPosition": [
+          -0.2,
+          0.8,
+          -0.8
+        ],
+        "rawSize": [
+          0.1,
+          0.15,
+          0.05
+        ],
+        "role": "sourceObject"
+      },
+      {
+        "displayName": "Shopping Basket",
+        "finalPosition": [
+          -0.060000002,
+          0.785,
+          -0.875
+        ],
+        "finalSize": [
+          0.34,
+          0.2,
+          0.3
+        ],
+        "objectId": "shopping_basket",
+        "rawPosition": [
+          0.2,
+          0.7,
+          -0.8
+        ],
+        "rawSize": [
+          0.4,
+          0.2,
+          0.3
+        ],
+        "role": "targetContainer"
+      },
+      {
+        "displayName": "Wallet",
+        "finalPosition": [
+          0.415,
+          0.71,
+          -1.08
+        ],
+        "finalSize": [
+          0.15,
+          0.05,
+          0.1
+        ],
+        "objectId": "wallet",
+        "rawPosition": [
+          -0.1,
+          0.75,
+          -0.9
+        ],
+        "rawSize": [
+          0.15,
+          0.05,
+          0.1
+        ],
+        "role": "payment"
+      },
+      {
+        "displayName": "Payment Terminal",
+        "finalPosition": [
+          0.3,
+          0.745,
+          -1.125
+        ],
+        "finalSize": [
+          0.14,
+          0.12,
+          0.1
+        ],
+        "objectId": "payment_terminal",
+        "rawPosition": [
+          0,
+          0.8,
+          -0.95
+        ],
+        "rawSize": [
+          0.1,
+          0.2,
+          0.1
+        ],
+        "role": "payment"
+      },
+      {
+        "displayName": "Cashier Marker",
+        "finalPosition": [
+          0,
+          1.05,
+          -1.42
+        ],
+        "finalSize": [
+          0.18,
+          0.2,
+          0.18
+        ],
+        "objectId": "cashier_marker",
+        "rawPosition": [
+          0,
+          0,
+          -1.5
+        ],
+        "rawSize": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "role": "personMarker"
+      }
+    ],
+    "relations": [
+      {
+        "kind": "on",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "bag_of_chips"
+      },
+      {
+        "kind": "on",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "shopping_basket"
+      },
+      {
+        "kind": "on",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "wallet"
+      },
+      {
+        "kind": "rightOf",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "wallet"
+      },
+      {
+        "kind": "on",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "payment_terminal"
+      },
+      {
+        "kind": "rightOf",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "payment_terminal"
+      },
+      {
+        "kind": "behind",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "cashier_marker"
+      },
+      {
+        "kind": "facing",
+        "objectId": "convenience_store_counter",
+        "source": "roleDefaults",
+        "subjectId": "cashier_marker"
+      },
+      {
+        "kind": "rightOf",
+        "objectId": "bag_of_chips",
+        "source": "task:place_snack_in_basket",
+        "subjectId": "shopping_basket"
+      },
+      {
+        "kind": "near",
+        "objectId": "bag_of_chips",
+        "source": "task:place_snack_in_basket",
+        "subjectId": "shopping_basket"
+      },
+      {
+        "kind": "behind",
+        "objectId": "convenience_store_counter",
+        "source": "task:tap_payment_terminal",
+        "subjectId": "payment_terminal"
+      }
+    ],
+    "strategy": "stage_relation_slots_v1"
+  },
+  "loadedPlan": {
+    "id": "japanese_convenience_store_generated_attempt_1_stage_layout_sam3d_realized",
+    "objects": [
+      {
+        "assetCard": {
+          "assetKind": "surface",
+          "frontHint": "unconstrained",
+          "layoutRole": "surface",
+          "orientationHint": "horizontalSurface",
+          "restingPolicy": "centerAtPosition",
+          "targetSize": [
+            1.05,
+            0.1,
+            0.52
+          ]
+        },
+        "color": "brown",
+        "description": "Compact counter with snacks and a payment terminal",
+        "displayName": "Convenience Store Counter",
+        "id": "convenience_store_counter",
+        "isInteractive": false,
+        "kind": {
+          "type": "counter"
+        },
+        "position": [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size": [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "visualAsset": {
+          "format": "primitiveProxy",
+          "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[bag_of_chips, shopping_basket, payment_terminal, cashier_marker, wallet], maxObjects=0.",
+          "realizedPosition": [
+            0,
+            0.62,
+            -0.95
+          ],
+          "realizedSize": [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "source": "sam3D",
+          "status": "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "smallObject",
+          "frontHint": "unconstrained",
+          "layoutRole": "sourceObject",
+          "orientationHint": "compact",
+          "restingPolicy": "bottomOnSupport",
+          "supportSurfaceId": "convenience_store_counter",
+          "targetSize": [
+            0.1,
+            0.15,
+            0.08
+          ]
+        },
+        "color": "yellow",
+        "description": "A small bag of potato chips",
+        "displayName": "Bag of Chips",
+        "id": "bag_of_chips",
+        "isInteractive": true,
+        "kind": {
+          "category": "smallObject",
+          "type": "generic"
+        },
+        "position": [
+          -0.36,
+          0.76,
+          -0.765
+        ],
+        "size": [
+          0.1,
+          0.15,
+          0.08
+        ],
+        "visualAsset": {
+          "canonicalPose": {
+            "bottomAxis": "-Y",
+            "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/bag_of_chips/bag_of_chips_pose_candidates.png",
+            "confidence": 0.9,
+            "reason": "The bag naturally rests flat on its bottom with the Y axis as up, matching how a chip bag would sit on a counter; no clear front axis.",
+            "restingPose": "standing upright",
+            "selectedCandidate": "C",
+            "upAxis": "+Y"
+          },
+          "format": "usd",
+          "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/bag_of_chips_8916285834514989815.usda",
+          "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+          "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/bag_of_chips_preview_8354241292429319394.png",
+          "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/bag_of_chips/bag_of_chips_reference.png",
+          "realizedPosition": [
+            -0.36,
+            0.76,
+            -0.765
+          ],
+          "realizedSize": [
+            0.1,
+            0.15,
+            0.08
+          ],
+          "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/bag_of_chips/bag_of_chips.usda",
+          "source": "sam3D",
+          "status": "realized"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "container",
+          "frontHint": "unconstrained",
+          "layoutRole": "targetContainer",
+          "orientationHint": "openTopUpright",
+          "restingPolicy": "bottomOnSupport",
+          "supportSurfaceId": "convenience_store_counter",
+          "targetSize": [
+            0.34,
+            0.2,
+            0.3
+          ]
+        },
+        "color": "red",
+        "description": "A plastic shopping basket for carrying items",
+        "displayName": "Shopping Basket",
+        "id": "shopping_basket",
+        "isInteractive": true,
+        "kind": {
+          "category": "container",
+          "type": "generic"
+        },
+        "position": [
+          -0.060000002,
+          0.785,
+          -0.875
+        ],
+        "size": [
+          0.34,
+          0.2,
+          0.3
+        ],
+        "visualAsset": {
+          "canonicalPose": {
+            "bottomAxis": "-Z",
+            "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/shopping_basket/shopping_basket_pose_candidates.png",
+            "confidence": 1,
+            "reason": "The basket naturally rests on its bottom with the open top facing upward, as shown in candidate E. Handles are upright, matching expected human interaction orientation.",
+            "restingPose": "upright",
+            "selectedCandidate": "E",
+            "upAxis": "+Z"
+          },
+          "format": "usd",
+          "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/shopping_basket_8980082447452822364.usda",
+          "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+          "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/shopping_basket_preview_3374759598800652957.png",
+          "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/shopping_basket/shopping_basket_reference.png",
+          "realizedPosition": [
+            -0.060000002,
+            0.785,
+            -0.875
+          ],
+          "realizedSize": [
+            0.34,
+            0.2,
+            0.3
+          ],
+          "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/shopping_basket/shopping_basket.usda",
+          "source": "sam3D",
+          "status": "realized"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "paymentDevice",
+          "frontHint": "facesLearner",
+          "layoutRole": "payment",
+          "orientationHint": "tabletopFlat",
+          "restingPolicy": "bottomOnSupport",
+          "supportSurfaceId": "convenience_store_counter",
+          "targetSize": [
+            0.16,
+            0.05,
+            0.12
+          ]
+        },
+        "color": "brown",
+        "description": "A leather wallet for holding money and cards",
+        "displayName": "Wallet",
+        "id": "wallet",
+        "isInteractive": true,
+        "kind": {
+          "category": "smallObject",
+          "type": "generic"
+        },
+        "position": [
+          0.415,
+          0.71,
+          -1.08
+        ],
+        "size": [
+          0.15,
+          0.05,
+          0.1
+        ],
+        "visualAsset": {
+          "canonicalPose": {
+            "bottomAxis": "-Y",
+            "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/wallet/wallet_pose_candidates.png",
+            "confidence": 0.9,
+            "frontAxis": "+X",
+            "reason": "Local +Y up aligns the wallet laying flat on a surface, matching typical usage on a tabletop; front is +X towards the wallet opening for natural interaction.",
+            "restingPose": "wallet lying flat, natural opening to the side",
+            "selectedCandidate": "C",
+            "upAxis": "+Y"
+          },
+          "format": "usd",
+          "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/wallet_6493973137891206797.usda",
+          "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+          "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/wallet_preview_4701937990745306014.png",
+          "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/wallet/wallet_reference.png",
+          "realizedPosition": [
+            0.415,
+            0.71,
+            -1.08
+          ],
+          "realizedSize": [
+            0.15,
+            0.05,
+            0.1
+          ],
+          "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/wallet/wallet.usda",
+          "source": "sam3D",
+          "status": "realized"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "paymentDevice",
+          "frontHint": "facesLearner",
+          "layoutRole": "payment",
+          "orientationHint": "tabletopFlat",
+          "restingPolicy": "bottomOnSupport",
+          "supportSurfaceId": "convenience_store_counter",
+          "targetSize": [
+            0.16,
+            0.08,
+            0.12
+          ]
+        },
+        "color": "gray",
+        "description": "Electronic card reader for processing payments",
+        "displayName": "Payment Terminal",
+        "id": "payment_terminal",
+        "isInteractive": true,
+        "kind": {
+          "type": "cardReader"
+        },
+        "position": [
+          0.3,
+          0.745,
+          -1.125
+        ],
+        "size": [
+          0.14,
+          0.12,
+          0.1
+        ],
+        "visualAsset": {
+          "canonicalPose": {
+            "bottomAxis": "-Y",
+            "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/payment_terminal/payment_terminal_pose_candidates.png",
+            "confidence": 0.9,
+            "frontAxis": "+Z",
+            "reason": "The terminal rests naturally on its bottom face with +Y up, matching a typical tabletop orientation. The front with display and keypad faces +Z, as expected for user interaction.",
+            "restingPose": "upright on base",
+            "selectedCandidate": "C",
+            "upAxis": "+Y"
+          },
+          "format": "usd",
+          "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/payment_terminal_36070417884732071.usda",
+          "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+          "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/payment_terminal_preview_8459282667568249726.png",
+          "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/payment_terminal/payment_terminal_reference.png",
+          "realizedPosition": [
+            0.3,
+            0.745,
+            -1.125
+          ],
+          "realizedSize": [
+            0.14,
+            0.12,
+            0.1
+          ],
+          "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/payment_terminal/payment_terminal.usda",
+          "source": "sam3D",
+          "status": "realized"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "personMarker",
+          "frontHint": "facesLearner",
+          "layoutRole": "personMarker",
+          "orientationHint": "uprightFacingLearner",
+          "restingPolicy": "bottomOnSupport",
+          "targetSize": [
+            0.18,
+            0.22,
+            0.18
+          ]
+        },
+        "color": "blue",
+        "description": "Marker indicating the cashier's position",
+        "displayName": "Cashier Marker",
+        "id": "cashier_marker",
+        "isInteractive": false,
+        "kind": {
+          "type": "npcMarker"
+        },
+        "position": [
+          0,
+          1.05,
+          -1.42
+        ],
+        "size": [
+          0.18,
+          0.2,
+          0.18
+        ],
+        "visualAsset": {
+          "canonicalPose": {
+            "bottomAxis": "-Z",
+            "candidateGridURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/cashier_marker/cashier_marker_pose_candidates.png",
+            "confidence": 1,
+            "frontAxis": "+Y",
+            "reason": "Candidate E shows the figure standing upright on its base, which is the natural resting pose for a person marker. The front clearly faces forward (+Y) as indicated by the frontHint and orientationHint.",
+            "restingPose": "standing upright on base",
+            "selectedCandidate": "E",
+            "upAxis": "+Z"
+          },
+          "format": "usd",
+          "localURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/cashier_marker_8694321226630787840.usda",
+          "notes": "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider/semantics preserved.",
+          "previewLocalURL": "file:///Users/dlonzell/Library/Developer/CoreSimulator/Devices/A878979F-D394-4B2C-A8B6-9D30625D4CC4/data/Containers/Data/Application/EC613212-1013-4454-B5C9-5FC75A506A33/Documents/SAM3DCache/cashier_marker_preview_7813229547411301101.png",
+          "previewRemoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/cashier_marker/cashier_marker_reference.png",
+          "realizedPosition": [
+            0,
+            1.05,
+            -1.42
+          ],
+          "realizedSize": [
+            0.18,
+            0.2,
+            0.18
+          ],
+          "remoteURL": "https://msgstr-delivers-biology-conversation.trycloudflare.com/assets/f0843db4-c09f-4f78-857e-8745e6449f6b/cashier_marker/cashier_marker.usda",
+          "source": "sam3D",
+          "status": "realized"
+        }
+      }
+    ],
+    "scenario": {
+      "expectedObjectCategories": [
+        "counter",
+        "snack",
+        "basket",
+        "wallet",
+        "card_reader",
+        "npc_marker"
+      ],
+      "id": "japanese_convenience_store",
+      "learnerRole": "customer",
+      "localContext": "The learner is standing near a compact counter with snacks, a shopping basket, a wallet, a payment terminal, and a cashier marker in reach.",
+      "sceneGoal": "Buy a snack and pay at the register",
+      "setting": "Japanese convenience store",
+      "targetInteractions": [
+        "pick up a snack",
+        "place the snack in the shopping basket",
+        "indicate the payment terminal",
+        "tap the payment terminal",
+        "wave goodbye to the cashier"
+      ]
+    },
+    "tasks": [
+      {
+        "expectedInteraction": {
+          "objectId": "bag_of_chips",
+          "type": "drag"
+        },
+        "id": "pick_up_snack",
+        "instruction": "Pick up the bag of chips.",
+        "requiredObjectIds": [
+          "bag_of_chips"
+        ]
+      },
+      {
+        "expectedInteraction": {
+          "objectId": "bag_of_chips",
+          "targetId": "shopping_basket",
+          "type": "place"
+        },
+        "id": "place_snack_in_basket",
+        "instruction": "Place the bag of chips in the shopping basket.",
+        "requiredObjectIds": [
+          "bag_of_chips",
+          "shopping_basket"
+        ]
+      },
+      {
+        "expectedInteraction": {
+          "objectId": "payment_terminal",
+          "type": "indicate"
+        },
+        "id": "indicate_payment_terminal",
+        "instruction": "Indicate the payment terminal.",
+        "requiredObjectIds": [
+          "payment_terminal"
+        ]
+      },
+      {
+        "expectedInteraction": {
+          "objectId": "payment_terminal",
+          "type": "tap"
+        },
+        "id": "tap_payment_terminal",
+        "instruction": "Tap the payment terminal to pay.",
+        "requiredObjectIds": [
+          "payment_terminal"
+        ]
+      },
+      {
+        "expectedInteraction": {
+          "gesture": "wave",
+          "targetId": "cashier_marker",
+          "type": "gesture"
+        },
+        "id": "wave_goodbye_to_cashier",
+        "instruction": "Wave goodbye to the cashier.",
+        "requiredObjectIds": [
+          "cashier_marker"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation": {
+    "scenarioLayoutRating": "partiallyPlausible",
+    "scenarioFidelityRating": "partiallyFaithful",
+    "generatedObjectRatings": [
+      {
+        "objectId": "convenience_store_counter",
+        "rating": "acceptable"
+      },
+      {
+        "objectId": "bag_of_chips",
+        "rating": "expected"
+      },
+      {
+        "objectId": "shopping_basket",
+        "rating": "expected"
+      },
+      {
+        "objectId": "wallet",
+        "rating": "expected"
+      },
+      {
+        "objectId": "payment_terminal",
+        "rating": "expected"
+      },
+      {
+        "objectId": "cashier_marker",
+        "rating": "acceptable"
+      }
+    ],
+    "generatedTaskRatings": [
+      {
+        "taskId": "pick_up_snack",
+        "rating": "faithful"
+      },
+      {
+        "taskId": "place_snack_in_basket",
+        "rating": "faithful"
+      },
+      {
+        "taskId": "indicate_payment_terminal",
+        "rating": "faithful"
+      },
+      {
+        "taskId": "tap_payment_terminal",
+        "rating": "faithful"
+      },
+      {
+        "taskId": "wave_goodbye_to_cashier",
+        "rating": "compromise"
+      }
+    ],
+    "taskMetricRatings": [
+      {
+        "taskId": "pick_up_snack",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "pick_up_snack",
+        "metric": "spatialPlausibility",
+        "rating": "yes"
+      },
+      {
+        "taskId": "pick_up_snack",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "pick_up_snack",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "pick_up_snack",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      },
+      {
+        "taskId": "place_snack_in_basket",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "place_snack_in_basket",
+        "metric": "spatialPlausibility",
+        "rating": "yes"
+      },
+      {
+        "taskId": "place_snack_in_basket",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "place_snack_in_basket",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "place_snack_in_basket",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      },
+      {
+        "taskId": "indicate_payment_terminal",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "indicate_payment_terminal",
+        "metric": "spatialPlausibility",
+        "rating": "yes"
+      },
+      {
+        "taskId": "indicate_payment_terminal",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "indicate_payment_terminal",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "indicate_payment_terminal",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      },
+      {
+        "taskId": "tap_payment_terminal",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "tap_payment_terminal",
+        "metric": "spatialPlausibility",
+        "rating": "yes"
+      },
+      {
+        "taskId": "tap_payment_terminal",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "tap_payment_terminal",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "tap_payment_terminal",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      },
+      {
+        "taskId": "wave_goodbye_to_cashier",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "wave_goodbye_to_cashier",
+        "metric": "spatialPlausibility",
+        "rating": "yes"
+      },
+      {
+        "taskId": "wave_goodbye_to_cashier",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "wave_goodbye_to_cashier",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "wave_goodbye_to_cashier",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      }
+    ],
+    "answeredCount": 25,
+    "totalCount": 25,
+    "yesCount": 10
+  },
+  "runtimeEvaluation": {
+    "completedTasks": 0,
+    "firstFailedTaskId": "pick_up_snack",
+    "handlerCoveragePassed": 5,
+    "handlerCoverageTotal": 5,
+    "objectCoveragePassed": 6,
+    "objectCoverageTotal": 6,
+    "totalTasks": 5
+  },
+  "scenario": {
+    "expectedObjectCategories": [
+      "counter",
+      "snack",
+      "basket",
+      "wallet",
+      "card_reader",
+      "npc_marker"
+    ],
+    "id": "japanese_convenience_store",
+    "learnerRole": "customer",
+    "localContext": "The learner is standing near a compact counter with snacks, a shopping basket, a wallet, a payment terminal, and a cashier marker in reach.",
+    "sceneGoal": "Buy a snack and pay at the register",
+    "setting": "Japanese convenience store",
+    "targetInteractions": [
+      "pick up a snack",
+      "place the snack in the shopping basket",
+      "indicate the payment terminal",
+      "tap the payment terminal",
+      "wave goodbye to the cashier"
+    ]
+  },
+  "simulationMetadata": {
+    "evaluationMode": "simulated_placeholder_for_graph_projection",
+    "includeInTiming": false,
+    "notARun": true,
+    "createdAt": "2026-06-03T20:10:15.450Z",
+    "notes": "SIMULATED for graph projection from screenshot: cashier marker, store counter, shopping basket, chips/snack bag, and payment object visible; mixed object realization with proxy counter."
+  }
+}

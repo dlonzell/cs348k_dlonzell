@@ -1,0 +1,1202 @@
+{
+  "eventLog" : [
+    {
+      "eventDescription" : "select attendant_marker",
+      "matched" : false,
+      "taskId" : "gesture_to_attendant",
+      "timestamp" : 802204651.514239
+    },
+    {
+      "eventDescription" : "select attendant_marker",
+      "matched" : false,
+      "taskId" : "gesture_to_attendant",
+      "timestamp" : 802204639.748934
+    },
+    {
+      "eventDescription" : "select ticket_machine",
+      "matched" : false,
+      "taskId" : "gesture_to_attendant",
+      "timestamp" : 802204637.048857
+    },
+    {
+      "eventDescription" : "select attendant_marker",
+      "matched" : false,
+      "taskId" : "gesture_to_attendant",
+      "timestamp" : 802204632.865299
+    },
+    {
+      "eventDescription" : "select route_map_board",
+      "matched" : false,
+      "taskId" : "gesture_to_attendant",
+      "timestamp" : 802204622.532251
+    },
+    {
+      "eventDescription" : "select route_map_board",
+      "matched" : true,
+      "taskId" : "tap_route_map_board",
+      "timestamp" : 802204622.064476
+    }
+  ],
+  "exportedAt" : 802204913.663465,
+  "generationEvaluation" : {
+    "attemptCount" : 1,
+    "scenarioId" : "station_ticketing",
+    "step1ObjectGeneration" : {
+      "succeeded" : true
+    },
+    "step3TaskGeneration" : {
+      "succeeded" : true
+    },
+    "step4Validation" : {
+      "succeeded" : true
+    },
+    "step6Runtime" : {
+      "completedTasks" : 1,
+      "totalTasks" : 5
+    },
+    "succeeded" : true,
+    "totalTimeSeconds" : 11.02228593826294
+  },
+  "generationResult" : {
+    "attempts" : [
+      {
+        "attemptNumber" : 1,
+        "durationSeconds" : 11.022276043891907,
+        "outcome" : {
+          "success" : {
+
+          }
+        },
+        "rawObjectsJSON" : "{\n  \"objects\": [\n    {\n      \"id\": \"ticket_counter\",\n      \"displayName\": \"Ticket Counter\",\n      \"description\": \"Wooden ticket counter surface at the train station\",\n      \"kind\": { \"type\": \"counter\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.7, -1.0],\n      \"size\": [1.5, 0.1, 0.5],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"route_map_board\",\n      \"displayName\": \"Route Map Board\",\n      \"description\": \"Upright board displaying the train routes\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"uprightObject\" },\n      \"position\": [-0.5, 1.2, -1.2],\n      \"size\": [0.8, 1.0, 0.05],\n      \"color\": \"blue\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"ticket_machine\",\n      \"displayName\": \"Ticket Machine\",\n      \"description\": \"Electronic machine for purchasing train tickets\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"uprightObject\" },\n      \"position\": [0.5, 0.8, -1.2],\n      \"size\": [0.6, 1.2, 0.4],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"attendant_marker\",\n      \"displayName\": \"Attendant Marker\",\n      \"description\": \"Marker indicating the position of the station attendant\",\n      \"kind\": { \"type\": \"npcMarker\", \"category\": \"marker\" },\n      \"position\": [0.0, 0.0, -1.5],\n      \"size\": [0.2, 1.8, 0.2],\n      \"color\": \"green\",\n      \"isInteractive\": true\n    }\n  ]\n}",
+        "rawTasksJSON" : "{\"tasks\":[{\"id\":\"tap_route_map_board\",\"instruction\":\"Find your destination on the route map.\",\"requiredObjectIds\":[\"route_map_board\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"route_map_board\"}},{\"id\":\"gesture_to_attendant\",\"instruction\":\"Ask the attendant which platform you need.\",\"requiredObjectIds\":[\"attendant_marker\"],\"expectedInteraction\":{\"type\":\"gesture\",\"gesture\":\"openPalm\",\"targetId\":\"attendant_marker\"}},{\"id\":\"walk_to_ticket_machine\",\"instruction\":\"Walk to the ticket machine.\",\"requiredObjectIds\":[\"ticket_machine\"],\"expectedInteraction\":{\"type\":\"indicate\",\"objectId\":\"ticket_machine\"}},{\"id\":\"tap_ticket_machine\",\"instruction\":\"Buy a ticket at the machine.\",\"requiredObjectIds\":[\"ticket_machine\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"ticket_machine\"}},{\"id\":\"indicate_platform\",\"instruction\":\"Go to your platform.\",\"requiredObjectIds\":[\"route_map_board\"],\"expectedInteraction\":{\"type\":\"indicate\",\"objectId\":\"route_map_board\"}}]}",
+        "stage" : "fullPipeline"
+      }
+    ],
+    "layoutSummary" : {
+      "objectSummaries" : [
+        {
+          "displayName" : "Ticket Counter",
+          "finalPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize" : [
+            1.5,
+            0.1,
+            0.52
+          ],
+          "objectId" : "ticket_counter",
+          "rawPosition" : [
+            0,
+            0.7,
+            -1
+          ],
+          "rawSize" : [
+            1.5,
+            0.1,
+            0.5
+          ],
+          "role" : "surface"
+        },
+        {
+          "displayName" : "Route Map Board",
+          "finalPosition" : [
+            0,
+            0.805,
+            -0.86
+          ],
+          "finalSize" : [
+            0.28,
+            0.24,
+            0.1
+          ],
+          "objectId" : "route_map_board",
+          "rawPosition" : [
+            -0.5,
+            1.2,
+            -1.2
+          ],
+          "rawSize" : [
+            0.8,
+            1,
+            0.05
+          ],
+          "role" : "contextObject"
+        },
+        {
+          "displayName" : "Ticket Machine",
+          "finalPosition" : [
+            -0.44,
+            0.805,
+            -0.92
+          ],
+          "finalSize" : [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "objectId" : "ticket_machine",
+          "rawPosition" : [
+            0.5,
+            0.8,
+            -1.2
+          ],
+          "rawSize" : [
+            0.6,
+            1.2,
+            0.4
+          ],
+          "role" : "contextObject"
+        },
+        {
+          "displayName" : "Attendant Marker",
+          "finalPosition" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "finalSize" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "objectId" : "attendant_marker",
+          "rawPosition" : [
+            0,
+            0,
+            -1.5
+          ],
+          "rawSize" : [
+            0.2,
+            1.8,
+            0.2
+          ],
+          "role" : "personMarker"
+        }
+      ],
+      "relations" : [
+        {
+          "kind" : "on",
+          "objectId" : "ticket_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "route_map_board"
+        },
+        {
+          "kind" : "on",
+          "objectId" : "ticket_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "ticket_machine"
+        },
+        {
+          "kind" : "behind",
+          "objectId" : "ticket_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "attendant_marker"
+        },
+        {
+          "kind" : "facing",
+          "objectId" : "ticket_counter",
+          "source" : "roleDefaults",
+          "subjectId" : "attendant_marker"
+        }
+      ],
+      "strategy" : "stage_relation_slots_v1"
+    },
+    "plan" : {
+      "id" : "station_ticketing_generated_attempt_1_stage_layout_sam3d_realized",
+      "objects" : [
+        {
+          "assetCard" : {
+            "assetKind" : "surface",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "surface",
+            "orientationHint" : "horizontalSurface",
+            "restingPolicy" : "centerAtPosition",
+            "targetSize" : [
+              1.5,
+              0.1,
+              0.52
+            ]
+          },
+          "color" : "brown",
+          "description" : "Wooden ticket counter surface at the train station",
+          "displayName" : "Ticket Counter",
+          "id" : "ticket_counter",
+          "isInteractive" : false,
+          "kind" : {
+            "type" : "counter"
+          },
+          "position" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size" : [
+            1.5,
+            0.1,
+            0.52
+          ],
+          "visualAsset" : {
+            "format" : "primitiveProxy",
+            "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[route_map_board, attendant_marker, ticket_machine], maxObjects=0.",
+            "realizedPosition" : [
+              0,
+              0.62,
+              -0.95
+            ],
+            "realizedSize" : [
+              1.5,
+              0.1,
+              0.52
+            ],
+            "source" : "sam3D",
+            "status" : "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "contextObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "ticket_counter",
+            "targetSize" : [
+              0.2,
+              0.18,
+              0.1
+            ]
+          },
+          "color" : "blue",
+          "description" : "Upright board displaying the train routes",
+          "displayName" : "Route Map Board",
+          "id" : "route_map_board",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "uprightObject",
+            "type" : "generic"
+          },
+          "position" : [
+            0,
+            0.805,
+            -0.86
+          ],
+          "size" : [
+            0.28,
+            0.24,
+            0.1
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Y",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/route_map_board\/route_map_board_pose_candidates.png",
+              "confidence" : 0.9,
+              "frontAxis" : "+Z",
+              "reason" : "The board naturally rests upright on its bottom edge with +Y as up; the front with route information faces forward (+Z). This matches human expectations for a route map board on a counter.",
+              "restingPose" : "upright on bottom edge",
+              "selectedCandidate" : "C",
+              "upAxis" : "+Y"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/route_map_board_5254517873642801280.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/route_map_board_preview_3915008403807971643.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/route_map_board\/route_map_board_reference.png",
+            "realizedPosition" : [
+              0,
+              0.805,
+              -0.86
+            ],
+            "realizedSize" : [
+              0.28,
+              0.24,
+              0.1
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/route_map_board\/route_map_board.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "smallObject",
+            "frontHint" : "unconstrained",
+            "layoutRole" : "contextObject",
+            "orientationHint" : "compact",
+            "restingPolicy" : "bottomOnSupport",
+            "supportSurfaceId" : "ticket_counter",
+            "targetSize" : [
+              0.2,
+              0.18,
+              0.2
+            ]
+          },
+          "color" : "gray",
+          "description" : "Electronic machine for purchasing train tickets",
+          "displayName" : "Ticket Machine",
+          "id" : "ticket_machine",
+          "isInteractive" : true,
+          "kind" : {
+            "category" : "uprightObject",
+            "type" : "generic"
+          },
+          "position" : [
+            -0.44,
+            0.805,
+            -0.92
+          ],
+          "size" : [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-Z",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/ticket_machine\/ticket_machine_pose_candidates.png",
+              "confidence" : 0.9,
+              "frontAxis" : "+Y",
+              "reason" : "Ticket machine naturally rests upright on its base, which is flat and wide; screen and interface face forward along +Y axis.",
+              "restingPose" : "upright on base",
+              "selectedCandidate" : "E",
+              "upAxis" : "+Z"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ticket_machine_2008376204240870143.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ticket_machine_preview_5658385755773596943.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/ticket_machine\/ticket_machine_reference.png",
+            "realizedPosition" : [
+              -0.44,
+              0.805,
+              -0.92
+            ],
+            "realizedSize" : [
+              0.28,
+              0.24,
+              0.24
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/ticket_machine\/ticket_machine.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        },
+        {
+          "assetCard" : {
+            "assetKind" : "personMarker",
+            "frontHint" : "facesLearner",
+            "layoutRole" : "personMarker",
+            "orientationHint" : "uprightFacingLearner",
+            "restingPolicy" : "bottomOnSupport",
+            "targetSize" : [
+              0.18,
+              0.34,
+              0.18
+            ]
+          },
+          "color" : "green",
+          "description" : "Marker indicating the position of the station attendant",
+          "displayName" : "Attendant Marker",
+          "id" : "attendant_marker",
+          "isInteractive" : true,
+          "kind" : {
+            "type" : "npcMarker"
+          },
+          "position" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "size" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "visualAsset" : {
+            "canonicalPose" : {
+              "bottomAxis" : "-X",
+              "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/attendant_marker\/attendant_marker_pose_candidates.png",
+              "confidence" : 0.9,
+              "reason" : "Candidate A orients the marker upright with the wider base resting down, matching the layout role as personMarker with uprightFacingLearner; no clear front is visible for a frontAxis.",
+              "restingPose" : "standing upright on base",
+              "selectedCandidate" : "A",
+              "upAxis" : "+X"
+            },
+            "format" : "usd",
+            "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/attendant_marker_8022248631170596698.usda",
+            "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+            "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/attendant_marker_preview_7701239628778911502.png",
+            "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/attendant_marker\/attendant_marker_reference.png",
+            "realizedPosition" : [
+              0,
+              1.05,
+              -1.42
+            ],
+            "realizedSize" : [
+              0.18,
+              0.34,
+              0.18
+            ],
+            "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/attendant_marker\/attendant_marker.usda",
+            "source" : "sam3D",
+            "status" : "realized"
+          }
+        }
+      ],
+      "scenario" : {
+        "expectedObjectCategories" : [
+          "counter",
+          "menu",
+          "uprightObject",
+          "npc_marker"
+        ],
+        "id" : "station_ticketing",
+        "learnerRole" : "traveler buying a ticket",
+        "localContext" : "An upright route-map board and a ticket machine sit on the counter; an attendant marker stands nearby.",
+        "sceneGoal" : "Find your platform and buy a ticket",
+        "setting" : "Train station ticket counter",
+        "targetInteractions" : [
+          "find your destination on the route map",
+          "ask the attendant which platform you need",
+          "walk to the ticket machine",
+          "buy a ticket at the machine",
+          "go to your platform"
+        ]
+      },
+      "tasks" : [
+        {
+          "expectedInteraction" : {
+            "objectId" : "route_map_board",
+            "type" : "tap"
+          },
+          "id" : "tap_route_map_board",
+          "instruction" : "Find your destination on the route map.",
+          "requiredObjectIds" : [
+            "route_map_board"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "gesture" : "openPalm",
+            "targetId" : "attendant_marker",
+            "type" : "gesture"
+          },
+          "id" : "gesture_to_attendant",
+          "instruction" : "Ask the attendant which platform you need.",
+          "requiredObjectIds" : [
+            "attendant_marker"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "ticket_machine",
+            "type" : "indicate"
+          },
+          "id" : "walk_to_ticket_machine",
+          "instruction" : "Walk to the ticket machine.",
+          "requiredObjectIds" : [
+            "ticket_machine"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "ticket_machine",
+            "type" : "tap"
+          },
+          "id" : "tap_ticket_machine",
+          "instruction" : "Buy a ticket at the machine.",
+          "requiredObjectIds" : [
+            "ticket_machine"
+          ]
+        },
+        {
+          "expectedInteraction" : {
+            "objectId" : "route_map_board",
+            "type" : "indicate"
+          },
+          "id" : "indicate_platform",
+          "instruction" : "Go to your platform.",
+          "requiredObjectIds" : [
+            "route_map_board"
+          ]
+        }
+      ]
+    },
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "menu",
+        "uprightObject",
+        "npc_marker"
+      ],
+      "id" : "station_ticketing",
+      "learnerRole" : "traveler buying a ticket",
+      "localContext" : "An upright route-map board and a ticket machine sit on the counter; an attendant marker stands nearby.",
+      "sceneGoal" : "Find your platform and buy a ticket",
+      "setting" : "Train station ticket counter",
+      "targetInteractions" : [
+        "find your destination on the route map",
+        "ask the attendant which platform you need",
+        "walk to the ticket machine",
+        "buy a ticket at the machine",
+        "go to your platform"
+      ]
+    },
+    "totalGenerationTimeSeconds" : 11.02228593826294
+  },
+  "layoutSummary" : {
+    "objectSummaries" : [
+      {
+        "displayName" : "Ticket Counter",
+        "finalPosition" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize" : [
+          1.5,
+          0.1,
+          0.52
+        ],
+        "objectId" : "ticket_counter",
+        "rawPosition" : [
+          0,
+          0.7,
+          -1
+        ],
+        "rawSize" : [
+          1.5,
+          0.1,
+          0.5
+        ],
+        "role" : "surface"
+      },
+      {
+        "displayName" : "Route Map Board",
+        "finalPosition" : [
+          0,
+          0.805,
+          -0.86
+        ],
+        "finalSize" : [
+          0.28,
+          0.24,
+          0.1
+        ],
+        "objectId" : "route_map_board",
+        "rawPosition" : [
+          -0.5,
+          1.2,
+          -1.2
+        ],
+        "rawSize" : [
+          0.8,
+          1,
+          0.05
+        ],
+        "role" : "contextObject"
+      },
+      {
+        "displayName" : "Ticket Machine",
+        "finalPosition" : [
+          -0.44,
+          0.805,
+          -0.92
+        ],
+        "finalSize" : [
+          0.28,
+          0.24,
+          0.24
+        ],
+        "objectId" : "ticket_machine",
+        "rawPosition" : [
+          0.5,
+          0.8,
+          -1.2
+        ],
+        "rawSize" : [
+          0.6,
+          1.2,
+          0.4
+        ],
+        "role" : "contextObject"
+      },
+      {
+        "displayName" : "Attendant Marker",
+        "finalPosition" : [
+          0,
+          1.05,
+          -1.42
+        ],
+        "finalSize" : [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "objectId" : "attendant_marker",
+        "rawPosition" : [
+          0,
+          0,
+          -1.5
+        ],
+        "rawSize" : [
+          0.2,
+          1.8,
+          0.2
+        ],
+        "role" : "personMarker"
+      }
+    ],
+    "relations" : [
+      {
+        "kind" : "on",
+        "objectId" : "ticket_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "route_map_board"
+      },
+      {
+        "kind" : "on",
+        "objectId" : "ticket_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "ticket_machine"
+      },
+      {
+        "kind" : "behind",
+        "objectId" : "ticket_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "attendant_marker"
+      },
+      {
+        "kind" : "facing",
+        "objectId" : "ticket_counter",
+        "source" : "roleDefaults",
+        "subjectId" : "attendant_marker"
+      }
+    ],
+    "strategy" : "stage_relation_slots_v1"
+  },
+  "loadedPlan" : {
+    "id" : "station_ticketing_generated_attempt_1_stage_layout_sam3d_realized",
+    "objects" : [
+      {
+        "assetCard" : {
+          "assetKind" : "surface",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "surface",
+          "orientationHint" : "horizontalSurface",
+          "restingPolicy" : "centerAtPosition",
+          "targetSize" : [
+            1.5,
+            0.1,
+            0.52
+          ]
+        },
+        "color" : "brown",
+        "description" : "Wooden ticket counter surface at the train station",
+        "displayName" : "Ticket Counter",
+        "id" : "ticket_counter",
+        "isInteractive" : false,
+        "kind" : {
+          "type" : "counter"
+        },
+        "position" : [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size" : [
+          1.5,
+          0.1,
+          0.52
+        ],
+        "visualAsset" : {
+          "format" : "primitiveProxy",
+          "notes" : "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[route_map_board, attendant_marker, ticket_machine], maxObjects=0.",
+          "realizedPosition" : [
+            0,
+            0.62,
+            -0.95
+          ],
+          "realizedSize" : [
+            1.5,
+            0.1,
+            0.52
+          ],
+          "source" : "sam3D",
+          "status" : "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "contextObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "ticket_counter",
+          "targetSize" : [
+            0.2,
+            0.18,
+            0.1
+          ]
+        },
+        "color" : "blue",
+        "description" : "Upright board displaying the train routes",
+        "displayName" : "Route Map Board",
+        "id" : "route_map_board",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "uprightObject",
+          "type" : "generic"
+        },
+        "position" : [
+          0,
+          0.805,
+          -0.86
+        ],
+        "size" : [
+          0.28,
+          0.24,
+          0.1
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Y",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/route_map_board\/route_map_board_pose_candidates.png",
+            "confidence" : 0.9,
+            "frontAxis" : "+Z",
+            "reason" : "The board naturally rests upright on its bottom edge with +Y as up; the front with route information faces forward (+Z). This matches human expectations for a route map board on a counter.",
+            "restingPose" : "upright on bottom edge",
+            "selectedCandidate" : "C",
+            "upAxis" : "+Y"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/route_map_board_5254517873642801280.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/route_map_board_preview_3915008403807971643.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/route_map_board\/route_map_board_reference.png",
+          "realizedPosition" : [
+            0,
+            0.805,
+            -0.86
+          ],
+          "realizedSize" : [
+            0.28,
+            0.24,
+            0.1
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/route_map_board\/route_map_board.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "smallObject",
+          "frontHint" : "unconstrained",
+          "layoutRole" : "contextObject",
+          "orientationHint" : "compact",
+          "restingPolicy" : "bottomOnSupport",
+          "supportSurfaceId" : "ticket_counter",
+          "targetSize" : [
+            0.2,
+            0.18,
+            0.2
+          ]
+        },
+        "color" : "gray",
+        "description" : "Electronic machine for purchasing train tickets",
+        "displayName" : "Ticket Machine",
+        "id" : "ticket_machine",
+        "isInteractive" : true,
+        "kind" : {
+          "category" : "uprightObject",
+          "type" : "generic"
+        },
+        "position" : [
+          -0.44,
+          0.805,
+          -0.92
+        ],
+        "size" : [
+          0.28,
+          0.24,
+          0.24
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-Z",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/ticket_machine\/ticket_machine_pose_candidates.png",
+            "confidence" : 0.9,
+            "frontAxis" : "+Y",
+            "reason" : "Ticket machine naturally rests upright on its base, which is flat and wide; screen and interface face forward along +Y axis.",
+            "restingPose" : "upright on base",
+            "selectedCandidate" : "E",
+            "upAxis" : "+Z"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ticket_machine_2008376204240870143.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/ticket_machine_preview_5658385755773596943.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/ticket_machine\/ticket_machine_reference.png",
+          "realizedPosition" : [
+            -0.44,
+            0.805,
+            -0.92
+          ],
+          "realizedSize" : [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/ticket_machine\/ticket_machine.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      },
+      {
+        "assetCard" : {
+          "assetKind" : "personMarker",
+          "frontHint" : "facesLearner",
+          "layoutRole" : "personMarker",
+          "orientationHint" : "uprightFacingLearner",
+          "restingPolicy" : "bottomOnSupport",
+          "targetSize" : [
+            0.18,
+            0.34,
+            0.18
+          ]
+        },
+        "color" : "green",
+        "description" : "Marker indicating the position of the station attendant",
+        "displayName" : "Attendant Marker",
+        "id" : "attendant_marker",
+        "isInteractive" : true,
+        "kind" : {
+          "type" : "npcMarker"
+        },
+        "position" : [
+          0,
+          1.05,
+          -1.42
+        ],
+        "size" : [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "visualAsset" : {
+          "canonicalPose" : {
+            "bottomAxis" : "-X",
+            "candidateGridURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/attendant_marker\/attendant_marker_pose_candidates.png",
+            "confidence" : 0.9,
+            "reason" : "Candidate A orients the marker upright with the wider base resting down, matching the layout role as personMarker with uprightFacingLearner; no clear front is visible for a frontAxis.",
+            "restingPose" : "standing upright on base",
+            "selectedCandidate" : "A",
+            "upAxis" : "+X"
+          },
+          "format" : "usd",
+          "localURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/attendant_marker_8022248631170596698.usda",
+          "notes" : "Generated image -> SAM3D mesh -> USDA export. RoleplAR collider\/semantics preserved.",
+          "previewLocalURL" : "file:\/\/\/Users\/dlonzell\/Library\/Developer\/CoreSimulator\/Devices\/A878979F-D394-4B2C-A8B6-9D30625D4CC4\/data\/Containers\/Data\/Application\/EC613212-1013-4454-B5C9-5FC75A506A33\/Documents\/SAM3DCache\/attendant_marker_preview_7701239628778911502.png",
+          "previewRemoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/attendant_marker\/attendant_marker_reference.png",
+          "realizedPosition" : [
+            0,
+            1.05,
+            -1.42
+          ],
+          "realizedSize" : [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "remoteURL" : "https:\/\/msgstr-delivers-biology-conversation.trycloudflare.com\/assets\/56eedf8b-3573-4b1c-ac5f-9af886fa1b67\/attendant_marker\/attendant_marker.usda",
+          "source" : "sam3D",
+          "status" : "realized"
+        }
+      }
+    ],
+    "scenario" : {
+      "expectedObjectCategories" : [
+        "counter",
+        "menu",
+        "uprightObject",
+        "npc_marker"
+      ],
+      "id" : "station_ticketing",
+      "learnerRole" : "traveler buying a ticket",
+      "localContext" : "An upright route-map board and a ticket machine sit on the counter; an attendant marker stands nearby.",
+      "sceneGoal" : "Find your platform and buy a ticket",
+      "setting" : "Train station ticket counter",
+      "targetInteractions" : [
+        "find your destination on the route map",
+        "ask the attendant which platform you need",
+        "walk to the ticket machine",
+        "buy a ticket at the machine",
+        "go to your platform"
+      ]
+    },
+    "tasks" : [
+      {
+        "expectedInteraction" : {
+          "objectId" : "route_map_board",
+          "type" : "tap"
+        },
+        "id" : "tap_route_map_board",
+        "instruction" : "Find your destination on the route map.",
+        "requiredObjectIds" : [
+          "route_map_board"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "gesture" : "openPalm",
+          "targetId" : "attendant_marker",
+          "type" : "gesture"
+        },
+        "id" : "gesture_to_attendant",
+        "instruction" : "Ask the attendant which platform you need.",
+        "requiredObjectIds" : [
+          "attendant_marker"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "ticket_machine",
+          "type" : "indicate"
+        },
+        "id" : "walk_to_ticket_machine",
+        "instruction" : "Walk to the ticket machine.",
+        "requiredObjectIds" : [
+          "ticket_machine"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "ticket_machine",
+          "type" : "tap"
+        },
+        "id" : "tap_ticket_machine",
+        "instruction" : "Buy a ticket at the machine.",
+        "requiredObjectIds" : [
+          "ticket_machine"
+        ]
+      },
+      {
+        "expectedInteraction" : {
+          "objectId" : "route_map_board",
+          "type" : "indicate"
+        },
+        "id" : "indicate_platform",
+        "instruction" : "Go to your platform.",
+        "requiredObjectIds" : [
+          "route_map_board"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation" : {
+    "answeredCount" : 25,
+    "generatedObjectRatings" : [
+      {
+        "objectId" : "attendant_marker",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "route_map_board",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "ticket_counter",
+        "rating" : "expected"
+      },
+      {
+        "objectId" : "ticket_machine",
+        "rating" : "expected"
+      }
+    ],
+    "generatedTaskRatings" : [
+      {
+        "rating" : "faithful",
+        "taskId" : "gesture_to_attendant"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "indicate_platform"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "tap_route_map_board"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "tap_ticket_machine"
+      },
+      {
+        "rating" : "faithful",
+        "taskId" : "walk_to_ticket_machine"
+      }
+    ],
+    "scenarioFidelityRating" : "notFaithful",
+    "scenarioLayoutRating" : "implausible",
+    "taskMetricRatings" : [
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "gesture_to_attendant"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "yes",
+        "taskId" : "gesture_to_attendant"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "gesture_to_attendant"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "gesture_to_attendant"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "gesture_to_attendant"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "indicate_platform"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "no",
+        "taskId" : "indicate_platform"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "no",
+        "taskId" : "indicate_platform"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "indicate_platform"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "indicate_platform"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "no",
+        "taskId" : "tap_route_map_board"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "no",
+        "taskId" : "tap_route_map_board"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "no",
+        "taskId" : "tap_route_map_board"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "tap_route_map_board"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "no",
+        "taskId" : "tap_route_map_board"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "yes",
+        "taskId" : "tap_ticket_machine"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "partial",
+        "taskId" : "tap_ticket_machine"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "tap_ticket_machine"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "tap_ticket_machine"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "yes",
+        "taskId" : "tap_ticket_machine"
+      },
+      {
+        "metric" : "affordanceInstrumentation",
+        "rating" : "partial",
+        "taskId" : "walk_to_ticket_machine"
+      },
+      {
+        "metric" : "contextSufficiency",
+        "rating" : "partial",
+        "taskId" : "walk_to_ticket_machine"
+      },
+      {
+        "metric" : "objectRealization",
+        "rating" : "yes",
+        "taskId" : "walk_to_ticket_machine"
+      },
+      {
+        "metric" : "spatialPlausibility",
+        "rating" : "no",
+        "taskId" : "walk_to_ticket_machine"
+      },
+      {
+        "metric" : "taskCompletion",
+        "rating" : "partial",
+        "taskId" : "walk_to_ticket_machine"
+      }
+    ],
+    "totalCount" : 25,
+    "yesCount" : 6
+  },
+  "runtimeEvaluation" : {
+    "completedTasks" : 1,
+    "firstFailedTaskId" : "gesture_to_attendant",
+    "handlerCoveragePassed" : 5,
+    "handlerCoverageTotal" : 5,
+    "objectCoveragePassed" : 4,
+    "objectCoverageTotal" : 4,
+    "totalTasks" : 5
+  },
+  "scenario" : {
+    "expectedObjectCategories" : [
+      "counter",
+      "menu",
+      "uprightObject",
+      "npc_marker"
+    ],
+    "id" : "station_ticketing",
+    "learnerRole" : "traveler buying a ticket",
+    "localContext" : "An upright route-map board and a ticket machine sit on the counter; an attendant marker stands nearby.",
+    "sceneGoal" : "Find your platform and buy a ticket",
+    "setting" : "Train station ticket counter",
+    "targetInteractions" : [
+      "find your destination on the route map",
+      "ask the attendant which platform you need",
+      "walk to the ticket machine",
+      "buy a ticket at the machine",
+      "go to your platform"
+    ]
+  }
+}

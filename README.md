@@ -1,227 +1,296 @@
+# From Scenario to Scene
 
+**Generating interactive language-learning practice scenes for Apple Vision Pro**  
+CS348K Final Project
 
-# From Scenario to Scene: Generating Interactive Language-Learning Practice Scenes for Vision Pro
+**Danilo Lonzell**  
+Stanford email: `dlonzell@stanford.edu`
 
-CS348K Project · Danilo Lonzell
+Final presentation: [docs/final/348kpres.pptx](docs/final/348kpres.pptx)  
+Checkpoint writeups: [May 8](CHECKPOINT_MAY8.md), [May 22](CHECKPOINT_MAY22.md)
 
 ---
 
-## Project
+## Summary
 
-### Aspiration
+This project builds an LLMR-inspired pipeline that takes a written language-learning scenario card and generates a runnable spatial roleplay scene for Apple Vision Pro. The system translates the written card into a typed object-and-task plan, realizes selected objects with SAM3D on a remote GPU service, lays the assets out in a reach-scale scene, and evaluates where the generated roleplay succeeds or breaks.
 
-An LLMR-equivalent for language learning on Apple Vision Pro: a system that takes a scenario card describing a language-learning practice situation and produces an executable interactive scene the learner can act in. The class project is the first step — implementing the generation pipeline and characterizing where it succeeds and fails on a benchmark of real learner-generated scenarios.
+The final result is not a production-ready scene generator. It is an end-to-end visual computing systems prototype plus an evaluation that localizes the gap between a generated plan and a playable spatial roleplay scene.
+
+![Final scene examples](docs/final/assets/figures/final_scene_examples.png)
+
+---
+
+## Background and Setup
+
+### Problem
+
+Language-learning roleplay systems often describe physical actions in text: asking for the check, pointing at a menu, placing a card on a tray, comparing two jackets, or performing a purification ritual. In a spatial computing setting, those actions should be grounded in visible, manipulable objects. The goal of this project is to explore whether a written roleplay scenario can become an executable Vision Pro micro-world quickly enough to be useful for practice.
+
+### Inputs and Outputs
+
+**Input:** a `ScenarioCard` with natural-language fields:
+
+- setting
+- learner role
+- scene goal
+- local context
+- target interactions
+- expected object categories
+
+**Output:** a runnable `InteractionWorldPlan`:
+
+- named objects with stable ids
+- typed primitive interaction tasks over those object ids
+- reconstructed or proxy visual assets
+- reach-scale layout metadata
+- RealityKit entities with colliders and interaction handlers
+- evaluation logs for plan quality, scene quality, task completion, and timing
+
+### Goals and Constraints
+
+The target system was constrained by three design goals:
+
+1. **Native Vision Pro interaction.** The app should run as a visionOS spatial scene using gaze/pinch, object manipulation, and simple gestures.
+2. **Runnable plans instead of arbitrary code.** Apple platform constraints and demo reliability made runtime code generation a bad fit, so the LLM output is a typed, validated plan rather than behavior code.
+3. **Few-minute workflow.** A useful roleplay generator should produce a scene quickly enough to iterate on, which made latency and fallback behavior part of the systems problem.
 
 ### Question
 
-Given a scenario card describing a language-learning practice situation, can a structured-output LLM pipeline generate a runnable interactive scene against a typed primitive vocabulary suited to native visionOS input — and where does it succeed, where does it fail, and what failure modes are most common?
+Given a written language-learning scenario, can a structured-output LLM plus object reconstruction pipeline generate a runnable spatial roleplay scene, and where does it fail: in the plan, the visual realization/layout, or the runtime affordances?
 
-### Pipeline
+### Technical Crux
 
-```
-ScenarioCard
-  → [Step 1 — LLM call] objects with positions, sizes, colors, descriptions
-  → [Step 2 — object rendering] RealityKit entities generated using some model (using primitives for this checkpoint) 
-  → [Step 3 — LLM call] tasks with typed primitives against object IDs
-  → [Step 4 — validation] structural checks
-  → [Step 5 — runtime] render and process interaction events
-```
-
-### Interaction primitives
-
-The typed primitive set, aligned with native visionOS input:
-
-- `indicate(objectId)`, `tap(objectId)` — gaze-pinch selection
-- `drag(objectId)` — pinch-and-move
-- `place(objectId, targetId)` — drag with proximity check at release
-- `gesture(GestureKind, targetId?)` — recognized hand gestures (wave, point, thumbsUp, openPalm)
-
-### Scenario benchmark
-
-9 scenarios across 3 settings, drawn from learner-generated scenarios collected in the prior GELLI study (N=43 Japanese learners).
-
-### Evaluation
-
-The evaluation is mostly manual, supported by automatic infrastructure for validation, runtime checks, and pipeline metrics.
-
-#### Automatic measurements.
-
-Validation outcomes: did the assembled plan parse and pass validate(_:)? 
-Pipeline metrics: generation time per scenario, number of regeneration attempts before validation passed (max 3), per-stage success rates.
-
-#### Manual ratings against a rubric. For each generated plan, I'll manually rate:
-
-Step 1 — object specification: did the LLM produce objects covering what the scenario implies, at plausible positions and sizes? 
-Step 3 — task wiring: for each task, does the implementation faithfully represent the natural-language interaction described in the prompt?
-Step 5 — runtime: did the validated plan execute correctly when loaded in the simulator? 
-
-#### Coverage analysis. 
-
-Aggregating across all scenarios and tasks: what fraction of target interactions mapped faithfully, required compromise, or just didn't work entirely. This characterizes the boundaries of the native-input-aligned interaction vocabulary for language-learning practice.
+The hardest part was not simply calling an LLM or rendering primitive objects. The crux was turning a symbolic plan and independently generated SAM3D assets into a coherent, reachable, interactable scene. Raw generated coordinates frequently placed objects on the floor, floating, overlapping, or scattered in ways that broke the roleplay. The project therefore needed a deterministic reach-scale layout pass that assigned object roles, inferred relations from the task queue, snapped objects to support surfaces, repaired overlaps, and kept the typed interaction affordances attached to the rendered scene.
 
 ---
 
-## Checkpoint (May 8)
+## Approach
 
-### What is running
+### 1. Written Roleplay to Typed Plan
 
-A basic version of the pipeline excluding the LLM generation steps:
+The system deliberately separates plan generation into stages:
 
-- **Data model:** `ScenarioCard`, `InteractionWorldPlan`, `WorldObjectSpec`, `InteractionTask`, `InteractionKind`, `GestureKind`, validation error types, manual evaluation types.
-- **Validation** (`InteractionWorldRuntime.validate(_:)`): catches duplicate IDs, missing object references, unsupported interaction kinds. Throws typed errors that map directly to failure-mode categories.
-- **Runtime:** processes interaction events, advances task queue on match, logs events, records completion.
-- **Renderer:** renders an `InteractionWorldPlan` as a RealityKit scene with primitive entities, input target components, and interaction handlers.
-- **Hand-authored cafe scenario:** one fully-specified scenario (Japanese cafe counter, 7 objects, 5 tasks) serving as the upper-bound baseline. Renders correctly in the visionOS simulator and supports end-to-end task completion.
-- **Automatic evaluation:** structural checks reported as `InteractionEvaluationResult`.
-- **Manual evaluation UI:** per-task ratings across five metrics with yes/partial/no/unset.
-- **Tests:** validation, event processing, task progression. All passing.
+1. **LLM to objects.** Generate `WorldObjectSpec` objects with ids, descriptions, kinds, positions, sizes, colors, and interactivity flags.
+2. **LLM to tasks.** Given the generated objects, generate `InteractionTask` steps using only the supported primitive vocabulary.
+3. **Validation.** Reject structurally unrunnable plans: duplicate ids, dangling object references, or unsupported primitive kinds.
 
-This version uses a hand-authored cafe scenario plays through end-to-end in the simulator: scene renders, all five tasks can be completed by the tester (wave, indicate menu, point at pastry case, place cup on tray, tap card reader), evaluation surfaces results. Broken plans (duplicate IDs, missing object references, unsupported primitives) are correctly rejected by the validator.
+The primitive vocabulary is:
 
+- `indicate(objectId)`
+- `tap(objectId)`
+- `drag(objectId)`
+- `place(objectId, targetId)`
+- `gesture(wave|point|thumbsUp|openPalm, targetId?)`
 
-### What is not yet implemented
+The real exported cafe-paying example shows the core translation:
 
-- Steps 1 and 3 (the LLM calls). Generation does not yet exist.
-- The remaining 8 scenario cards. Currently only the cafe scenario; others to be drawn from existing study data analysis.
-- The renderer needs to be extended to handle objects with arbitrary descriptions outside the existing closed `WorldObjectKind` enum (current renderer maps a fixed set of kinds to primitives; generated plans will produce open-description objects).
+![Written to typed plan](docs/final/assets/slides/source-slide-05.png)
 
-### Next steps
+For `cafe_paying_check`, the written target interaction "place your card on the tray" became `place(payment_card, bill_tray)`, while "take your receipt and change" became the lossy primitive `drag(receipt)`. This distinction is important: validation can say a plan is runnable, but the evaluation still asks whether the roleplay survived the translation.
 
-1. Implement Step 1: LLM call producing objects with positions, sizes, colors, and descriptions.
-2. Implement Step 3: LLM call producing tasks with typed primitives against generated object IDs.
-3. Extend the renderer to handle open-description objects via primitive fallback.
-4. Analyze GELLI study data to draw 8 additional scenarios; format as `ScenarioCard` instances.
-5. Run the full pipeline on all 9 scenarios; collect per-stage evaluation data.
-6. Aggregate failure modes; produce coverage matrix and taxonomy figures.
+### 2. Typed Plan to Realized Scene
 
-### Risks
-
-- **LLM reliability for structured output.** Mitigation: up to 3 attempts per generation step; failures after 3 attempts are recorded as a failure mode rather than blocking the experiment.
-- **Scenario authoring time.** Mitigation: keep scenario cards short; lean on existing study data structure; reduce to 6 scenarios if necessary without changing methodology.
-- **Manual evaluation scope.** Mitigation: stages measurable from generated artifacts (Steps 1, 3, 4) are fast; behavioral testing (Step 5) is the slow one and can be done on a subset, with the writeup explicit about which scenarios got behavioral testing.
-
-### Code
-
-
-Open RoleplAR.xcodeproj
-
-Run the RoleplAR scheme on an Apple Vision Pro simulator.
-
-In the main menu, click Interaction World: MainMenuView.swift (line 34)
-
-Click Open Micro-world, then complete the cafe task queue with:
-
-Mock Wave, tap/select menu, Mock Point, drag cup to tray, tap/select card reader.
-
-
-
-Evaluation UI
-
-
-The visible evaluation panel is in InteractionWorldView.swift (line 254).
-
-It reports automated counts: object coverage, handler coverage, completed tasks.
-
-The manual rubric is in InteractionWorldView.swift (line 270): object ratings, spatial layout, scenario fidelity, primitive faithfulness, and per-task yes/partial/no checks.
-
-Metric definitions live in InteractionWorldModels.swift (line 344).
-
-
-
-Automated tests / evaluation code
-
-
-Runtime evaluation: InteractionWorldRuntime.swift (line 99)
-
-Generation-stage evaluation/failure modes: GenerationEvaluation.swift (line 3)
-
-Tests:
-
-InteractionWorldRuntimeTests.swift (line 6)
-
-InteractionWorldGenerationTests.swift (line 6)
-
----
-
-## Checkpoint (May 22)
-
-Detailed checkpoint writeup: [CHECKPOINT_MAY22.md](CHECKPOINT_MAY22.md)  
-Current result artifacts: [results/checkpoint2](results/checkpoint2)
-
-### What is running now
-
-Since the first checkpoint, the missing generation stages have been implemented:
-
-- **Step 1 object/layout generation:** a `ScenarioCard` can be sent to an LLM to produce `WorldObjectSpec` objects with ids, display names, natural-language descriptions, primitive/generic kinds, positions, sizes, colors, and interactivity flags.
-- **Step 3 task generation:** the generated object list is used to produce typed `InteractionTask` instances over the fixed primitive vocabulary: `indicate`, `tap`, `drag`, `place`, and `gesture`.
-- **Validation and retry path:** generated plans are decoded, retried on malformed output or validation failure, and loaded only if `InteractionWorldRuntime.validate(_:)` passes.
-- **Generic primitive rendering:** generated open-description objects can render as primitive RealityKit proxies, so scenes are runnable before realistic assets exist.
-- **Manual and automatic evaluation UI:** the simulator exposes automatic runtime counts plus manual ratings for object realization, spatial layout, scenario fidelity, primitive faithfulness, affordance instrumentation, and task completion.
-
-### Refined evaluation question
-
-The evaluation now separates three questions:
-
-1. **Primitive coverage:** is the intended language-learning interaction expressible with the current native-input-aligned primitive vocabulary?
-2. **LLM planning quality:** if it is expressible, did the LLM choose the right objects, layout, primitive, target object ids, and task order?
-3. **Runtime/realization quality:** once a plan validates, does the app render and execute it, and is the scene visually/spatially sufficient for the practice context?
-
-This lets failures be classified as planning gaps, primitive-vocabulary gaps, visual-realization gaps, spatial-layout gaps, affordance gaps, perception/detection gaps, or runtime gaps.
-
-### Intermediate results
-
-| Result | Evidence | Finding |
-| --- | --- | --- |
-| Hand-authored cafe baseline | Simulator baseline, 7 objects, 5 tasks | Runtime, task queue, interaction handlers, ordering constraints, and evaluation UI work as an upper-bound baseline. |
-| LLM-generated primitive plan path | `InteractionWorldGeneration.swift`, generation UI, generation tests | Steps 1 and 3 are implemented; the system can move from scenario card to validated primitive interaction plan. |
-| SAM3D visual-realization | [SAM3D layout artifacts](results/checkpoint2/sam3d_layout_signal) | Four segmented objects produced four `.ply` splats plus pose/scale metadata that can be converted into a layout plan in the user's space for the generated objects. Placement is not yet reliable enough, and I'm working on rendering the splats. |
-
-Once SAM3D is working for getting the splats for objects in a scene along with a reasonable layout, I'll replacie the primitive proxies with generated visual assets while keeping typed proxy colliders for the actual interactions. Then I'll see how well this method can create usable interactive scenes in the final evaluation. Right now, the next steps are 
-
-1) finish converting the splat to render in the vision pro as realitykit entitites that have the primitive interactions supported
-2) visually assess how well the items are rendered and layed out, and do some tuning of the layout method. 
-3) sample 9 scenarios from the study data and use them to generate scenes
-4) do manual evaluation of each scene to investigate where this method falls short and what the gaps are. 
-
-### How to run
-
-1. Open `RoleplAR.xcodeproj`.
-2. Run the `RoleplAR` scheme on the Apple Vision Pro simulator.
-3. Set `OPENAI_API_KEY` in the Xcode scheme environment to enable live LLM generation.
-4. Open `Interaction World`.
-5. Use `Generate Plan` / `Generate Cafe Plan` for the generated primitive-plan path, or `Load Baseline` for the hand-authored cafe upper bound.
-6. Open the micro-world and use the evaluation panel to inspect automatic counts and manual ratings.
-
-To inspect the SAM3D layout artifact:
-
-```bash
-cd tools/sam3d_service
-python3 mock_service.py --host 127.0.0.1 --port 8010 --layout-plan layout_signal_outputs/roleplar_layout_plan.json
-```
-
-Then in the app:
+The plan is then sent through a visual realization path:
 
 ```text
-Interaction World -> Load SAM3D Layout Plan -> Open Micro-world
+Scenario card
+  -> generated object/task plan
+  -> selected objects sent to SAM3D service
+  -> reference image, mask, 3D reconstruction, USDA asset
+  -> VLM canonical pose hints
+  -> RealityKit asset/proxy scene
 ```
 
-### Verification command
+SAM3D supplies object assets, not a complete semantic scene graph. For each selected object, the service produces artifacts such as:
 
-Use full Xcode rather than Command Line Tools:
+- `object_reference.png`
+- `object_mask.png`
+- `object.ply`
+- `object.usda`
+
+It also produced canonical pose hints such as "up" and "front" for assets. Those hints help orient objects, but they do not decide where the objects belong in the roleplay. Scene placement is handled by the layout solver.
+
+### 3. Reach-Scale Layout Solver
+
+The layout solver is the project's simplified, reach-scale analogue of a Holodeck-style layout plan. Instead of trusting raw LLM coordinates, it uses the semantic structure of the generated plan.
+
+The solver:
+
+1. finds or inserts a support surface;
+2. classifies objects as source objects, target containers, payment devices, upright context objects, person markers, or surfaces;
+3. infers spatial relations from the task queue;
+4. snaps props onto the support surface;
+5. places person markers behind the surface;
+6. clamps objects within surface bounds;
+7. repairs surface overlaps;
+8. attaches asset metadata such as `supportSurfaceId`, `targetSize`, and `restingPolicy`.
+
+This transformed rough LLM placement into a more coherent scene, but it did not solve all layout problems. The final evaluation still shows partial spatial and affordance failures.
+
+---
+
+## Scenario Workload
+
+The benchmark contains nine scenarios drawn from the prior GELLI language-learning study context: cafe, shopping, and open-ended cultural/travel situations. The scenarios were selected from interactions where learners wanted physical referents or actions in the scene, such as pointing at items, placing objects, paying, comparing clothing, using a ticket machine, or performing a ritual.
+
+The final scenario set:
+
+| Scenario | Purpose |
+| --- | --- |
+| Convenience store checkout | Dense transactional flow using most primitives |
+| Farmers market stand | Produce selection and object placement |
+| Cafe arrival/seating | Spatial roleplay and locomotion gap |
+| Cafe ordering | Menu/pastry deixis and confirmation |
+| Cafe paying check | Payment tray, card reader, receipt exchange |
+| Clothing browse/compare | Side-by-side object comparison |
+| Clothing trying-on | Pick-up/place plus wearing/locomotion gap |
+| Station ticketing | Route map and ticket-machine breadth case |
+| Shrine purification | Ritual sequence and embodied-action stress case |
+
+---
+
+## Evaluation and Results
+
+### Definition of Success
+
+Success is not measured by photorealism alone. The system succeeds to the extent that it can:
+
+1. translate written roleplay demands into a valid typed plan;
+2. realize and lay out recognizable objects in a plausible spatial scene;
+3. wire the scene so the learner can complete the intended primitive tasks;
+4. do so within a latency budget compatible with iteration.
+
+The evaluation therefore scores the pipeline at three artifacts: the generated plan, the realized scene, and the runnable task execution.
+
+![Evaluation plan](docs/final/assets/slides/source-slide-10.png)
+
+### Plan Alignment
+
+At the plan level, the generator performed well. Across the final evaluation bundle:
+
+- 9/9 exported scenarios produced validated typed plans.
+- 42 generated objects were rated expected.
+- 4 generated objects were rated acceptable.
+- 0 generated objects were rated hallucinated.
+- 36/43 generated task mappings were faithful.
+- 40/43 were faithful or acceptable compromises.
+- 3/43 were invalid primitive mappings.
+
+![Task fidelity by scenario](docs/final/assets/figures/task_fidelity_by_scenario.png)
+
+The main interpretation is that LLM planning was not the dominant bottleneck. The system usually created the right object inventory and mapped written interactions to plausible primitive tasks. The remaining invalid mappings concentrated in embodied or roleplay-rich actions such as bowing, clapping, wearing clothing, locomotion, and bidirectional exchange.
+
+### Realized Scene Quality
+
+The scene-level evaluation separates visual/spatial quality from task execution:
+
+- **Object realization:** are the required objects visible and recognizable?
+- **Spatial plausibility:** are objects grounded, reachable, non-overlapping, and arranged sensibly?
+- **Context sufficiency:** does the scene read as the intended setting?
+- **Affordance instrumentation:** are objects wired for the required primitive interactions?
+- **Task completion:** could the task actually be completed or partially completed?
+
+![Realized scene quality](docs/final/assets/figures/realized_scene_quality.png)
+
+Object, context, and spatial plausibility were often usable, but affordance instrumentation and task completion were more frequently partial. This supports the main result: the typed plan often survives, but turning the plan into an interactable spatial scene remains the hard part.
+
+### SAM3D Timing
+
+The app evaluation logs captured LLM plan-generation time, with a median around 9.5 seconds for timing-included logs. SAM3D realization timing was reconstructed from output file timestamps, using `reference.png -> .usda` per object. This does not include model preload, app polling, or all queueing overhead, but it captures the dominant reconstruction/export cost.
+
+![SAM3D realization timing](docs/final/assets/figures/sam3d_realization_timing.png)
+
+The timing result is clear: planning was seconds; visual realization was minutes. Multi-object scenes required several minutes because each object was reconstructed and exported separately. This explains why caching, proxy fallback, and selective realization are necessary for the few-minute workflow.
+
+### What Worked
+
+The pipeline closes end to end:
+
+```text
+written scenario card
+  -> typed object/task plan
+  -> validated runnable primitive plan
+  -> SAM3D/proxy object realization
+  -> reach-scale layout
+  -> interactable scene with evaluation logs
+```
+
+The plan-level results are strong enough to show that a typed-plan approach is viable. The system avoids arbitrary code generation while still producing evaluable spatial interaction plans.
+
+### What Did Not Work
+
+The main limitations were downstream of planning:
+
+- generated assets were uneven in visual quality;
+- surface-like objects could be slow or visually poor;
+- layout improved but still required careful support-surface handling;
+- affordance instrumentation was brittle;
+- the primitive vocabulary lacks richer embodied gestures, locomotion, wearing/trying-on, and bidirectional exchange.
+
+These are not all failures of the LLM. Some are vocabulary gaps, some are layout/realization gaps, and some are runtime affordance gaps. The evaluation was designed to attribute those failures instead of collapsing them into one score.
+
+---
+
+## Demonstration Artifacts
+
+Presentation deck:
+
+- [Final presentation PPTX](docs/final/348kpres.pptx)
+
+Rendered slide gallery:
+
+- [Slide 1](docs/final/assets/slides/source-slide-01.png)
+- [Slide 5: written to typed plan](docs/final/assets/slides/source-slide-05.png)
+- [Slide 9: final scene examples](docs/final/assets/slides/source-slide-09.png)
+- [Slide 11: plan alignment](docs/final/assets/slides/source-slide-11.png)
+- [Slide 12: realized scene quality](docs/final/assets/slides/source-slide-12.png)
+- [Slide 13: SAM3D timing](docs/final/assets/slides/source-slide-13.png)
+
+Selected scene screenshots:
+
+![Shrine purification](docs/final/assets/screenshots/shrine_purification.png)
+![Station ticketing](docs/final/assets/screenshots/station_ticketing.png)
+![Clothing compare](docs/final/assets/screenshots/clothing_compare.png)
+
+Evaluation data:
+
+- [Final eval manifest](docs/final/data/manifest.json)
+- [Evaluation summary](docs/final/data/eval_summary.json)
+- Per-scenario exported JSON logs in [docs/final/data](docs/final/data)
+
+Note: the final data folder preserves the exported evaluation bundle used for the presentation figures. Entries marked as simulated in the manifest should be interpreted as simulation-backed presentation/evaluation artifacts, not as independent headset trials.
+
+---
+
+## Team Responsibilities
+
+This was an individual project. I implemented the RoleplAR interaction-world data model, primitive runtime, validation path, LLM generation pipeline, evaluation UI/log export, SAM3D service integration, layout solver, scenario presets, final evaluation, and presentation/report materials.
+
+---
+
+## How to Run
+
+Open the project in Xcode:
 
 ```bash
-DEVELOPER_DIR=/Applications/Xcode.app xcodebuild \
-  -project /Users/dlonzell/Documents/New\ project/cs348k_dlonzell/RoleplAR.xcodeproj \
-  -scheme RoleplAR \
-  -destination 'generic/platform=visionOS Simulator' \
-  -derivedDataPath /private/tmp/cs348k-checkpoint2-build \
-  build
+open RoleplAR.xcodeproj
 ```
 
-The same scheme contains the unit tests for `InteractionWorldRuntimeTests` and `InteractionWorldGenerationTests`.
+Run the `RoleplAR` scheme on a visionOS simulator. To enable live LLM plan generation, set `OPENAI_API_KEY` in the Xcode scheme environment.
+
+For SAM3D-backed realization, run the remote/local service described in:
+
+- [tools/sam3d_service/README.md](tools/sam3d_service/README.md)
+
+The final project used a remote GPU VM for SAM3D object reconstruction and a Cloudflare tunnel for app-to-service requests.
 
 ---
 
 ## References
 
-De La Torre, F., Fang, C. M., Huang, H., Banburski-Fahey, A., Amores Fernandez, J., & Lanier, J. (2023). LLMR: Real-time Prompting of Interactive Worlds using Large Language Models.
+- De La Torre, F., Fang, C. M., Huang, H., Banburski-Fahey, A., Amores Fernandez, J., & Lanier, J. **LLMR: Real-time Prompting of Interactive Worlds using Large Language Models.**
+- Yang et al. **Holodeck: Language Guided Generation of 3D Embodied AI Environments.** CVPR 2024.
+- Meta. **SAM 3D Objects.**
+- Apple. **RealityKit and visionOS documentation.**
+- Prior GELLI language-learning study data used to derive the scenario workload.

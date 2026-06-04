@@ -1,0 +1,1030 @@
+{
+  "eventLog": [],
+  "exportedAt": 802210215.4519999,
+  "generationEvaluation": {
+    "attemptCount": 1,
+    "scenarioId": "cafe_arrival_seating",
+    "step1ObjectGeneration": {
+      "succeeded": true
+    },
+    "step3TaskGeneration": {
+      "succeeded": true
+    },
+    "step4Validation": {
+      "succeeded": true
+    },
+    "step6Runtime": {
+      "completedTasks": 2,
+      "totalTasks": 4,
+      "manualNotes": "SIMULATED for graph projection: host marker/stand/table context supports greeting and seating conceptually, but following/sitting are approximated by primitive interactions."
+    },
+    "succeeded": true,
+    "totalTimeSeconds": 15.83557903766632
+  },
+  "generationResult": {
+    "attempts": [
+      {
+        "attemptNumber": 1,
+        "durationSeconds": 15.835570931434631,
+        "outcome": {
+          "success": {}
+        },
+        "rawObjectsJSON": "{\n  \"objects\": [\n    {\n      \"id\": \"host_stand\",\n      \"displayName\": \"Host Stand\",\n      \"description\": \"Wooden host stand at the cafe entrance\",\n      \"kind\": { \"type\": \"counter\", \"category\": \"flatSurface\" },\n      \"position\": [0.0, 0.7, -1.0],\n      \"size\": [0.8, 0.9, 0.4],\n      \"color\": \"brown\",\n      \"isInteractive\": false\n    },\n    {\n      \"id\": \"host_marker\",\n      \"displayName\": \"Host Marker\",\n      \"description\": \"Marker indicating the position of the host behind the stand\",\n      \"kind\": { \"type\": \"npcMarker\", \"category\": \"marker\" },\n      \"position\": [0.0, 0.0, -1.2],\n      \"size\": [0.2, 1.8, 0.2],\n      \"color\": \"blue\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"open_table\",\n      \"displayName\": \"Open Table\",\n      \"description\": \"Small round table available for seating\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"flatSurface\" },\n      \"position\": [-0.8, 0.6, -1.5],\n      \"size\": [0.6, 0.75, 0.6],\n      \"color\": \"gray\",\n      \"isInteractive\": true\n    },\n    {\n      \"id\": \"occupied_table\",\n      \"displayName\": \"Occupied Table\",\n      \"description\": \"Small round table currently occupied\",\n      \"kind\": { \"type\": \"generic\", \"category\": \"flatSurface\" },\n      \"position\": [0.8, 0.6, -1.5],\n      \"size\": [0.6, 0.75, 0.6],\n      \"color\": \"gray\",\n      \"isInteractive\": false\n    }\n  ]\n}",
+        "rawTasksJSON": "{\"tasks\":[{\"id\":\"greet_the_host\",\"instruction\":\"Greet the host with a wave.\",\"requiredObjectIds\":[\"host_marker\"],\"expectedInteraction\":{\"type\":\"gesture\",\"gesture\":\"wave\",\"targetId\":\"host_marker\"}},{\"id\":\"tell_host_party_size\",\"instruction\":\"Tap the host stand to indicate your party size.\",\"requiredObjectIds\":[\"host_stand\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"host_stand\"}},{\"id\":\"follow_host_to_table\",\"instruction\":\"Indicate the open table to follow the host.\",\"requiredObjectIds\":[\"open_table\"],\"expectedInteraction\":{\"type\":\"indicate\",\"objectId\":\"open_table\"}},{\"id\":\"sit_at_open_table\",\"instruction\":\"Tap the open table to sit down.\",\"requiredObjectIds\":[\"open_table\"],\"expectedInteraction\":{\"type\":\"tap\",\"objectId\":\"open_table\"}}]}",
+        "stage": "fullPipeline"
+      }
+    ],
+    "layoutSummary": {
+      "objectSummaries": [
+        {
+          "displayName": "Host Stand",
+          "finalPosition": [
+            0,
+            0.62,
+            -0.95
+          ],
+          "finalSize": [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "objectId": "host_stand",
+          "rawPosition": [
+            0,
+            0.7,
+            -1
+          ],
+          "rawSize": [
+            0.8,
+            0.9,
+            0.4
+          ],
+          "role": "surface"
+        },
+        {
+          "displayName": "Host Marker",
+          "finalPosition": [
+            0,
+            1.05,
+            -1.42
+          ],
+          "finalSize": [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "objectId": "host_marker",
+          "rawPosition": [
+            0,
+            0,
+            -1.2
+          ],
+          "rawSize": [
+            0.2,
+            1.8,
+            0.2
+          ],
+          "role": "personMarker"
+        },
+        {
+          "displayName": "Open Table",
+          "finalPosition": [
+            0,
+            0.805,
+            -0.86
+          ],
+          "finalSize": [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "objectId": "open_table",
+          "rawPosition": [
+            -0.8,
+            0.6,
+            -1.5
+          ],
+          "rawSize": [
+            0.6,
+            0.75,
+            0.6
+          ],
+          "role": "contextObject"
+        },
+        {
+          "displayName": "Occupied Table",
+          "finalPosition": [
+            -0.35,
+            0.805,
+            -0.92
+          ],
+          "finalSize": [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "objectId": "occupied_table",
+          "rawPosition": [
+            0.8,
+            0.6,
+            -1.5
+          ],
+          "rawSize": [
+            0.6,
+            0.75,
+            0.6
+          ],
+          "role": "contextObject"
+        }
+      ],
+      "relations": [
+        {
+          "kind": "behind",
+          "objectId": "host_stand",
+          "source": "roleDefaults",
+          "subjectId": "host_marker"
+        },
+        {
+          "kind": "facing",
+          "objectId": "host_stand",
+          "source": "roleDefaults",
+          "subjectId": "host_marker"
+        },
+        {
+          "kind": "on",
+          "objectId": "host_stand",
+          "source": "roleDefaults",
+          "subjectId": "open_table"
+        },
+        {
+          "kind": "on",
+          "objectId": "host_stand",
+          "source": "roleDefaults",
+          "subjectId": "occupied_table"
+        }
+      ],
+      "strategy": "stage_relation_slots_v1"
+    },
+    "plan": {
+      "id": "cafe_arrival_seating_generated_attempt_1_stage_layout_sam3d_realized",
+      "objects": [
+        {
+          "assetCard": {
+            "assetKind": "surface",
+            "frontHint": "unconstrained",
+            "layoutRole": "surface",
+            "orientationHint": "horizontalSurface",
+            "restingPolicy": "centerAtPosition",
+            "targetSize": [
+              1.05,
+              0.1,
+              0.52
+            ]
+          },
+          "color": "brown",
+          "description": "Wooden host stand at the cafe entrance",
+          "displayName": "Host Stand",
+          "id": "host_stand",
+          "isInteractive": false,
+          "kind": {
+            "type": "counter"
+          },
+          "position": [
+            0,
+            0.62,
+            -0.95
+          ],
+          "size": [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "visualAsset": {
+            "format": "primitiveProxy",
+            "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition": [
+              0,
+              0.62,
+              -0.95
+            ],
+            "realizedSize": [
+              1.05,
+              0.1,
+              0.52
+            ],
+            "source": "sam3D",
+            "status": "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "personMarker",
+            "frontHint": "facesLearner",
+            "layoutRole": "personMarker",
+            "orientationHint": "uprightFacingLearner",
+            "restingPolicy": "bottomOnSupport",
+            "targetSize": [
+              0.18,
+              0.34,
+              0.18
+            ]
+          },
+          "color": "blue",
+          "description": "Marker indicating the position of the host behind the stand",
+          "displayName": "Host Marker",
+          "id": "host_marker",
+          "isInteractive": true,
+          "kind": {
+            "type": "npcMarker"
+          },
+          "position": [
+            0,
+            1.05,
+            -1.42
+          ],
+          "size": [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "visualAsset": {
+            "format": "primitiveProxy",
+            "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition": [
+              0,
+              1.05,
+              -1.42
+            ],
+            "realizedSize": [
+              0.18,
+              0.34,
+              0.18
+            ],
+            "source": "sam3D",
+            "status": "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "smallObject",
+            "frontHint": "unconstrained",
+            "layoutRole": "contextObject",
+            "orientationHint": "compact",
+            "restingPolicy": "bottomOnSupport",
+            "supportSurfaceId": "host_stand",
+            "targetSize": [
+              0.2,
+              0.18,
+              0.2
+            ]
+          },
+          "color": "gray",
+          "description": "Small round table available for seating",
+          "displayName": "Open Table",
+          "id": "open_table",
+          "isInteractive": true,
+          "kind": {
+            "category": "flatSurface",
+            "type": "generic"
+          },
+          "position": [
+            0,
+            0.805,
+            -0.86
+          ],
+          "size": [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "visualAsset": {
+            "format": "primitiveProxy",
+            "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition": [
+              0,
+              0.805,
+              -0.86
+            ],
+            "realizedSize": [
+              0.28,
+              0.24,
+              0.24
+            ],
+            "source": "sam3D",
+            "status": "fallbackPrimitive"
+          }
+        },
+        {
+          "assetCard": {
+            "assetKind": "cup",
+            "frontHint": "unconstrained",
+            "layoutRole": "contextObject",
+            "orientationHint": "openTopUpright",
+            "restingPolicy": "bottomOnSupport",
+            "supportSurfaceId": "host_stand",
+            "targetSize": [
+              0.14,
+              0.16,
+              0.14
+            ]
+          },
+          "color": "gray",
+          "description": "Small round table currently occupied",
+          "displayName": "Occupied Table",
+          "id": "occupied_table",
+          "isInteractive": false,
+          "kind": {
+            "category": "flatSurface",
+            "type": "generic"
+          },
+          "position": [
+            -0.35,
+            0.805,
+            -0.92
+          ],
+          "size": [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "visualAsset": {
+            "format": "primitiveProxy",
+            "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+            "realizedPosition": [
+              -0.35,
+              0.805,
+              -0.92
+            ],
+            "realizedSize": [
+              0.28,
+              0.24,
+              0.24
+            ],
+            "source": "sam3D",
+            "status": "fallbackPrimitive"
+          }
+        }
+      ],
+      "scenario": {
+        "expectedObjectCategories": [
+          "counter",
+          "flatSurface",
+          "npc_marker"
+        ],
+        "id": "cafe_arrival_seating",
+        "learnerRole": "customer arriving to be seated",
+        "localContext": "A host stand and two small tables are within reach; one table is open. A host marker stands behind the stand.",
+        "sceneGoal": "Greet the host and take the open table you're offered",
+        "setting": "Cafe entrance with a host stand and a couple of small tables",
+        "targetInteractions": [
+          "greet the host",
+          "tell the host how many people are in your party",
+          "follow the host to your table",
+          "sit at the open table"
+        ]
+      },
+      "tasks": [
+        {
+          "expectedInteraction": {
+            "gesture": "wave",
+            "targetId": "host_marker",
+            "type": "gesture"
+          },
+          "id": "greet_the_host",
+          "instruction": "Greet the host with a wave.",
+          "requiredObjectIds": [
+            "host_marker"
+          ]
+        },
+        {
+          "expectedInteraction": {
+            "objectId": "host_stand",
+            "type": "tap"
+          },
+          "id": "tell_host_party_size",
+          "instruction": "Tap the host stand to indicate your party size.",
+          "requiredObjectIds": [
+            "host_stand"
+          ]
+        },
+        {
+          "expectedInteraction": {
+            "objectId": "open_table",
+            "type": "indicate"
+          },
+          "id": "follow_host_to_table",
+          "instruction": "Indicate the open table to follow the host.",
+          "requiredObjectIds": [
+            "open_table"
+          ]
+        },
+        {
+          "expectedInteraction": {
+            "objectId": "open_table",
+            "type": "tap"
+          },
+          "id": "sit_at_open_table",
+          "instruction": "Tap the open table to sit down.",
+          "requiredObjectIds": [
+            "open_table"
+          ]
+        }
+      ]
+    },
+    "scenario": {
+      "expectedObjectCategories": [
+        "counter",
+        "flatSurface",
+        "npc_marker"
+      ],
+      "id": "cafe_arrival_seating",
+      "learnerRole": "customer arriving to be seated",
+      "localContext": "A host stand and two small tables are within reach; one table is open. A host marker stands behind the stand.",
+      "sceneGoal": "Greet the host and take the open table you're offered",
+      "setting": "Cafe entrance with a host stand and a couple of small tables",
+      "targetInteractions": [
+        "greet the host",
+        "tell the host how many people are in your party",
+        "follow the host to your table",
+        "sit at the open table"
+      ]
+    },
+    "totalGenerationTimeSeconds": 15.83557903766632
+  },
+  "layoutSummary": {
+    "objectSummaries": [
+      {
+        "displayName": "Host Stand",
+        "finalPosition": [
+          0,
+          0.62,
+          -0.95
+        ],
+        "finalSize": [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "objectId": "host_stand",
+        "rawPosition": [
+          0,
+          0.7,
+          -1
+        ],
+        "rawSize": [
+          0.8,
+          0.9,
+          0.4
+        ],
+        "role": "surface"
+      },
+      {
+        "displayName": "Host Marker",
+        "finalPosition": [
+          0,
+          1.05,
+          -1.42
+        ],
+        "finalSize": [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "objectId": "host_marker",
+        "rawPosition": [
+          0,
+          0,
+          -1.2
+        ],
+        "rawSize": [
+          0.2,
+          1.8,
+          0.2
+        ],
+        "role": "personMarker"
+      },
+      {
+        "displayName": "Open Table",
+        "finalPosition": [
+          0,
+          0.805,
+          -0.86
+        ],
+        "finalSize": [
+          0.28,
+          0.24,
+          0.24
+        ],
+        "objectId": "open_table",
+        "rawPosition": [
+          -0.8,
+          0.6,
+          -1.5
+        ],
+        "rawSize": [
+          0.6,
+          0.75,
+          0.6
+        ],
+        "role": "contextObject"
+      },
+      {
+        "displayName": "Occupied Table",
+        "finalPosition": [
+          -0.35,
+          0.805,
+          -0.92
+        ],
+        "finalSize": [
+          0.28,
+          0.24,
+          0.24
+        ],
+        "objectId": "occupied_table",
+        "rawPosition": [
+          0.8,
+          0.6,
+          -1.5
+        ],
+        "rawSize": [
+          0.6,
+          0.75,
+          0.6
+        ],
+        "role": "contextObject"
+      }
+    ],
+    "relations": [
+      {
+        "kind": "behind",
+        "objectId": "host_stand",
+        "source": "roleDefaults",
+        "subjectId": "host_marker"
+      },
+      {
+        "kind": "facing",
+        "objectId": "host_stand",
+        "source": "roleDefaults",
+        "subjectId": "host_marker"
+      },
+      {
+        "kind": "on",
+        "objectId": "host_stand",
+        "source": "roleDefaults",
+        "subjectId": "open_table"
+      },
+      {
+        "kind": "on",
+        "objectId": "host_stand",
+        "source": "roleDefaults",
+        "subjectId": "occupied_table"
+      }
+    ],
+    "strategy": "stage_relation_slots_v1"
+  },
+  "loadedPlan": {
+    "id": "cafe_arrival_seating_generated_attempt_1_stage_layout_sam3d_realized",
+    "objects": [
+      {
+        "assetCard": {
+          "assetKind": "surface",
+          "frontHint": "unconstrained",
+          "layoutRole": "surface",
+          "orientationHint": "horizontalSurface",
+          "restingPolicy": "centerAtPosition",
+          "targetSize": [
+            1.05,
+            0.1,
+            0.52
+          ]
+        },
+        "color": "brown",
+        "description": "Wooden host stand at the cafe entrance",
+        "displayName": "Host Stand",
+        "id": "host_stand",
+        "isInteractive": false,
+        "kind": {
+          "type": "counter"
+        },
+        "position": [
+          0,
+          0.62,
+          -0.95
+        ],
+        "size": [
+          1.05,
+          0.1,
+          0.52
+        ],
+        "visualAsset": {
+          "format": "primitiveProxy",
+          "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition": [
+            0,
+            0.62,
+            -0.95
+          ],
+          "realizedSize": [
+            1.05,
+            0.1,
+            0.52
+          ],
+          "source": "sam3D",
+          "status": "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "personMarker",
+          "frontHint": "facesLearner",
+          "layoutRole": "personMarker",
+          "orientationHint": "uprightFacingLearner",
+          "restingPolicy": "bottomOnSupport",
+          "targetSize": [
+            0.18,
+            0.34,
+            0.18
+          ]
+        },
+        "color": "blue",
+        "description": "Marker indicating the position of the host behind the stand",
+        "displayName": "Host Marker",
+        "id": "host_marker",
+        "isInteractive": true,
+        "kind": {
+          "type": "npcMarker"
+        },
+        "position": [
+          0,
+          1.05,
+          -1.42
+        ],
+        "size": [
+          0.18,
+          0.34,
+          0.18
+        ],
+        "visualAsset": {
+          "format": "primitiveProxy",
+          "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition": [
+            0,
+            1.05,
+            -1.42
+          ],
+          "realizedSize": [
+            0.18,
+            0.34,
+            0.18
+          ],
+          "source": "sam3D",
+          "status": "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "smallObject",
+          "frontHint": "unconstrained",
+          "layoutRole": "contextObject",
+          "orientationHint": "compact",
+          "restingPolicy": "bottomOnSupport",
+          "supportSurfaceId": "host_stand",
+          "targetSize": [
+            0.2,
+            0.18,
+            0.2
+          ]
+        },
+        "color": "gray",
+        "description": "Small round table available for seating",
+        "displayName": "Open Table",
+        "id": "open_table",
+        "isInteractive": true,
+        "kind": {
+          "category": "flatSurface",
+          "type": "generic"
+        },
+        "position": [
+          0,
+          0.805,
+          -0.86
+        ],
+        "size": [
+          0.28,
+          0.24,
+          0.24
+        ],
+        "visualAsset": {
+          "format": "primitiveProxy",
+          "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition": [
+            0,
+            0.805,
+            -0.86
+          ],
+          "realizedSize": [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "source": "sam3D",
+          "status": "fallbackPrimitive"
+        }
+      },
+      {
+        "assetCard": {
+          "assetKind": "cup",
+          "frontHint": "unconstrained",
+          "layoutRole": "contextObject",
+          "orientationHint": "openTopUpright",
+          "restingPolicy": "bottomOnSupport",
+          "supportSurfaceId": "host_stand",
+          "targetSize": [
+            0.14,
+            0.16,
+            0.14
+          ]
+        },
+        "color": "gray",
+        "description": "Small round table currently occupied",
+        "displayName": "Occupied Table",
+        "id": "occupied_table",
+        "isInteractive": false,
+        "kind": {
+          "category": "flatSurface",
+          "type": "generic"
+        },
+        "position": [
+          -0.35,
+          0.805,
+          -0.92
+        ],
+        "size": [
+          0.28,
+          0.24,
+          0.24
+        ],
+        "visualAsset": {
+          "format": "primitiveProxy",
+          "notes": "Not selected for SAM3D this request; RoleplAR keeps the primitive proxy interactive. selectedIds=[none], maxObjects=0.",
+          "realizedPosition": [
+            -0.35,
+            0.805,
+            -0.92
+          ],
+          "realizedSize": [
+            0.28,
+            0.24,
+            0.24
+          ],
+          "source": "sam3D",
+          "status": "fallbackPrimitive"
+        }
+      }
+    ],
+    "scenario": {
+      "expectedObjectCategories": [
+        "counter",
+        "flatSurface",
+        "npc_marker"
+      ],
+      "id": "cafe_arrival_seating",
+      "learnerRole": "customer arriving to be seated",
+      "localContext": "A host stand and two small tables are within reach; one table is open. A host marker stands behind the stand.",
+      "sceneGoal": "Greet the host and take the open table you're offered",
+      "setting": "Cafe entrance with a host stand and a couple of small tables",
+      "targetInteractions": [
+        "greet the host",
+        "tell the host how many people are in your party",
+        "follow the host to your table",
+        "sit at the open table"
+      ]
+    },
+    "tasks": [
+      {
+        "expectedInteraction": {
+          "gesture": "wave",
+          "targetId": "host_marker",
+          "type": "gesture"
+        },
+        "id": "greet_the_host",
+        "instruction": "Greet the host with a wave.",
+        "requiredObjectIds": [
+          "host_marker"
+        ]
+      },
+      {
+        "expectedInteraction": {
+          "objectId": "host_stand",
+          "type": "tap"
+        },
+        "id": "tell_host_party_size",
+        "instruction": "Tap the host stand to indicate your party size.",
+        "requiredObjectIds": [
+          "host_stand"
+        ]
+      },
+      {
+        "expectedInteraction": {
+          "objectId": "open_table",
+          "type": "indicate"
+        },
+        "id": "follow_host_to_table",
+        "instruction": "Indicate the open table to follow the host.",
+        "requiredObjectIds": [
+          "open_table"
+        ]
+      },
+      {
+        "expectedInteraction": {
+          "objectId": "open_table",
+          "type": "tap"
+        },
+        "id": "sit_at_open_table",
+        "instruction": "Tap the open table to sit down.",
+        "requiredObjectIds": [
+          "open_table"
+        ]
+      }
+    ]
+  },
+  "manualEvaluation": {
+    "scenarioLayoutRating": "partiallyPlausible",
+    "scenarioFidelityRating": "partiallyFaithful",
+    "generatedObjectRatings": [
+      {
+        "objectId": "host_stand",
+        "rating": "expected"
+      },
+      {
+        "objectId": "host_marker",
+        "rating": "expected"
+      },
+      {
+        "objectId": "open_table",
+        "rating": "expected"
+      },
+      {
+        "objectId": "occupied_table",
+        "rating": "expected"
+      }
+    ],
+    "generatedTaskRatings": [
+      {
+        "taskId": "greet_the_host",
+        "rating": "compromise"
+      },
+      {
+        "taskId": "tell_host_party_size",
+        "rating": "faithful"
+      },
+      {
+        "taskId": "follow_host_to_table",
+        "rating": "compromise"
+      },
+      {
+        "taskId": "sit_at_open_table",
+        "rating": "compromise"
+      }
+    ],
+    "taskMetricRatings": [
+      {
+        "taskId": "greet_the_host",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "greet_the_host",
+        "metric": "spatialPlausibility",
+        "rating": "partial"
+      },
+      {
+        "taskId": "greet_the_host",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "greet_the_host",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "greet_the_host",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      },
+      {
+        "taskId": "tell_host_party_size",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "tell_host_party_size",
+        "metric": "spatialPlausibility",
+        "rating": "partial"
+      },
+      {
+        "taskId": "tell_host_party_size",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "tell_host_party_size",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "tell_host_party_size",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      },
+      {
+        "taskId": "follow_host_to_table",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "follow_host_to_table",
+        "metric": "spatialPlausibility",
+        "rating": "partial"
+      },
+      {
+        "taskId": "follow_host_to_table",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "follow_host_to_table",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "follow_host_to_table",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      },
+      {
+        "taskId": "sit_at_open_table",
+        "metric": "objectRealization",
+        "rating": "partial"
+      },
+      {
+        "taskId": "sit_at_open_table",
+        "metric": "spatialPlausibility",
+        "rating": "partial"
+      },
+      {
+        "taskId": "sit_at_open_table",
+        "metric": "contextSufficiency",
+        "rating": "yes"
+      },
+      {
+        "taskId": "sit_at_open_table",
+        "metric": "affordanceInstrumentation",
+        "rating": "partial"
+      },
+      {
+        "taskId": "sit_at_open_table",
+        "metric": "taskCompletion",
+        "rating": "partial"
+      }
+    ],
+    "answeredCount": 20,
+    "totalCount": 20,
+    "yesCount": 4
+  },
+  "runtimeEvaluation": {
+    "completedTasks": 0,
+    "firstFailedTaskId": "greet_the_host",
+    "handlerCoveragePassed": 4,
+    "handlerCoverageTotal": 4,
+    "objectCoveragePassed": 4,
+    "objectCoverageTotal": 4,
+    "totalTasks": 4
+  },
+  "scenario": {
+    "expectedObjectCategories": [
+      "counter",
+      "flatSurface",
+      "npc_marker"
+    ],
+    "id": "cafe_arrival_seating",
+    "learnerRole": "customer arriving to be seated",
+    "localContext": "A host stand and two small tables are within reach; one table is open. A host marker stands behind the stand.",
+    "sceneGoal": "Greet the host and take the open table you're offered",
+    "setting": "Cafe entrance with a host stand and a couple of small tables",
+    "targetInteractions": [
+      "greet the host",
+      "tell the host how many people are in your party",
+      "follow the host to your table",
+      "sit at the open table"
+    ]
+  },
+  "simulationMetadata": {
+    "evaluationMode": "simulated_placeholder_for_graph_projection",
+    "includeInTiming": false,
+    "notARun": true,
+    "createdAt": "2026-06-03T20:10:15.452Z",
+    "notes": "SIMULATED for graph projection: host marker/stand/table context supports greeting and seating conceptually, but following/sitting are approximated by primitive interactions."
+  }
+}
