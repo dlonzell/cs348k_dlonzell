@@ -199,7 +199,7 @@ The app evaluation logs captured LLM plan-generation time, with a median around 
 
 ![SAM3D realization timing](docs/final/assets/figures/sam3d_realization_timing.png)
 
-The timing result is clear: planning was seconds; visual realization was minutes. Multi-object scenes required several minutes because each object was reconstructed and exported separately. This explains why caching, proxy fallback, and selective realization are necessary for the few-minute workflow.
+The timing result is clear: planning was seconds; visual realization was minutes. Multi-object scenes required several minutes because each object was reconstructed and exported separately. 
 
 ### What Worked
 
